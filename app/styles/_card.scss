@@ -1,0 +1,166 @@
+.card {
+	@extend .simple-shadow;
+
+	//display: inline-block;
+	position: relative;
+	width: 100%;
+	height: auto;
+	max-height: 450px;
+	background-color: white;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	overflow: hidden;
+
+	-webkit-transform: translateY(0);
+	-moz-transform:    translateY(0);
+	-ms-transform:     translateY(0);
+	-o-transform:      translateY(0);
+	transform:         translateY(0);
+
+	-webkit-transition: transform .5s ease, box-shadow .5s ease, height 1.1s ease;
+	-moz-transition:    transform .5s ease, box-shadow .5s ease, height 1.1s ease;
+	-ms-transition:     transform .5s ease, box-shadow .5s ease, height 1.1s ease;
+	-o-transition:      transform .5s ease, box-shadow .5s ease, height 1.1s ease;
+	transition:         transform .5s ease, box-shadow .5s ease, height 1.1s ease;
+
+	&:hover {
+		cursor: pointer;
+		-webkit-transform: translateY(-10px);
+		-moz-transform:    translateY(-10px);
+		-ms-transform:     translateY(-10px);
+		-o-transform:      translateY(-10px);
+		transform:         translateY(-10px);
+
+		-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+		-moz-box-shadow:    0 10px 20px rgba(0, 0, 0, .2);
+		box-shadow:         0 10px 20px rgba(0, 0, 0, .2);
+	}
+
+	.custom-label {
+		@extend .simple-shadow;
+		background-color: $main-color-dark;
+		width: 200px;
+		text-align: center;
+		color: white;
+		font-size: 13px;
+		padding: 3px 20px;
+		position: absolute;
+		top: 23px;
+		left: -59px;
+		-webkit-transform: rotate(-38deg);
+		-moz-transform:    rotate(-38deg);
+		-ms-transform:     rotate(-38deg);
+		-o-transform:      rotate(-38deg);
+		transform:         rotate(-38deg);
+		z-index: 10;
+	}
+
+	.picture {
+		width: 100%;
+		height: 240px;				
+		padding: 10px;
+
+		> div {
+			width: 100%;
+			height: 100%;
+			background-size: cover;
+			background-position: center;
+			background-image: url('../images/slides/19424.jpg');	
+			position: relative;		
+
+			.icons {
+				display: block;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				text-align: right;
+				background-color: rgba(#000, .5);
+				color: white;
+				padding-right: 15px;
+
+				> span[name="icon"] {
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+
+	.info {
+		padding: 10px 15px;
+
+		.title {
+			font-size: 1.4em;
+			display: block;
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		.subtitle {
+			font-size: 1.1em;
+			display: block;
+			margin-top: 5px;
+			margin-bottom: 10px;
+			color: $gray;
+			font-weight: 200;
+
+			i {
+				color: $main-color;
+			}
+		}
+
+		.description {
+			font-family: 'Open Sans', sans-serif;
+			font-size: 1em;
+			display: block;
+		}
+
+		.price {
+			font-size: 1.2em;
+			display: block;
+			margin-top: 10px;
+			// font-weight: bold !important;
+			font-family: 'Work Sans', sans-serif;
+
+			// strong {
+			// 	font-size: 1.1em;
+			// 	font-weight: bold;
+			// }
+		}
+	}
+
+	&.card-horizontal {
+		height: 240px;
+
+		.picture {			
+			display: inline-block;
+			max-width: 30%;
+		}
+
+		.info {
+			display: inline-block;
+			width: 70%;
+			max-width: 70%;
+			height: 100%;
+			position: absolute;
+
+			.subtitle {
+				margin-bottom: 10px;
+			}
+
+			.icons {
+				margin-bottom: 10px;
+				margin-left: 20px;
+				display: block;
+				font-size: 1.5em;
+
+				> span {
+					margin-right: 25px;
+				}
+			}
+
+			.price {
+				margin-top: 20px;
+				font-size: 1.5em;
+			}
+		}
+	}
+}

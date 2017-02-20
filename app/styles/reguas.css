@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "reguas";
+	src:url("fonts/reguas.eot");
+	src:url("fonts/reguas.eot?#iefix") format("embedded-opentype"),
+		url("fonts/reguas.woff") format("woff"),
+		url("fonts/reguas.ttf") format("truetype"),
+		url("fonts/reguas.svg#reguas") format("svg");
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+[data-icon]:before {
+	font-family: "reguas" !important;
+	content: attr(data-icon);
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="regua-"]:before,
+[class*=" regua-"]:before {
+	font-family: "reguas" !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.regua-measure:before {
+	content: "\61";
+}
+.regua-pencil-rule:before {
+	content: "\62";
+}
+.regua-l:before {
+	content: "\63";
+}

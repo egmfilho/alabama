@@ -1,0 +1,152 @@
+@mixin box-shadow($x, $y, $spread, $color) {
+	-webkit-box-shadow: $x $y $spread $color;
+	-moz-box-shadow:    $x $y $spread $color;
+	box-shadow:         $x $y $spread $color;
+}
+
+@mixin transition($properties...) {
+	-webkit-transition: $properties;
+	-moz-transition:    $properties;
+	-ms-transition:     $properties;
+	-o-transition:      $properties;
+	transition:         $properties;
+}
+
+.offset-top-15 {
+	margin-top: 15px;
+}
+
+.offset-top-30 {
+	margin-top: 30px;
+}
+
+.offset-top-60 {
+	margin-top: 60px;
+}
+
+.offset-bottom-15 {
+	margin-bottom: 15px;
+}
+
+.offset-bottom-30 {
+	margin-bottom: 30px;
+}
+
+.offset-bottom-60 {
+	margin-bottom: 60px;
+}
+
+.offset-left-15 {
+	margin-left: 15px;
+}
+
+.offset-left-30 {
+	margin-left: 30px;
+}
+
+.text-primary {
+	color: $brand-primary;
+}
+
+.text-white {
+	color: white;
+}
+
+.text-gray {
+	color: $gray-light;
+}
+
+.text-light {
+	color: $gray-light;
+	font-weight: 200;	
+}
+
+.text-sm {
+	font-size: 1.2em;
+}
+
+.text-md {
+	font-size: 1.6em;
+}
+
+.text-lg {
+	font-size: 3em;
+}
+
+.text-xlg {
+	font-size: 4em;
+}
+
+.icon-xlg {
+	font-size: 8em;
+}
+
+.icon-lg {
+	font-size: 5em;
+}
+
+.icon-md {
+	font-size: 3em;
+}
+
+.icon-sm {
+	font-size: 1.2em;
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+.btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+    &:focus, &:active {
+    	outline: none !important;
+    }
+
+    &.btn-pill {
+    	border-radius: 25px;
+    }
+}
+
+
+.outline-border {
+	&:focus {
+		border-color: $main-color;
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.input-style {
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 15px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: $gray-lighter;
+}
+
+.form-control {
+	@at-root {
+		input#{&} {				
+			@extend .outline-border;
+		}
+
+		textarea#{&} {
+			@extend .outline-border;
+		}
+	}
+}
+
+.remove-margin {
+	margin: 0 !important;
+}
+
+.remove-padding {
+	padding: 0 !important;
+}
+
+.contain-horizontally {
+	max-width: 100%;
+}

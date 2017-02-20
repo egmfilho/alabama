@@ -1,0 +1,25 @@
+.row.remove-margin
+	.contain-horizontally
+		.col-xs-12.section-header
+			div
+				h2.name(ng-if='cardListName') {{cardListName}}
+				.hidden-xs.btn-group.control.pull-right(role='group' ng-if='!cardListHideControls')
+					button.btn.btn-primary(ng-click='setCardListHorizontal(false)')
+						i.fa.fa-th
+					button.btn.btn-primary(ng-click='setCardListHorizontal(true)')
+						i.fa.fa-bars
+
+	.contain-horizontally
+		.col-xs-12(ng-repeat='card in cardListArray' ng-class='{"col-sm-6 col-md-4": !listHorizontal}' style='transition: width .1s ease')
+
+			card(
+				is-horizontal='listHorizontal'
+				picture='{{card.picture}}'
+				title='{{card.title}}' 
+				subtitle='{{card.subtitle}}' 
+				description='{{card.description}}' 
+				price='{{card.price}}' 
+				url='{{card.url}}' 
+				label-text='{{card.labelText}}' 
+				label-color='{{card.labelColor}}'
+				hide-description='!listHorizontal')

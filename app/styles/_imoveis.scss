@@ -1,0 +1,25 @@
+.filters {
+	> .panel {
+		margin-bottom: 5px;
+		border-radius: 0;
+
+		@include box-shadow(0, 0, 3px, rgba(0, 0, 0, .3));
+
+		&:first-child {
+			margin-top: 100px;
+		}
+
+		.panel-heading {
+			border-radius: 0;
+
+			a {
+				display: block;
+				color: white;
+
+				&:hover, &:focus {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

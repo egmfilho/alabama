@@ -1,0 +1,28 @@
+.header2
+	.container-narrow
+		.background
+			.container
+				.row
+					.col-xs-6.col-sm-3
+						a(href='/')
+							.logo
+					.col-xs-12.col-sm-9
+						.contato
+							i.fa.fa-whatsapp
+							span  (21) 99999-8888
+						.search
+							ul.nav.nav-tabs(name='cliente')
+							.conteudo-nav.condensar-rows
+								.row
+									.col-sm-3
+										select.selectpicker.form-control(title='Tipo do imóvel' data-container='body')
+											option Casa
+											option Apartamento
+											option Latifúndio
+											option Fazenda
+									.col-sm-6
+										input.form-control.input-lg(type='text' placeholder='Informe um condomínio, bairro ou cidade')
+									.col-sm-3
+										button.btn.btn-primary.btn-block.btn-lg
+											span.glyphicon.glyphicon-search
+											|  Pesquisar

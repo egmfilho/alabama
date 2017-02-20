@@ -1,0 +1,45 @@
+.card(ng-class='{"card-horizontal": isHorizontal}')
+	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
+		| {{labelText}}
+	.picture
+		div(ng-style='{"background-image": "url({{picture}})"}')
+			.icons(ng-if='!isHorizontal')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios')
+					| 2  
+					i.fa.fa-bed
+
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes')
+					| 2  
+					i.fa.fa-bathtub
+
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros')
+					| 2  
+					i.fa.fa-shower
+
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas')
+					| 2  
+					i.fa.fa-car
+	.info
+		span.title {{title}}
+		span.subtitle
+			i.glyphicon.glyphicon-map-marker
+			|  {{subtitle}}
+		.icons(ng-if='isHorizontal')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios')
+				| 2  
+				i.fa.fa-bed
+
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes')
+				| 2  
+				i.fa.fa-bathtub
+
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros')
+				| 2  
+				i.fa.fa-shower
+
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas')
+				| 2  
+				i.fa.fa-car
+		span.description.text-gray(ng-hide='hideDescription') {{description | truncate: 140}}
+		span.price.text-primary
+			| Valor: {{price | currency : 'R$ ' : 0}}

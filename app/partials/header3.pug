@@ -1,0 +1,129 @@
+#header.header3(ng-controller='HeaderCtrl as header')
+	.container-narrow
+		.contact-stripe
+			.container
+				.contato
+					span
+						i.fa.fa-whatsapp
+						span  (21) 99999-8888
+					span
+						i.fa.fa-envelope-o
+						span  railander_007@hotmail.com
+					span
+						| CRECI: 053712F
+
+		.menu
+			.container
+				.row
+					.col-sm-3
+						a(href='/')
+							.logo
+					.col-sm-9
+						ul.nav.nav-pills
+							li(role='presentation' name='home')
+								a(href='/') Home
+							
+							li(role='presentation' name='empresa')
+								a(href='/empresa') A Empresa
+
+							li(role='presentation' name='imoveis')
+								a(href='/imoveis') Imóveis
+
+							li(role='presentation' name='servicos')
+								a(href='') Serviços
+
+							li(role='presentation' name='contato')
+								a(href='/contato') Contato
+
+		.row.container-carousel(ng-show='currentPath === "/"')
+			.col-xs-12
+				#carousel-showcase.carousel.slide(data-ride='carousel')
+					//- Wrapper for slides
+					.carousel-inner.clearfix(role='listbox')
+						.item.active
+							.picture
+							.info
+								.subtitle
+									i.glyphicon.glyphicon-map-marker
+									|  Teresópolis - Rio de Janeiro
+								.title
+									| Condomínio Jambalaia
+								.description 
+									| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
+								.price
+									| Valor:
+									strong  {{2000000 | currency : 'R$ ' : 0}}
+								.more
+									a.btn.btn-primary.btn-lg(href='')
+										| Ver mais  
+										i.fa.fa-chevron-right
+						.item
+							.picture
+							.info
+								.subtitle
+									i.glyphicon.glyphicon-map-marker
+									|  Teresópolis - Rio de Janeiro
+								.title
+									| Condomínio Jambalaia
+								.description 
+									| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
+								.price
+									| Valor:
+									strong  {{2000000 | currency : 'R$ ' : 0}}
+								.more
+									a.btn.btn-primary.btn-lg(href='')
+										| Ver mais  
+										i.fa.fa-chevron-right
+						.item
+							.picture
+							.info
+								.subtitle
+									i.glyphicon.glyphicon-map-marker
+									|  Teresópolis - Rio de Janeiro
+								.title
+									| Condomínio Jambalaia
+								.description 
+									| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
+								.price
+									| Valor:
+									strong  {{2000000 | currency : 'R$ ' : 0}}
+								.more
+									a.btn.btn-primary.btn-lg(href='')
+										| Ver mais  
+										i.fa.fa-chevron-right
+					//- Controls
+					span.control.left(data-target='#carousel-showcase' role='button' data-slide='prev')
+						button.btn.btn-default
+							i.fa.fa-angle-left
+					span.control.right(data-target='#carousel-showcase' role='button' data-slide='next')
+						button.btn.btn-default
+							i.fa.fa-angle-right
+
+		.container.offset-top-15(ng-show='currentPath === "/"')
+			.row.search
+				.col-sm-4.col-md-3
+					select.selectpicker.form-control(title='Modalidade' data-container='body')
+						option Venda
+						option Aluguel
+				.col-sm-4.col-md-3
+					select.selectpicker.form-control(title='Tipo' data-container='body')
+						option Tipo1
+						option Tipo2
+				.col-sm-4.col-md-3
+					select.selectpicker.form-control(title='Bairro' data-container='body')
+						option Bairro1
+						option Bairro2
+				.col-sm-4.col-md-3
+					input.form-control.input-lg(placeholder='Código')
+				.col-sm-4.col-md-3
+					rzslider(rz-slider-model='sliderPrice.minValue' rz-slider-high='sliderPrice.maxValue' rz-slider-options='sliderPrice.options')
+				.col-sm-4.col-md-3
+					rzslider(rz-slider-model='sliderArea.minValue' rz-slider-high='sliderArea.maxValue' rz-slider-options='sliderArea.options')
+				.col-sm-4.col-md-3
+					select.selectpicker.form-control(title='Outros' data-container='body')
+						option Outro1
+						option Outro2
+				.col-sm-4.col-sm-push-4.col-md-3.col-md-push-0
+					button.btn.btn-primary.btn-block.btn-lg
+						span.glyphicon.glyphicon-search
+						|  Pesquisar

@@ -1,0 +1,27 @@
+doctype html
+
+html
+	head
+		block title
+			title Alabama
+
+		meta(name='format-detection' content='telephone=no')
+		meta(name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(charset='utf-8')
+
+		// Stylesheets
+		link(rel='stylesheet' href='styles/vendor.min.css')
+		link(rel='stylesheet' href='styles/main.css')
+
+	body(ng-app='alabama')
+
+		<?php include "./partials/header4.html" ?>
+
+		block page
+
+		div(ng-include='"../partials/footer.html"')
+
+
+		script(src='scripts/vendors.min.js')
+		script(src='scripts/app.min.js')

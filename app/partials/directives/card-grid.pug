@@ -1,0 +1,20 @@
+.row.remove-margin
+	.container
+		.section-header(ng-if='cardGridName')
+			div
+				h2.name {{cardGridName}}
+	
+	.col-xs-12.background-gray
+		.container
+			.row
+				.col-xs-12.col-sm-6.col-md-4(ng-repeat='card in cardGridArray')
+
+					card(
+						picture='{{card.picture}}' 
+						title='{{card.title}}' 
+						subtitle='{{card.subtitle}}' 
+						description='{{card.description}}' 
+						price='{{card.price}}' 
+						url='{{card.url}}' 
+						label-text='{{card.labelText}}' 
+						label-color='{{card.labelColor}}')

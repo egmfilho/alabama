@@ -1,0 +1,52 @@
+.page-header(style='background-image: url("https://wallpaperscraft.com/image/paris_building_road_night_traffic_30814_1920x1080.jpg")')
+	.dark-layer
+		.container
+			.row
+				.col-xs-12
+					h1.text-xlg Pesquisar Imóveis
+.background-gray
+	.container
+		.row
+			.col-md-3.filters
+				- var filtro1 = 'cabrunco'
+				.panel.panel-primary(name=filtro1)
+					.panel-heading
+						a(href='' data-toggle='collapse' data-target='.panel[name="' + filtro1 + '"] .collapse')
+							| Filtro 1
+					.collapse
+						.panel-body
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Forévis
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Cachorro
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Hadouken
+
+				- var filtro2 = 'james'
+				.panel.panel-primary.simple-shadow(name=filtro2)
+					.panel-heading
+						a(href='' data-toggle='collapse' data-target='.panel[name="' + filtro2 + '"] .collapse')
+							| Filtro 2
+					.collapse
+						.panel-body
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Forévis
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Cachorro
+							.checkbox
+								label
+									input(type='checkbox') 
+									| Hadouken
+				
+			.col-md-9
+				card-list(cards='imoveis.array' name='Resultados')
