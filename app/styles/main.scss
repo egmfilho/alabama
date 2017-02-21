@@ -17,6 +17,8 @@ $brand-primary: $main-color;
 
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../bower_components/compass-sass-mixins/lib/compass";
+// @import "../../bower_components/slick-carousel/slick/slick";
+// @import "../../bower_components/slick-carousel/slick/slick-theme";
 
 @import "utils";
 
@@ -245,3 +247,4 @@ input, select, textarea, .bootstrap-select {
 @import "carousel";
 @import "card";
 @import "imoveis";
+@import "imovel";

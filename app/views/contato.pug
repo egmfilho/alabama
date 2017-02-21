@@ -3,9 +3,9 @@
 		.container
 			.row
 				.col-xs-12
-					h1.text-xlg Contato
+					h1.text-xlg Fale Conosco
 .container
-	.row
+	.row.offset-bottom-60
 		.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
 			.row
 				.col-xs-12
@@ -19,10 +19,22 @@
 					h4 Email
 					input.form-control
 					h4 Mensagem
-					textarea.form-control
+					textarea.form-control(rows='8')
 				.col-xs-12.col-sm-push-8.col-sm-4
 					button.btn.btn-primary.btn-lg.btn-block(style='margin-top: 30px')
 						i.fa.fa-send
 						|  Enviar
+
+	.row
+		.col-xs-12
+			h1.text-center.offset-top-60 Estamos aqui
+
+ng-map.offset-top-30.offset-bottom-30(default-style="true" center='-22.415787,-42.971796' zoom='15' scrollwheel='false')
+	marker(id='#marker' position='-22.415787,-42.971796' on-click='contato.map.showInfoWindow("#info-window")')
+	info-window(id='#info-window' visible-on-marker='#marker')
+		div(ng-non-bindable='')
+			h4 {{contato.mapInfo.title}} 
+			p {{contato.mapInfo.address}}
+			p {{contato.mapInfo.contact}}
 
 card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='root_imoveis')

@@ -13,7 +13,8 @@ angular.module('alabama', [
 		'ngSanitize',
 		'ngTouch',	
 		'slick',
-		'rzModule'
+		'rzModule',
+		'ngMap'
 	])
 	.config(['$locationProvider', function($locationProvider) {
 		$locationProvider.hashPrefix('');
@@ -41,13 +42,20 @@ angular.module('alabama', [
 			controller: 'ImoveisCtrl',
 			controllerAs: 'imoveis'
 		})
+		.when('/imovel', {			
+			templateUrl: 'views/imovel.html',
+			controller: 'ImovelCtrl',
+			controllerAs: 'imovel'
+		})
 		.when('/equipe', {
 			name: 'equipe',
 			templateUrl: 'views/equipe.html'
 		})
 		.when('/contato', {
 			name: 'contato',
-			templateUrl: 'views/contato.html'
+			templateUrl: 'views/contato.html',
+			controller: 'ContatoCtrl',
+			controllerAs: 'contato'
 		})
 		.otherwise({
 			redirectTo: '/'

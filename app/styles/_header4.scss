@@ -212,7 +212,16 @@
 		position: relative;
 		@include box-shadow(0, -1px, 10px, rgba(#000, .4px));
 
-		.search {		
+		.search {
+			a[data-toggle='collapse'] {
+				&:after {
+					content: 'Menos opções';
+				}
+
+				&.collapsed:after {
+					content: 'Mais opções';
+				}				
+			}
 
 			.row > div {
 				&:not(.col-xs-12) {

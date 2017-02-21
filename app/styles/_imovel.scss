@@ -1,0 +1,233 @@
+.imovel {
+
+	.title {
+		color: $gray-dark;
+		font-family: 'Open Sans', sans-serif;
+	}
+
+	.info {
+		float: right;
+		font-size: 17px;
+
+		span {
+			margin-right: 10px;
+			//color: white;
+			//background-color: $main-color-dark;
+			//padding: 5px 10px;
+			//border-radius: 6px;
+
+			i {
+				font-size: 21px;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.pane {
+		// @extend .simple-shadow;
+		// @include box-shadow(0, 0, 10px, rgba(#000, .15));
+
+		padding: 15px 0;
+		background-color: white;
+
+		&.perfil-imovel {
+
+			.interesse {
+				color: $main-color-darker;
+				margin-bottom: 20px;
+
+				h3 {
+					font-family: 'Open Sans', sans-serif;
+					margin-top: 0;
+				}
+			}
+
+			.form-control {
+				margin-bottom: 10px;
+
+				&:last-child {
+					margin-bottom: 20px;
+				}
+			}
+
+			.btn {
+				margin-top: 30px;
+			}
+
+			.description {
+				margin-top: 15px;
+				//background-color: $main-color;
+				//color: white;
+			}
+		}
+
+		&.pane-gray {
+			margin: 0;
+			background-color: #eee;
+			border-radius: 6px;
+
+			h3, p {
+				font-family: 'Open Sans', sans-serif;
+			}
+
+			p {
+				color: $gray-light;				
+			}
+		}
+	}
+
+	.slider-for, .slider-nav {
+
+		.slick-prev, .slick-next {
+			background-color: transparent;
+			background-repeat: repeat-x;
+			height: 100%;
+			margin-top: 0;
+			top: 0;
+			opacity: .5;
+
+			&:before {
+				font-size: 30px;
+				font-family: 'Glyphicons Halflings';
+			}
+
+			&:hover {
+				opacity: .8;
+			}
+		}
+
+		.slick-prev {
+			left: 0;
+
+			&:before {
+				content: "\e079";
+			}
+		}
+
+		.slick-next {
+			right: 0;
+
+			&:before {
+				content: "\e080";
+			}
+		}
+	}
+
+	.slider-for {
+		margin-bottom: 15px;
+		overflow-x: hidden;
+
+		.slick-prev, .slick-next {
+			width: 15%;
+
+			-webkit-transition: margin .25s;
+			-moz-transition: margin .25s;
+			-ms-transition: margin .25s;
+			-o-transition: margin .25s;
+			transition: margin .25s;
+		}
+
+		.slick-prev {
+			margin-left: -15%;
+		}
+
+		.slick-next {
+			margin-right: -15%;
+		}
+
+		&:hover {
+			.slick-next {
+				margin-right: 0;
+			}
+
+			.slick-prev {
+				margin-left: 0;
+			}
+		}
+
+		$opacity: .4;
+		.slick-prev {
+			background: linear-gradient(to left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, $opacity) 100%);
+
+			&:before {
+				margin-left: -40px;
+			}
+		}
+
+		.slick-next {
+			background: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, $opacity) 100%);
+
+			&:before {
+				margin-right: -40px;
+			}
+		}
+
+		.picture {
+			width: 100%;
+			height: 400px;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: #bbb;
+			background-image: url('https://wallpaperscraft.com/image/house_residential_design_beautifully_13642_1920x1080.jpg');
+			color: white;
+			font-size: 60px;
+		}
+	}
+
+	.slider-nav {
+		$height: 80px;
+
+		margin-bottom: 0;
+
+		.slick-prev, .slick-next {
+			width: 7%;
+			height: $height;
+			margin: 9px 0 10px 0;
+		}
+
+		$opacity: .4;
+		.slick-prev {
+			background: linear-gradient(to left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, $opacity) 100%);
+
+			&:before {
+				margin-left: -5px;
+			}
+		}
+
+		.slick-next {
+			background: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, $opacity) 100%);
+
+			&:before {
+				margin-right: -5px;
+			}
+		}
+
+		.picture {
+			-webkit-box-shadow: 0 0 5px rgba(#000, .5);
+			-moz-box-shadow:    0 0 5px rgba(#000, .5);
+			box-shadow:         0 0 5px rgba(#000, .5);
+
+			height: $height;
+			margin: 10px;
+			background-size: cover;
+			background-image: url('https://wallpaperscraft.com/image/house_residential_design_beautifully_13642_1920x1080.jpg');
+			color: white;
+			font-size: 30px;
+			-webkit-transition: all .25s;
+			-moz-transition:    all .25s;
+			-ms-transition:     all .25s;
+			-o-transition:      all .25s;
+			transition:         all .25s;
+
+			&.slick-center {
+				margin-top: 0;
+				margin-bottom: 20px;
+				-webkit-box-shadow: 0 10px 15px rgba(#000, .5);
+				-moz-box-shadow:    0 10px 15px rgba(#000, .5);
+				box-shadow:         0 10px 15px rgba(#000, .5);
+			}
+		}
+	}
+
+}

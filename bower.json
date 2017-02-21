@@ -25,7 +25,8 @@
     "bootstrap-select": "^1.12.2",
     "angularjs-slider": "^6.0.1",
     "angular-slick": "^0.2.1",
-    "angular-i18n": "^1.6.2"
+    "angular-i18n": "^1.6.2",
+    "ngmap": "^1.17.8"
   },
   "overrides": {
     "angular-i18n": {
@@ -36,6 +37,11 @@
     "font-awesome": {
       "main": [
         "css/font-awesome.css"
+      ]
+    },
+    "ngmap": {
+      "main": [
+        "build/scripts/ng-map.min.js"
       ]
     }
   },

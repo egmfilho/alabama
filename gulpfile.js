@@ -61,14 +61,6 @@ gulp.task('compile-sass', function() {
 		.pipe(connect.reload());
 });
 
-// gulp.task('compress', function(cb) {
-// 	pump([
-// 		gulp.src(source + 'scripts/**/*.js'),
-// 		uglify(),
-// 		gulp.dest(dest + 'scripts')
-// 	], cb);
-// });
-
 gulp.task('bower-restore', function() {
 	return bower();
 });
@@ -116,6 +108,7 @@ gulp.task('copy-fonts', function() {
 	return gulp.src([
 			'./bower_components/bootstrap-sass/assets/fonts/**/*.*',
 			'./bower_components/font-awesome/fonts/**/*.*',
+			'./bower_components/slick-carousel/slick/fonts/**/*.*',
 			source + 'fonts/**/*.*'
 		])
 		.pipe(gulp.dest(dest + 'fonts'))
