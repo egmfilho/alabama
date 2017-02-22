@@ -61,4 +61,54 @@
 			}
 		}
 	}
+
+	nav.navbar {
+		margin-bottom: 0;
+		height: 80px;
+		background-color: white;
+		border-radius: 0;
+		position: relative;
+		z-index: 2;		
+
+		@include box-shadow(0, 0, 10px, rgba(#000, .3));		
+
+		a.navbar-brand {
+			padding: 0;
+
+			div {
+				height: 80px;
+				width: 200px;
+				background-image: url('../images/logo.png');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+			}
+		}
+
+		.navbar-collapse {
+			.nav-pills {
+				font-size: 18px;
+				margin-top: 15px;
+				float: right;
+
+				a {
+					-webkit-transition: background-color .5s ease;
+					-moz-transition:    background-color .5s ease;
+					-ms-transition:     background-color .5s ease;
+					-o-transition:      background-color .5s ease;
+					transition:         background-color .5s ease;
+				}
+			}
+		}
+
+		.navbar-center {
+			text-align: center;
+
+			.nav-pills {
+				display: inline-block;
+				float: none;
+				vertical-align: top;
+			}
+		}
+	}
 }

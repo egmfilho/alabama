@@ -23,3 +23,45 @@
 		}
 	}
 }
+
+.search-filters {
+	.row > div {
+		padding: 10px 5px;
+	}
+
+	.bootstrap-select {
+		height: 46px;
+
+		> button {
+			height: 46px;
+			border-radius: 6px;
+
+			.filter-option {
+				font-size: 15px;
+			}
+		}
+	}
+
+	input.input-lg {
+		font-size: 15px;
+	}
+
+	.rzslider {
+		.rz-bar {
+			background-color: rgba($main-color-lighter, .5);
+
+			&.rz-selection {
+				background-color: $main-color-light;
+			}
+		}
+
+		.rz-pointer {
+			background-color: $main-color;
+			outline: none;
+
+			&.rz-active:after {
+				background-color: $main-color-dark;
+			}
+		}
+	}
+}

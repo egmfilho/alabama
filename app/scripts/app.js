@@ -1,3 +1,26 @@
+// modelo1
+// 	header1
+// 	home
+// 		carousel
+// 	sobre
+// 	imoveis
+// 		imovel1
+
+// modelo2
+// 	header2
+// 	home
+// 		carousel
+// 	sobre
+// 	imoveis
+// 		imovel1
+
+// modelo3
+// 	header3	
+
+// modelo4
+// 	header4
+
+
 'use strict';
 
 angular.module('alabama.controllers', [ ]);
@@ -32,9 +55,9 @@ angular.module('alabama', [
 			controller: 'HomeCtrl',
 			controllerAs: 'home'
 		})
-		.when('/empresa', {
-			name: 'empresa',
-			templateUrl: 'views/empresa.html'
+		.when('/sobre', {
+			name: 'sobre',
+			templateUrl: 'views/sobre.html'
 		})
 		.when('/imoveis', {
 			name: 'imoveis',

@@ -4,6 +4,62 @@
 			.row
 				.col-xs-12
 					h1.text-xlg Pesquisar Imóveis
+
+.container.search-filters.offset-top-15.offset-bottom-15
+	.row
+		.col-md-3
+			input.form-control.input-lg(placeholder='Código')
+		.col-md-3
+			select.selectpicker.form-control(title='Tipo' data-container='body')
+				option Todos
+				option Tipo1
+				option Tipo2
+		.col-md-3
+			select.selectpicker.form-control(title='Cidade' data-container='body')
+				option Todas
+				option Cidade1
+				option Cidade2
+		.col-md-3
+			select.selectpicker.form-control(title='Bairro' data-container='body')
+				option Todos
+				option Bairro1
+				option Bairro2				
+		.col-md-3
+			select.selectpicker.form-control(title='Categoria' data-container='body')
+				option Tudo
+				option Compra
+				option Aluguel
+		.col-md-3
+			select.selectpicker.form-control(title='Dormitórios' data-container='body')
+				option Tudo
+				option 1
+				option 2
+				option 3
+				option 4+
+		.col-md-3
+			select.selectpicker.form-control(title='Banheiros' data-container='body')
+				option Tudo
+				option 1
+				option 2
+				option 3
+				option 4+
+		.col-md-3
+			select.selectpicker.form-control(title='Suítes' data-container='body')
+				option Sim
+				option Não
+		.col-md-3
+			select.selectpicker.form-control(title='Garagem' data-container='body')
+				option Sim
+				option Não
+		.col-md-3
+			rzslider(rz-slider-model='sliderPrice.minValue' rz-slider-high='sliderPrice.maxValue' rz-slider-options='sliderPrice.options')
+		.col-md-3
+			rzslider(rz-slider-model='sliderArea.minValue' rz-slider-high='sliderArea.maxValue' rz-slider-options='sliderArea.options')
+		.col-md-3
+			button.btn.btn-primary.btn-block.btn-lg
+				i.glyphicon.glyphicon-search
+				|  Pesquisar
+
 .background-gray
 	.container
 		.row

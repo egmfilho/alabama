@@ -88,7 +88,13 @@ gulp.task('app-bundle', function(cb) {
 		.pipe(connect.reload());
 });
 
-gulp.task("css", ["bower-restore"], function() {
+gulp.task("copy-css", function() {
+	return gulp.src(source + 'styles/**/*.css')
+		.pipe(gulp.dest(dest + 'styles'))
+		.pipe(connect.reload());
+});
+
+gulp.task("vendor-css", ["bower-restore"], function() {
 	return gulp.src(bowerFiles({ filter: '**/*.css' }))
 		.pipe(sourcemaps.init())
 		.pipe(concat('vendor.min.css'))
@@ -106,6 +112,7 @@ gulp.task('copy-images', function() {
 
 gulp.task('copy-fonts', function() {	
 	return gulp.src([
+			source + 'fonts/**/*.*',
 			'./bower_components/bootstrap-sass/assets/fonts/**/*.*',
 			'./bower_components/font-awesome/fonts/**/*.*',
 			'./bower_components/slick-carousel/slick/fonts/**/*.*',
@@ -126,11 +133,12 @@ gulp.task('watch', function() {
 	gulp.watch([source + 'views/**/*.pug'], ['compile-views']);
 	gulp.watch([source + 'partials/**/*.pug'], ['compile-partials']);
 	gulp.watch([source + 'templates/**/*.pug'], ['index', 'compile-views']);
+	gulp.watch([source + 'styles/**/*.css'], ['copy-css']);
 	gulp.watch([source + 'styles/**/*.scss'], ['compile-sass']);
-	gulp.watch([source + 'scripts/**/*.js'], ['app-bundle']);
-	gulp.watch(bowerFiles({ filter: '**/*.css' }), ['css']);
+	gulp.watch([source + 'scripts/**/*.js'], ['app-bundle']);	
+	gulp.watch(bowerFiles({ filter: '**/*.css' }), ['vendor-css']);
 	gulp.watch(bowerFiles({ filter: '**/*.js' }), ['vendor-bundle']);
-	gulp.watch(bowerFiles(), ['copy-fonts']);
+	gulp.watch(bowerFiles(), ['copy-fonts']);	
 	gulp.watch([source + 'images/**/*.*'], ['copy-images']);
 	gulp.watch([source + 'fonts/**/*.*'], ['copy-fonts']);
 	gulp.watch([source + 'videos/**/*.*'], ['copy-videos']);
@@ -138,5 +146,5 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['connect', 'watch']);
 
-gulp.task('build', ['index', 'compile-views', 'compile-partials', 'compile-sass', 'app-bundle', 'copy-images', 'vendor-bundle', 'css', 'copy-fonts', 'copy-videos']);
+gulp.task('build', ['index', 'compile-views', 'compile-partials', 'compile-sass', 'app-bundle', 'copy-css', 'copy-images', 'vendor-bundle', 'vendor-css', 'copy-fonts', 'copy-videos']);
 

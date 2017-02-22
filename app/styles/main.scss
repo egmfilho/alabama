@@ -17,8 +17,6 @@ $brand-primary: $main-color;
 
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../bower_components/compass-sass-mixins/lib/compass";
-// @import "../../bower_components/slick-carousel/slick/slick";
-// @import "../../bower_components/slick-carousel/slick/slick-theme";
 
 @import "utils";
 
@@ -172,44 +170,6 @@ input, select, textarea, .bootstrap-select {
 	@extend .down-shadow;
 }
 
-.nav-tabs {
-	padding-bottom: 1px;
-	border-bottom: none;
-
-	>li {
-		text-align: center;
-
-		> a {
-			@extend .up-shadow;
-
-			padding: 15px 30px;
-			font-size: 1.2em;
-			background-color: $main-color;
-			color: white;
-			border: none;
-
-			&:hover, &:focus {
-				background-color: $main-color-dark;
-				border: none;
-			}
-		}
-	}
-
-	>li.active {
-		> a {
-			background-color: white;
-			color: $gray;
-			border: none;
-
-			&:hover, &:focus {
-				background-color: white;
-				color: $gray-dark;
-				border: none;
-			}
-		}
-	}
-}
-
 .page-header {
 	$height: 230px;
 
@@ -235,6 +195,29 @@ input, select, textarea, .bootstrap-select {
 			font-family: 'Archivo Black', sans-serif;
 			letter-spacing: 1px;
 			margin-top: 80px;
+		}
+	}
+}
+
+#link-icons {
+	a {
+		font-family: 'Open Sans', sans-serif;
+		display: block;
+		padding: 15px;
+		border-radius: 6px;
+
+		i.fa {
+			background-color: $main-color;
+			color: white;
+			border-radius: 50%;
+			padding: 40px;
+			width: 200px;
+			height: 200px;
+		}
+
+		&:hover, &:active, &:visited, &:focus {
+			text-decoration: none;
+			background-color: #eee;
 		}
 	}
 }

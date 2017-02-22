@@ -2,11 +2,11 @@
 
 @font-face {
 	font-family: "reguas";
-	src:url("fonts/reguas.eot");
-	src:url("fonts/reguas.eot?#iefix") format("embedded-opentype"),
-		url("fonts/reguas.woff") format("woff"),
-		url("fonts/reguas.ttf") format("truetype"),
-		url("fonts/reguas.svg#reguas") format("svg");
+	src:url("../fonts/reguas.eot");
+	src:url("../fonts/reguas.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/reguas.woff") format("woff"),
+		url("../fonts/reguas.ttf") format("truetype"),
+		url("../fonts/reguas.svg#reguas") format("svg");
 	font-weight: normal;
 	font-style: normal;
 

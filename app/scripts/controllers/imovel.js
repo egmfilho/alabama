@@ -20,7 +20,7 @@ function ImovelCtrl($rootScope, $scope, $timeout) {
 		}, 1000);
 	});
 
-	this.responsive = [
+	this.responsive1 = [
 		{
 			breakpoint: 1200,
 			settings: {
