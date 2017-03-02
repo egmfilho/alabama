@@ -23,14 +23,18 @@
 
 'use strict';
 
+angular.module('alabama.constants', [ ]);
 angular.module('alabama.controllers', [ ]);
 angular.module('alabama.filters', [ ]);
 angular.module('alabama.directives', [ ]);
+angular.module('alabama.services', [ ]);
 
 angular.module('alabama', [
+		'alabama.constants',
 		'alabama.controllers',
 		'alabama.filters',
 		'alabama.directives',
+		'alabama.services',
 		'ngAnimate',
 		'ngRoute',
 		'ngSanitize',
@@ -39,12 +43,13 @@ angular.module('alabama', [
 		'rzModule',
 		'ngMap'
 	])
-	.config(['$locationProvider', function($locationProvider) {
+	.config(['$locationProvider', '$httpProvider', function($locationProvider, $httpProvider) {
+		$httpProvider.interceptors.push('HttpInterceptor');
 		$locationProvider.hashPrefix('');
 		$locationProvider.html5Mode({
 			enabled: true,
 			requireBase: false
-		})
+		});
 	}])
 	.config(['$routeProvider', function($routeProvider) {
 
@@ -105,11 +110,6 @@ angular.module('alabama', [
 		$rootScope.startBootstrapSelect = function() {
 			jQuery('select').selectpicker();
 		};
-
-		setTimeout(function() {
-			jQuery('select').selectpicker();
-			console.log('bahh');
-		}, 1000);
 
 		$rootScope.setCarouselInterval = function(selector, interval) {
 			jQuery(selector).carousel({

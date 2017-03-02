@@ -48,11 +48,11 @@
 										|  Teresópolis - Rio de Janeiro
 									.title
 										| Condomínio Jambalaia
-									.description 
+									.description(ng-cloak) 
 										| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
 									.price
 										| Valor:
-										strong  {{2000000 | currency : 'R$ ' : 0}}
+										strong(ng-cloak)  {{2000000 | currency : 'R$ ' : 0}}
 									.more
 										a.btn.btn-primary.btn-lg(href='')
 											| Ver mais  
@@ -65,11 +65,11 @@
 										|  Teresópolis - Rio de Janeiro
 									.title
 										| Condomínio Jambalaia
-									.description 
+									.description(ng-cloak) 
 										| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
 									.price
 										| Valor:
-										strong  {{2000000 | currency : 'R$ ' : 0}}
+										strong(ng-cloak)  {{2000000 | currency : 'R$ ' : 0}}
 									.more
 										a.btn.btn-primary.btn-lg(href='')
 											| Ver mais  
@@ -82,11 +82,11 @@
 										|  Teresópolis - Rio de Janeiro
 									.title
 										| Condomínio Jambalaia
-									.description 
+									.description(ng-cloak) 
 										| {{'Etiam pharetra diam non lobortis tempus. Nunc consectetur in ex eu sagittis. In suscipit nunc et erat interdum, a sodales purus pretium' | truncate: 200}}
 									.price
 										| Valor:
-										strong  {{2000000 | currency : 'R$ ' : 0}}
+										strong(ng-cloak)  {{2000000 | currency : 'R$ ' : 0}}
 									.more
 										a.btn.btn-primary.btn-lg(href='')
 											| Ver mais  
@@ -99,7 +99,7 @@
 						button.btn.btn-primary
 							i.fa.fa-angle-right
 
-	.container-fluid(ng-show='currentPath === "/"')
+	.container-fluid(ng-show='currentPath === "/"' ng-init='startBootstrapSelect()')
 		.search.container.offset-top-30.offset-bottom-15
 			.row
 				.col-md-3

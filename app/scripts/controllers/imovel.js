@@ -7,17 +7,24 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$timeout' ];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$timeout', 'Immobile'];
 
-function ImovelCtrl($rootScope, $scope, $timeout) {
+function ImovelCtrl($rootScope, $scope, $location, $timeout, Immobile) {
 
 	var self = this;
 
 	$scope.$on('$viewContentLoaded', function () {
-		$timeout(function() {
-			console.log('ready');
-			self.ready = true;
-		}, 1000);
+		// $timeout(function() {
+		// 	console.log('ready');
+		// 	self.ready = true;
+		// }, 1000);
+
+		$scope.immobile = new Immobile();
+		if ($location.search()['codigo']) {
+			$scope.immobile.get($location.search()['codigo']).then(function(success) {
+				self.ready = true;
+			});
+		}
 	});
 
 	this.responsive1 = [

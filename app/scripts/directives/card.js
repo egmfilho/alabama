@@ -12,7 +12,7 @@ angular.module('alabama.directives')
 
 			element.bind('click', function() {
 				scope.$apply(function() {
-					$location.path(scope.url);
+					$location.path('/imovel').search('codigo', scope.code).search('nome', scope.title.replace(/ /g, '-'));
 				});
 			});
 		}
@@ -21,12 +21,17 @@ angular.module('alabama.directives')
 			restrict: 'E',
 			templateUrl: 'partials/directives/card.html',
 			scope: {
+				code: '@',
 				picture: '@',
 				title: '@',
 				subtitle: '@',
 				description: '@',
 				price: '@',
 				url: '@',
+				bed: '@',
+				suite: '@',
+				bath: '@',
+				parking: '@',
 				labelText: '@',
 				labelColor: '@',
 				isHorizontal: '=',

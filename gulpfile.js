@@ -82,7 +82,7 @@ gulp.task('app-bundle', function(cb) {
 		])
 		.pipe(sourcemaps.init())
 		.pipe(concat('app.min.js'))
-		.pipe(uglify())
+		.pipe(uglify().on('error', error_handler))
 		.pipe(sourcemaps.write('maps/'))
 		.pipe(gulp.dest(dest + 'scripts'))
 		.pipe(connect.reload());

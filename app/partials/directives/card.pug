@@ -2,22 +2,22 @@
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
 	.picture
-		div(ng-style='{"background-image": "url({{picture}})"}')
+		div(ng-style='{"background-image": "url({{picture || \'../images/no-pic.png\'}})"}')
 			.icons(ng-if='!isHorizontal')
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios')
-					| 2  
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios' ng-if='bed')
+					| {{bed}}  
 					i.fa.fa-bed
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes')
-					| 2  
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes' ng-if='suite')
+					| {{suite}}  
 					i.fa.fa-bathtub
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros')
-					| 2  
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros' ng-if='bath')
+					| {{bath}}  
 					i.fa.fa-shower
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas')
-					| 2  
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas' ng-if='parking')
+					| {{parking}}  
 					i.fa.fa-car
 	.info
 		span.title {{title}}
@@ -25,20 +25,20 @@
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}
 		.icons(ng-if='isHorizontal')
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios')
-				| 2  
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios' ng-if='bed')
+				| {{bed}}  
 				i.fa.fa-bed
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes')
-				| 2  
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes' ng-if='suite')
+				| {{suite}}  
 				i.fa.fa-bathtub
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros')
-				| 2  
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros' ng-if='bath')
+				| {{bath}}  
 				i.fa.fa-shower
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas')
-				| 2  
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas' ng-if='parking')
+				| {{parking}}  
 				i.fa.fa-car
 		span.description.text-gray(ng-hide='hideDescription') {{description | truncate: 140}}
 		span.price.text-primary

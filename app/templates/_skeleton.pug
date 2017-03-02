@@ -1,3 +1,5 @@
+<?php if( $_SERVER["HTTP_HOST"] == "www.alabamaimoveis.com.br" ){ header("Location: http://www.alabamaimoveis.com.br/coming-soon/" ); die(); } ?>
+
 doctype html
 
 html
@@ -18,7 +20,7 @@ html
 	body(ng-app='alabama')
 
 		<?php include "./partials/header4.html" ?>
-
+		#fb-root
 		block page
 
 		div(ng-include='"../partials/footer.html"')
