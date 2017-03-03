@@ -12,7 +12,7 @@ angular.module('alabama.directives')
 
 			element.bind('click', function() {
 				scope.$apply(function() {
-					$location.path('/imovel').search('codigo', scope.code).search('nome', scope.title.replace(/ /g, '-'));
+					$location.path('/imovel').search('codigo', scope.code).search('nome', (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-'));
 				});
 			});
 		}

@@ -24,9 +24,10 @@
     "font-awesome": "^4.7.0",
     "bootstrap-select": "^1.12.2",
     "angularjs-slider": "^6.0.1",
-    "angular-slick": "^0.2.1",
     "angular-i18n": "^1.6.2",
-    "ngmap": "^1.17.8"
+    "ngmap": "^1.17.8",
+    "angular-bootstrap-lightbox": "^0.12.0",
+    "angular-slick": "^0.2.1"
   },
   "overrides": {
     "angular-i18n": {

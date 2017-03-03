@@ -5,7 +5,7 @@
 				.col-xs-12
 					h1.text-xlg Pesquisar Imóveis
 
-.container.search-filters.offset-top-15.offset-bottom-15
+.container.search-filters.offset-top-15.offset-bottom-15(ng-controller='SearchBarCtrl as searchBar')
 	.row
 		.col-md-3
 			input.form-control.input-lg(placeholder='Código')
@@ -52,9 +52,9 @@
 				option Sim
 				option Não
 		.col-md-3
-			rzslider(rz-slider-model='sliderPrice.minValue' rz-slider-high='sliderPrice.maxValue' rz-slider-options='sliderPrice.options')
+			rzslider(rz-slider-model='searchBar.sliderPrice.minValue' rz-slider-high='searchBar.sliderPrice.maxValue' rz-slider-options='searchBar.sliderPrice.options')
 		.col-md-3
-			rzslider(rz-slider-model='sliderArea.minValue' rz-slider-high='sliderArea.maxValue' rz-slider-options='sliderArea.options')
+			rzslider(rz-slider-model='searchBar.sliderArea.minValue' rz-slider-high='searchBar.sliderArea.maxValue' rz-slider-options='searchBar.sliderArea.options')
 		.col-md-3
 			button.btn.btn-primary.btn-block.btn-lg
 				i.glyphicon.glyphicon-search

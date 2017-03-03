@@ -48,6 +48,9 @@ angular.module('alabama.services')
 					}
 				}).then(function(immobileData) {
 					scope.setData(immobileData.data.data);
+					scope.immobile_value = parseInt(scope.immobile_value); // para corrigir o preço de string pra int
+					scope.immobile_value_condominium = parseInt(scope.immobile_value_condominium); // para corrigir o preço de string pra int
+					scope.immobile_value_iptu = parseInt(scope.immobile_value_iptu); // para corrigir o preço de string pra int
 					setPictures(scope);
 					deferred.resolve();
 				}, function(error) {
@@ -82,6 +85,25 @@ angular.module('alabama.services')
 				}
 
 				return '';
+			},
+			convertToCardInfo: function() {
+				return {
+					code: this.immobile_code,
+					picture: this.getMainThumbUrl(),
+					pictureLg: this.getMainPictureUrl(),
+					title: this.immobile_name,
+					parsedName: this.immobile_name.replace(/ /g, '-'),
+					subtitle: this.Address.District.district_name + ' - ' + this.Address.District.City.city_name,
+					description: this.immobile_description,
+					price: parseInt(this.immobile_value),
+					url: this.url,
+					bed: this.immobile_bedroom,
+					suite: this.immobile_suite,
+					bath: this.immobile_bathroom,
+					parking: this.immobile_parking_spot,
+					labelText: '',
+					labelColor: '',
+				};
 			}
 		};
 

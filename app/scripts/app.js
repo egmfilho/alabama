@@ -41,7 +41,8 @@ angular.module('alabama', [
 		'ngTouch',	
 		'slick',
 		'rzModule',
-		'ngMap'
+		'ngMap',
+		'bootstrapLightbox'
 	])
 	.config(['$locationProvider', '$httpProvider', function($locationProvider, $httpProvider) {
 		$httpProvider.interceptors.push('HttpInterceptor');
@@ -50,6 +51,10 @@ angular.module('alabama', [
 			enabled: true,
 			requireBase: false
 		});
+	}])
+	.config(['LightboxProvider', function(LightboxProvider) {
+		LightboxProvider.fullScreenMode = true;
+		LightboxProvider.templateUrl = 'partials/lightbox.html';
 	}])
 	.config(['$routeProvider', function($routeProvider) {
 
@@ -130,8 +135,8 @@ angular.module('alabama', [
 			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla massa, faucibus ut urna a, dignissim tincidunt nisi. Nullam tincidunt vitae urna vel porta. Pellentesque viverra hendrerit interdum.',
 			price: 23000000,
 			url: '/imovel',
-			labelText: '.die',
-			labelColor: 'red'
+			labelText: 'Em construção',
+			labelColor: '#00aa70'
 		}, {
 			picture: '../images/pictures/1.jpg',
 			title: 'Casa Assombrada',

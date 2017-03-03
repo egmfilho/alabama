@@ -190,14 +190,58 @@
 		}
 
 		.picture {
-			width: 100%;
-			background-size: contain;
-			background-position: center;
-			background-repeat: no-repeat;
+			height: 400px;
+			width: auto;
+			max-width: 100%;
+			text-align: center;
+			// width: 100%;
+			// background-size: contain;
+			// background-position: center;
+			// background-repeat: no-repeat;
 			// background-color: #bbb;
-			background-image: url('https://wallpaperscraft.com/image/house_residential_design_beautifully_13642_1920x1080.jpg');
-			color: white;
-			font-size: 60px;
+			// background-image: url('https://wallpaperscraft.com/image/house_residential_design_beautifully_13642_1920x1080.jpg');
+			// color: white;
+			// font-size: 60px;			
+
+			div {
+				display: inline-block;
+				height: 400px;
+				max-width: 100%;
+				position: relative;
+				margin: 0 auto;
+
+				.img-responsive {
+					display: initial;
+					width: auto;
+					max-height: 100%;
+				}
+
+				.text {
+					width: 100%;
+					height: auto;
+					max-height: 80px;
+					padding: 3px;
+					background-color: rgba(#000, .5);
+					color: white;
+					font-family: 'Open Sans', sans-serif;
+					position: absolute;
+					z-index: 10;
+					bottom: -100px;
+					display: block;
+
+					@include transition(bottom .5s);
+
+					p {
+						font-size: 14px;
+					}
+				}
+
+				&:hover {
+					.text {
+						bottom: 0;
+					}
+				}
+			}						
 		}
 	}
 

@@ -7,17 +7,14 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$timeout', 'Immobile'];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', 'Immobile', 'Lightbox'];
 
-function ImovelCtrl($rootScope, $scope, $location, $timeout, Immobile) {
+function ImovelCtrl($rootScope, $scope, $location, Immobile, Lightbox) {
 
 	var self = this;
 
 	$scope.$on('$viewContentLoaded', function () {
-		// $timeout(function() {
-		// 	console.log('ready');
-		// 	self.ready = true;
-		// }, 1000);
+		self.currentSlide = 0;
 
 		$scope.immobile = new Immobile();
 		if ($location.search()['codigo']) {
@@ -26,6 +23,15 @@ function ImovelCtrl($rootScope, $scope, $location, $timeout, Immobile) {
 			});
 		}
 	});
+
+	$scope.openLightbox = function() {
+		var images = [];
+		angular.forEach($scope.immobile.GalleryImage, function(item) {
+			images.push(item.url);
+		});
+		console.log('oppening lightbox on index: ' + self.currentSlide);
+		Lightbox.openModal(images, self.currentSlide || 0);
+	};
 
 	this.responsive1 = [
 		{

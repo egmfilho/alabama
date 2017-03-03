@@ -5,6 +5,8 @@
 				.col-xs-12
 					h1.text-xlg Informações do Imóvel
 
+button.btn.btn-primary(ng-click='openLightbox()') TESTE
+
 .container.imovel.offset-top-60.offset-bottom-60
 	.row
 		.col-xs-12
@@ -15,11 +17,15 @@
 	.row
 		.col-xs-12
 			h1.title {{immobile.immobile_name}} em {{immobile.Address.District.district_name}} {{immobile.Address.District.City.city_name}}
-
 	.row.pane.perfil-imovel(ng-if='imovel.ready')
 		.col-xs-12.col-sm-8
-			slick.slider-for(infinite='true' slides-to-show='1' slides-to-scroll='1' arrows='true' as-nav-for='.slider-nav')
-				.picture(style='height:400px; background-image: url({{pic.url}})' ng-repeat='pic in immobile.GalleryImage')
+			slick.slider-for(infinite='true' slides-to-show='1' slides-to-scroll='1' arrows='true' as-nav-for='.slider-nav' current-index='imovel.currentSlide')
+				div.picture(ng-repeat='pic in immobile.GalleryImage')
+					div
+						img.img-responsive(ng-src='{{pic.url}}')
+						.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
+							h4.text-center {{pic.gallery_image_title}}
+							p.text-sm.text-center {{pic.gallery_image_text}}
 
 			div(ng-if='imovel.ready')
 				slick.hidden-xs.slider-nav(infinite='true' slides-to-show='5' slides-to-scroll='1' as-nav-for='.slider-for' center-mode='true' focus-on-select='false' responsive='imovel.responsive1' arrows='false')
@@ -36,7 +42,7 @@
 				|  Enviar
 
 	.row.pane.pane-gray.offset-top-30
-		.col-xs-12.info.offset-bottom-30
+		.col-xs-12.info
 			h3.text-primary Características
 			span Cód. {{immobile.immobile_code}}
 			span
@@ -53,13 +59,25 @@
 				i.fa.fa-shower 
 				|  {{immobile.immobile_bathroom}} banheiros
 			span
-				i.fa.fa-car 
+				i.fa.fa-car
 				|  {{immobile.immobile_parking_spot}} vagas
+	br
+	br
+	.row.pane.pane-gray.offset-top-30
 		.col-xs-12.description
 			h3.text-primary Descrição do Imóvel
 			p {{immobile.immobile_description}}
+		.col-xs-12.col-sm-4.price
+			h3.text-primary Valor
+			p.text-md {{immobile.immobile_value | currency:'R$ ':2}}
+		.col-xs-12.col-sm-4.price(ng-if='immobile.immobile_value_condominium')
+			h3.text-primary Condomínio
+			p.text-md {{immobile.immobile_value_condominium | currency:'R$ ':2}}
+		.col-xs-12.col-sm-4.price
+			h3.text-primary IPTU
+			p.text-md {{immobile.immobile_value_iptu | currency:'R$ ':2}}
 
-	.row.offset-top-60.offset-bottom-60
+	.row.offset-top-60.offset-bottom-60(ng-if='immobile.feature_immobile.length')
 		h2.text-primary.feature-category.offset-bottom-30 Imóvel
 		.col-xs-12.col-sm-6.col-md-4(ng-repeat-start='feature in immobile.feature_immobile track by $index')
 			table.table.table-striped.table-immobile
@@ -75,7 +93,7 @@
 		div(ng-repeat-end='')
 
 	.row.offset-top-60.offset-bottom-60
-		h2.text-primary.feature-category.offset-bottom-30 Condomínio
+		h2.text-primary.feature-category.offset-bottom-30(ng-if='immobile.feature_condominium.length') Condomínio
 		.col-xs-12.col-sm-6.col-md-4(ng-repeat-start='feature in immobile.feature_condominium track by $index')
 			table.table.table-striped.table-immobile
 				thead
