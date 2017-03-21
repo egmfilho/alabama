@@ -25,4 +25,9 @@ function HeaderCtrl($scope, $filter, ImmobileManager) {
 		});
 	}
 
+	jQuery('.header5 #carousel-showcase').carousel({
+		pause: null,
+		interval: 8000
+	});
+
 }
