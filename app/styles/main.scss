@@ -27,9 +27,17 @@ $brand-primary: $main-color;
 	padding: 0.2em 0;
 }
 
+textarea {
+	resize: none;
+}
+
 body {
 	padding: 0;
 	// background-color: $background-color;
+}
+
+.text-sans {
+	font-family: 'Open Sans', sans-serif;
 }
 
 .up-shadow {
