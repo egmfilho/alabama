@@ -7,7 +7,9 @@ SearchBar.$inject = [ '$scope', '$filter' ];
 
 function SearchBar($scope, $filter) {
 
-		this.sliderPrice = {
+	this.search = { };
+
+	this.search.sliderPrice = {
 		minValue: 1,
 		maxValue: 2000000,
 		options: {
@@ -46,7 +48,7 @@ function SearchBar($scope, $filter) {
 		}
 	};
 
-	this.sliderArea = {
+	this.search.sliderArea = {
 		minValue: 1,
 		maxValue: 500,
 		options: {
@@ -66,6 +68,10 @@ function SearchBar($scope, $filter) {
 				}
 			}
 		}
+	};
+
+	this.pesquisar = function() {
+		console.log(this.search);
 	};
 
 }

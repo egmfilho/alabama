@@ -7,20 +7,24 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', 'Immobile', 'Lightbox'];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', 'Immobile', 'Lightbox'];
 
-function ImovelCtrl($rootScope, $scope, $location, Immobile, Lightbox) {
+function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) {
 
-	var self = this;
+	var self = this;	
 
 	$scope.$on('$viewContentLoaded', function () {
 		self.currentSlide = 0;
 
+		self.isXS = $window.innerWidth < 768;
+
 		$scope.immobile = new Immobile();
 		if ($location.search()['codigo']) {
+			$rootScope.loading.load();
 			$scope.immobile.get($location.search()['codigo']).then(function(success) {
 				self.ready = true;
-				teste();
+				$rootScope.loading.unload();
+				// teste();
 			});
 		}
 	});

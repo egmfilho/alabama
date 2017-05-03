@@ -5,48 +5,35 @@
 				.col-xs-12
 					h1.text-xlg Informações do Imóvel
 
-.container.hidden-xs.offset-top-15
-	.row
-		.col-sm-6
-			p
-				a(href='/home') Home
-				| &nbsp;/&nbsp;
-				a(href='/imoveis') Imóveis
-				| &nbsp;/&nbsp;Imóvel
+			.row.hidden-xs.offset-top-30
+				.col-sm-6
+					p.text-sm
+						a(href='/home') Home
+						| &nbsp;/&nbsp;
+						a(href='/imoveis') Imóveis
+						b &nbsp;/&nbsp;Imóvel
 
-		.col-sm-6
-			//- p.text-right
-				a(href='')
-					i.fa.fa-share-alt.icon-sm
+				.col-sm-6
+					//- p.text-right
+						a(href='')
+							i.fa.fa-share-alt.icon-sm
 
-.container.imovel.offset-top-15.offset-bottom-60
+#dummy-immobile-screen(ng-if='!imovel.ready')
+
+.container.imovel.offset-top-15.offset-bottom-60(ng-if='imovel.ready')
 	.row
 		.col-xs-12
 			h5.text-gray.text-sans
 				i.fa.fa-calendar
 				| &nbsp;{{immobile.immobile_date | date:'dd/MM/yyyy'}}
-			h1.title 				
+			h1.title
 				| {{immobile.immobile_name}} em {{immobile.Address.District.district_name}} {{immobile.Address.District.City.city_name}}
-
-	//- .row.pane.perfil-imovel
-		.col-xs-12(ng-if='imovel.ready')
-			slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' fade='false' as-nav-for='slick.slider-nav' current-index='imovel.currentSlide')
-				.picture(ng-repeat='pic in immobile.GalleryImage')
-					div
-						img.img-responsive(ng-src='{{pic.url}}' ng-click='openLightbox()')
-						.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
-							h4.text-center {{pic.gallery_image_title}}
-							p.text-sm.text-center {{pic.gallery_image_text}}
-
-			slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' responsive='imovel.responsive2')
-				.thumb(ng-style='{}' ng-repeat='pic in immobile.GalleryImage')
-					.picture(ng-style='{"background-image": "url({{pic.thumb}})"}')
 
 	.row
 		.col-sm-8.col-md-9
 			.row.pane.perfil-imovel
-				.col-xs-12(ng-if='imovel.ready')
-					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' fade='false' as-nav-for='slick.slider-nav' current-index='imovel.currentSlide')
+				.col-xs-12
+					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
 						.picture(ng-repeat='pic in immobile.GalleryImage')
 							div
 								img.img-responsive(ng-src='{{pic.url}}' ng-click='openLightbox()')
@@ -54,7 +41,7 @@
 									h4.text-center {{pic.gallery_image_title}}
 									p.text-sm.text-center {{pic.gallery_image_text}}
 
-					slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' responsive='imovel.responsive2')
+					slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' swipe-to-slide='true' responsive='imovel.responsive2')
 						.thumb(ng-style='{}' ng-repeat='pic in immobile.GalleryImage')
 							.picture(ng-style='{"background-image": "url({{pic.thumb}})"}')
 
@@ -65,21 +52,21 @@
 			
 		.col-sm-4.col-md-3
 			.interesse2.offset-top-15
-				h3.offset-bottom-60 Características
+				h3.offset-bottom-30 Características
 				ul.list-unstyled
 					li Código do Imóvel
-						i.pull-right 1001
+						i.pull-right {{immobile.immobile_code}}
 					li Área
-						i.pull-right 90m
+						i.pull-right {{immobile.immobile_area_total}}m
 							sup 2
 					li Dormitórios
-						i.pull-right 3
+						i.pull-right {{immobile.immobile_bedroom}}
 					li Suítes
-						i.pull-right 1
+						i.pull-right {{immobile.immobile_suite}}
 					li Banheiros
-						i.pull-right 2
+						i.pull-right {{immobile.immobile_bathroom}}
 					li Vagas
-						i.pull-right 1
+						i.pull-right {{immobile.immobile_parking_spot}}
 				.separator
 				ul.list-unstyled
 					li Valor
@@ -89,7 +76,7 @@
 					li IPTU
 						i.pull-right {{immobile.immobile_value_iptu | currency:'R$ ':2}}
 				.separator
-				h3 Tenho Interesse
+				h3.offset-top-30.offset-bottom-30 Tenho Interesse
 				input.form-control.offset-top-15(type='text' placeholder='Nome')
 				input.form-control.offset-top-15(type='text' placeholder='Telefone')
 				input.form-control.offset-top-15(type='email' placeholder='Email')
@@ -131,7 +118,7 @@
 		div(ng-repeat-end='')
 
 	.row
-		.col-xs-12(ng-if='imovel.ready')
+		.col-xs-12(ng-if='imovel.ready && immobile.immobile_latitude && immobile.immobile_longitude')
 			ng-map.offset-top-30.offset-bottom-30(default-style="true" center="{{immobile.immobile_latitude + ',' + immobile.immobile_longitude}}" zoom='15' scrollwheel='false')
 				marker(id='#marker' position="{{immobile.immobile_latitude + ',' + immobile.immobile_longitude}}" on-click='contato.map.showInfoWindow("#info-window")')
 				info-window(id='#info-window' visible-on-marker='#marker')

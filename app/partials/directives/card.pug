@@ -20,7 +20,7 @@
 					| {{parking}}  
 					i.fa.fa-car
 	.info
-		span.title {{title}}
+		span.title {{title | truncate: (isHorizontal ? 50 : 20)}}
 		span.subtitle
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}

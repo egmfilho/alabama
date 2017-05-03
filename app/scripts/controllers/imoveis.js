@@ -18,14 +18,15 @@ function ImoveisCtrl($rootScope, $scope, ImmobileManager) {
 
 	function getCardList() {
 		self.cardList = [];
+		$rootScope.loading.load();
 		ImmobileManager.loadAllImmobiles().then(function(success) {
-			console.log(success);
 			angular.forEach(success, function(item) {
-				console.log(parseInt(item.immobile_value));
 				self.cardList.push(item.convertToCardInfo());
 			});
+			$rootScope.loading.unload();
 		}, function(error) {
 			console.log(error);
+			$rootScope.loading.unload();
 		});
 	}
 }

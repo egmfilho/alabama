@@ -19,8 +19,21 @@ html
 
 	body(ng-app='alabama')
 
-		<?php include "./partials/header5.html" ?>
-		#fb-root
+		//- <?php include "../partials/header5.html" ?>
+
+		div(ng-include='"./partials/header5.html"')
+
+		.scroll-top(ng-class='{"visible": scrollY >= 100}' ng-click='scrollTop()')
+			i.fa.fa-chevron-up
+
+		#loading(ng-show='loading.isLoading()')
+			.spinner(style='transform: scale(2)')
+				.rect1
+				.rect2
+				.rect3
+				.rect4
+				.rect5
+
 		block page
 
 		div(ng-include='"../partials/footer.html"')

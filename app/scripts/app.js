@@ -95,7 +95,14 @@ angular.module('alabama', [
 		});
 
 	}])
-	.run(['$rootScope', '$location', function($rootScope, $location) {
+	.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+
+		$rootScope.loading = {
+			count: 0,
+			isLoading: function() { return this.count > 0 },
+			load: function() { this.count++; },
+			unload: function() { this.count--; this.count < 0 ? this.count = 0 : null }
+		};
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.currentPath = $location.path();
@@ -125,6 +132,17 @@ angular.module('alabama', [
 		$rootScope.getNumber = function(num) {
 			return new Array(Math.max(0, Math.ceil(num)));
 		};
+
+		$window.onscroll = function() {
+			$rootScope.scrollY = $window.scrollY;
+			$rootScope.$apply();
+		};
+
+		$rootScope.scrollTop = function() {
+			if ($rootScope.scrollY >= 100) {
+				jQuery('body').animate({ scrollTop: 0 }, '500');
+			}
+		}
 
 	}])
 	.run(['$rootScope', function($rootScope) {

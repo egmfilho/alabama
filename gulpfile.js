@@ -120,7 +120,7 @@ gulp.task('copy-videos', function() {
 gulp.task('watch', function() {
 	gulp.watch([source + '*.pug'], ['index']);
 	gulp.watch([source + 'views/*.pug'], ['compile-views']);
-	gulp.watch([source + 'partials/*.pug'], ['compile-partials']);
+	gulp.watch([source + 'partials/**/*.pug'], ['compile-partials']);
 	gulp.watch([source + 'templates/*.pug'], ['index', 'compile-views']);
 	gulp.watch([source + 'styles/*.scss'], ['compile-sass']);
 	gulp.watch([source + 'scripts/**/*.js'], ['app-bundle']);
