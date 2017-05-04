@@ -3,16 +3,25 @@
 angular.module('alabama.controllers')
 	.controller('SearchBarCtrl', SearchBar);
 
-SearchBar.$inject = [ '$scope', '$filter' ];
+SearchBar.$inject = [ '$rootScope', '$scope', '$filter' ];
 
-function SearchBar($scope, $filter) {
+function SearchBar($rootScope, $scope, $filter) {
 
 	this.search = { };
 
+	setTimeout(function() {
+		$rootScope.startBootstrapSelect();
+	}, 500);
+
+	function disableAll() {
+		jQuery('.selectpicker').attr('disabled', true).selectpicker('setStyle', 'disabled', 'add');
+	};
+
 	this.search.sliderPrice = {
 		minValue: 1,
-		maxValue: 2000000,
+		maxValue: 2000000,		
 		options: {
+			disabled: false,
 			floor: 1,
 			ceil: 2000000,
 			hideLimitLabels: true,

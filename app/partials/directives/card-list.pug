@@ -4,9 +4,9 @@
 			div
 				h2.name(ng-if='cardListName') {{cardListName}}
 				.hidden-xs.btn-group.control.pull-right(role='group' ng-if='!cardListHideControls')
-					button.btn.btn-primary(ng-click='setCardListHorizontal(false)')
+					button.btn.btn-primary(ng-click='setCardListHorizontal(false)' ng-class='{"active": !listHorizontal}')
 						i.fa.fa-th
-					button.btn.btn-primary(ng-click='setCardListHorizontal(true)')
+					button.btn.btn-primary(ng-click='setCardListHorizontal(true)' ng-class='{"active": listHorizontal}')
 						i.fa.fa-bars
 
 	.contain-horizontally

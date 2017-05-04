@@ -1,3 +1,33 @@
+.header5-mobile {
+	margin-top: 90px;
+	background-color: rgba($main-color-darker, .95);
+	position: fixed;
+	width: 100%;
+	height: calc(100% - 90px);
+	z-index: 2000;
+	padding: 30px 15px;	
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin-top: 60px;
+
+		li {
+			text-align: center;
+			margin-top: 15px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			a {
+				color: white;
+				font-size: 24px;
+			}
+		}
+	}
+}
+
 .header5 {
 	background-color: white;
 
@@ -8,7 +38,7 @@
 		background-color: $main-color-dark;
 		padding: 8px 20px;
 
-		.contato {			
+		.contato {
 			font-size: .85em;
 			font-weight: 200;
 			letter-spacing: 1px;
@@ -38,15 +68,31 @@
 		color: $gray-light;
 		@include box-shadow(0, 3px, 5px, rgba(#000, .2px));
 		position: relative;
-		z-index: 2;
+		z-index: 2000;
+		position: fixed;
+
+		@media (min-width: $screen-sm-min) {
+			z-index: 2;
+			position: initial;
+		}
 
 		.logo {
 			width: 100%;
 			height: $menu-height;
-			background-image: url('../images/logo.png');
-			background-position: center;
+			background-image: url('../images/PN/logo.png');
+			background-position-x: -10px;			
 			background-size: contain;
 			background-repeat: no-repeat;
+
+			@media (min-width: $screen-sm-min) {
+				background-position: center;
+			}
+		}
+
+		.btn {
+			position: absolute;
+			right: 15px;
+			bottom: 28px;
 		}
 
 		.nav-pills {
@@ -69,18 +115,40 @@
 	}
 
 	#carousel-showcase {
+		$height-xs: 300px;
 		$height: 450px;
-		height: $height;
+		
+		height: $height-xs;
+		margin-top: 90px;
+
+		@media (min-width: $screen-sm-min) {
+			height: $height;
+			margin-top: 0;
+		}
+
 		max-height: $height;
 		overflow: hidden;
 
 		.info {
-			width: 350px;
-			height: 350px;
-			background-color: rgba($main-color-dark, .9);
+			width: 100%;
+			height: 100%;
+			background-color: rgba($main-color-dark, .7);
+
+			@media (min-width: $screen-sm-min) {
+				width: 350px;
+				height: 350px;
+				background-color: rgba($main-color-dark, .9);
+			}
+			
 			color: white;
-			top: 50px;
-			left: 15%;
+			top: 0;
+			left: 0;
+
+			@media (min-width: $screen-sm-min) {
+				top: 50px;
+				left: 15%;
+			}
+			
 			position: absolute;
 			z-index: 3;
 			font-family: 'Open Sans', sans-serif;
@@ -111,7 +179,11 @@
 					background-size: cover;
 					background-position: center;
 					width: 100%;
-					height: $height;
+					height: $height-xs;
+
+					@media (min-width: $screen-sm-min) {
+						height: $height;
+					}
 				}
 
 				&:nth-child(1) {

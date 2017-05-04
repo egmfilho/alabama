@@ -30,4 +30,14 @@ function HeaderCtrl($scope, $filter, ImmobileManager) {
 		interval: 8000
 	});
 
+	this.toggleHeader5Mobile = function() {
+		var header5mobile = jQuery('.header5-mobile');
+
+		if (header5mobile.css('display') == 'none') {
+			header5mobile.fadeIn(250);
+		} else {
+			header5mobile.fadeOut(250);
+		}
+	};
+
 }

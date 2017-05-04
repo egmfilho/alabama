@@ -9,10 +9,9 @@ function ImoveisCtrl($rootScope, $scope, ImmobileManager) {
 
 	var self = this;
 
-	this.cardList = [];
+	this.cardList = [];	
 
 	$scope.$on('$viewContentLoaded', function() {
-		$rootScope.startBootstrapSelect();
 		getCardList();
 	});
 

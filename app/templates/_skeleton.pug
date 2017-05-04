@@ -23,7 +23,7 @@ html
 
 		div(ng-include='"./partials/header5.html"')
 
-		.scroll-top(ng-class='{"visible": scrollY >= 100}' ng-click='scrollTop()')
+		.scroll-top.hidden-xs(ng-class='{"visible": scrollY >= 100}' ng-click='scrollTop()')
 			i.fa.fa-chevron-up
 
 		#loading(ng-show='loading.isLoading()')

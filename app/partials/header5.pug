@@ -1,6 +1,23 @@
+.header5-mobile.hidden-sm.hidden-md.hidden-lg
+	ul
+		li(role='presentation' name='home')
+			a(href='/') Home
+		
+		li(role='presentation' name='sobre')
+			a(href='/sobre') Sobre
+
+		li(role='presentation' name='imoveis')
+			a(href='/imoveis') Imóveis
+
+		li(role='presentation' name='equipe')
+			a(href='/equipe') Equipe
+
+		li(role='presentation' name='contato')
+			a(href='/contato') Contato
+
 #header.header5(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
 	.container-narrow
-		.contact-stripe
+		.contact-stripe.hidden-xs
 			.container
 				.contato
 					span
@@ -15,10 +32,13 @@
 		.menu
 			.container
 				.row
-					.col-sm-3
+					.col-xs-12.col-sm-3
 						a(href='/')
 							.logo
-					.col-sm-9
+						button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleHeader5Mobile()')
+							i.fa.fa-navicon
+
+					.hidden-xs.col-sm-9
 						ul.nav.nav-pills
 							li(role='presentation' name='home')
 								a(href='/') Home
@@ -41,7 +61,7 @@
 					.info
 						p Frase legal e impactante! 
 						p Algo mais aqui.
-						a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Buscar Imóveis
+						a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Ver Imóveis
 
 					//- Wrapper for slides
 					.carousel-inner.clearfix(role='listbox')

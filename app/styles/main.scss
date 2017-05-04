@@ -231,7 +231,13 @@ input, select, textarea, .bootstrap-select {
 		h1 {
 			font-family: 'Archivo Black', sans-serif;
 			letter-spacing: 1px;
-			margin-top: 80px;
+			margin-top: 120px;
+			font-size: 36px;
+
+			@media (min-width: $screen-sm-min) {
+				font-size: 56px;
+				margin-top: 80px;
+			}
 		}
 
 		a {
@@ -260,6 +266,20 @@ input, select, textarea, .bootstrap-select {
 		&:hover, &:active, &:visited, &:focus {
 			text-decoration: none;
 			background-color: #eee;
+		}
+	}
+}
+
+.bootstrap-select {
+	.disabled {
+		background-color: #ddd;
+
+		&:hover {
+			background-color: #eee;
+		}
+
+		&:focus, &:active {
+			background-color: #ddd;	
 		}
 	}
 }

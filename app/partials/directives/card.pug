@@ -21,7 +21,7 @@
 					i.fa.fa-car
 	.info
 		span.title {{title | truncate: (isHorizontal ? 50 : 20)}}
-		span.subtitle
+		span.subtitle(ng-if='subtitle')
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}
 		.icons(ng-if='isHorizontal')
@@ -40,6 +40,6 @@
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas' ng-if='parking')
 				| {{parking}}  
 				i.fa.fa-car
-		span.description.text-gray(ng-hide='hideDescription') {{description | truncate: 140}}
+		span.description.text-gray {{description | truncate: (hideDescription ? 80 : 110)}}
 		span.price.text-primary
 			| Valor: {{price | currency : 'R$ ' : 0}}
