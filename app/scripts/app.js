@@ -104,6 +104,11 @@ angular.module('alabama', [
 			unload: function() { this.count--; this.count < 0 ? this.count = 0 : null }
 		};
 
+		// Prevent scroll while loading screen is on
+		jQuery('#loading').bind('touchmove mousewheel DOMMouseScroll', function(e) {
+			e.preventDefault();
+		});
+
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.currentPath = $location.path();
 		});

@@ -5,7 +5,13 @@
 	width: 100%;
 	height: calc(100% - 90px);
 	z-index: 2000;
-	padding: 30px 15px;	
+	padding: 30px 15px;
+	display: none;
+
+	.close {
+		color: white;
+		margin-top: -15px;
+	}
 
 	ul {
 		list-style: none;
@@ -23,6 +29,23 @@
 			a {
 				color: white;
 				font-size: 24px;
+			}
+		}
+	}
+
+	.contacts {
+		color: white;
+		position: absolute;
+		bottom: 15px;
+		text-align: center;
+		width: 100%;
+		margin-left: -15px;
+
+		> div {
+			margin-top: 5px;
+
+			&:first-child {
+				margin-top: 0;
 			}
 		}
 	}
@@ -209,9 +232,36 @@
 
 	.container-fluid {
 		position: relative;
+		padding-left: 0;
+		padding-right: 0;
 		@include box-shadow(0, -1px, 10px, rgba(#000, .4px));
 
 		.search {
+			margin-top: 15px !important;
+
+			.row > div, .row > span > div {
+				margin-top: 15px;
+				min-height: 50px;
+
+				&:last-child {
+					min-height: auto;
+				}
+			}
+
+			#advanced-search {
+				display: block;
+				width: auto;
+				@include transition(height .1s);
+
+				&.collapse {
+					display: none;
+
+					&.in {
+						display: block;
+					}
+				}
+			}
+
 			a[data-toggle='collapse'] {
 				&:after {
 					content: 'Menos opções';
@@ -219,12 +269,6 @@
 
 				&.collapsed:after {
 					content: 'Mais opções';
-				}				
-			}
-
-			.row > div {
-				&:not(.col-xs-12) {
-					padding: 10px 5px;
 				}				
 			}
 
@@ -246,6 +290,8 @@
 			}
 
 			.rzslider {
+				margin-top: 30px !important;
+
 				.rz-bar {
 					background-color: rgba($main-color-lighter, .5);
 

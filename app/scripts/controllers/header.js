@@ -31,13 +31,23 @@ function HeaderCtrl($scope, $filter, ImmobileManager) {
 	});
 
 	this.toggleHeader5Mobile = function() {
-		var header5mobile = jQuery('.header5-mobile');
-
-		if (header5mobile.css('display') == 'none') {
-			header5mobile.fadeIn(250);
+		if (jQuery('.header5-mobile').css('display') == 'none') {
+			this.showHeader5Mobile();
 		} else {
-			header5mobile.fadeOut(250);
+			this.hideHeader5Mobile();
 		}
 	};
+
+	this.showHeader5Mobile = function() {
+		jQuery('.header5-mobile').fadeIn(250);
+	};
+
+	this.hideHeader5Mobile = function() {
+		jQuery('.header5-mobile').fadeOut(250);
+	};
+
+	jQuery('.header5-mobile').bind('touchmove mousewheel DOMMouseScroll', function(e) {
+		e.preventDefault();
+	});
 
 }

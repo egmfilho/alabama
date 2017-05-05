@@ -1,136 +1,171 @@
-.header5-mobile.hidden-sm.hidden-md.hidden-lg
-	ul
-		li(role='presentation' name='home')
-			a(href='/') Home
-		
-		li(role='presentation' name='sobre')
-			a(href='/sobre') Sobre
+span(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
+	.header5-mobile.hidden-sm.hidden-md.hidden-lg
+		.close.pull-right(ng-click='header.hideHeader5Mobile()')
+			i.glyphicon.glyphicon-remove
+		ul
+			li(role='presentation' name='home')
+				a(href='/' ng-click='header.hideHeader5Mobile()') Home
+			
+			li(role='presentation' name='sobre')
+				a(href='/sobre' ng-click='header.hideHeader5Mobile()') Sobre
 
-		li(role='presentation' name='imoveis')
-			a(href='/imoveis') Imóveis
+			li(role='presentation' name='imoveis')
+				a(href='/imoveis' ng-click='header.hideHeader5Mobile()') Imóveis
 
-		li(role='presentation' name='equipe')
-			a(href='/equipe') Equipe
+			li(role='presentation' name='equipe')
+				a(href='/equipe' ng-click='header.hideHeader5Mobile()') Equipe
 
-		li(role='presentation' name='contato')
-			a(href='/contato') Contato
+			li(role='presentation' name='contato')
+				a(href='/contato' ng-click='header.hideHeader5Mobile()') Contato
+		.contacts
+			div
+				i.fa.fa-whatsapp
+				span  (21) 99999-8888
+			div
+				i.fa.fa-envelope-o
+				span  railander_007@hotmail.com
+			div
+				| CRECI: 053712F
 
-#header.header5(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
-	.container-narrow
-		.contact-stripe.hidden-xs
-			.container
-				.contato
-					span
-						i.fa.fa-whatsapp
-						span  (21) 99999-8888
-					span
-						i.fa.fa-envelope-o
-						span  railander_007@hotmail.com
-					span
-						| CRECI: 053712F
+	#header.header5
+		.container-narrow
+			.contact-stripe.hidden-xs
+				.container
+					.contato
+						span
+							i.fa.fa-whatsapp
+							span  (21) 99999-8888
+						span
+							i.fa.fa-envelope-o
+							span  railander_007@hotmail.com
+						span
+							| CRECI: 053712F
 
-		.menu
-			.container
+			.menu
+				.container
+					.row
+						.col-xs-12.col-sm-3
+							a(href='/' ng-click='header.hideHeader5Mobile()')
+								.logo
+							button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleHeader5Mobile()')
+								i.fa.fa-navicon
+
+						.hidden-xs.col-sm-9
+							ul.nav.nav-pills
+								li(role='presentation' name='home')
+									a(href='/') Home
+								
+								li(role='presentation' name='sobre')
+									a(href='/sobre') Sobre
+
+								li(role='presentation' name='imoveis')
+									a(href='/imoveis') Imóveis
+
+								li(role='presentation' name='equipe')
+									a(href='/equipe') Equipe
+
+								li(role='presentation' name='contato')
+									a(href='/contato') Contato
+
+			.row.remove-margin.container-carousel(ng-if='currentPath === "/"')
+				.col-xs-12(style='padding: 0')
+					#carousel-showcase.carousel.slide(data-ride='carousel')
+						.info
+							p Frase legal e impactante! 
+							p Algo mais aqui.
+							a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Ver Imóveis
+
+						//- Wrapper for slides
+						.carousel-inner.clearfix(role='listbox')
+							.item.active
+								.cover
+								.picture
+							.item
+								.cover
+								.picture
+							.item
+								.cover
+								.picture
+
+		.container-fluid(ng-if='currentPath === "/"' ng-controller='SearchBarCtrl as searchBar')
+			.search.container.offset-top-30.offset-bottom-15
 				.row
-					.col-xs-12.col-sm-3
-						a(href='/')
-							.logo
-						button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleHeader5Mobile()')
-							i.fa.fa-navicon
+					.col-xs-12.col-sm-6.col-md-3
+						input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
 
-					.hidden-xs.col-sm-9
-						ul.nav.nav-pills
-							li(role='presentation' name='home')
-								a(href='/') Home
-							
-							li(role='presentation' name='sobre')
-								a(href='/sobre') Sobre
+					.col-md-3.hidden-xs.hidden-sm
+						select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
+							option(value='' disabled style='display: none') Tipo
+							option(value='0') Todos
+							option(value='1') Tipo1
+							option(value='2') Tipo2
+					.col-md-3.hidden-xs.hidden-sm
+						select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
+							option(value='' disabled style='display: none') Cidade
+							option Todas
+							option Cidade1
+							option Cidade2
 
-							li(role='presentation' name='imoveis')
-								a(href='/imoveis') Imóveis
-
-							li(role='presentation' name='equipe')
-								a(href='/equipe') Equipe
-
-							li(role='presentation' name='contato')
-								a(href='/contato') Contato
-
-		.row.remove-margin.container-carousel(ng-show='currentPath === "/"')
-			.col-xs-12(style='padding: 0')
-				#carousel-showcase.carousel.slide(data-ride='carousel')
-					.info
-						p Frase legal e impactante! 
-						p Algo mais aqui.
-						a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Ver Imóveis
-
-					//- Wrapper for slides
-					.carousel-inner.clearfix(role='listbox')
-						.item.active
-							.cover
-							.picture
-						.item
-							.cover
-							.picture
-						.item
-							.cover
-							.picture
-
-	.container-fluid(ng-show='currentPath === "/"' ng-init='startBootstrapSelect()' ng-controller='SearchBarCtrl as searchBar')
-		.search.container.offset-top-30.offset-bottom-15
-			.row
-				.col-md-3
-					input.form-control.input-lg(placeholder='Código')
-				.col-md-3
-					select.selectpicker.form-control(title='Tipo' data-container='body')
-						option Todos
-						option Tipo1
-						option Tipo2
-				.col-md-3
-					select.selectpicker.form-control(title='Cidade' data-container='body')
-						option Todas
-						option Cidade1
-						option Cidade2				
-				.col-md-3
-					button.btn.btn-primary.btn-block.btn-lg
-						i.glyphicon.glyphicon-search
-						|  Pesquisar
-				.col-xs-12
-					#advanced-search.row.collapse
-						.col-md-3
-							select.selectpicker.form-control(title='Bairro' data-container='body')
+					span#advanced-search.collapse
+						.col-xs-12.col-sm-6.hidden-md.hidden-lg
+							select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
+								option(value='' disabled style='display: none') Tipo
+								option(value='0') Todos
+								option(value='1') Tipo1
+								option(value='2') Tipo2
+						.col-xs-12.col-sm-6.hidden-md.hidden-lg
+							select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
+								option(value='' disabled style='display: none') Cidade
+								option Todas
+								option Cidade1
+								option Cidade2
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Bairro' data-container='body' ng-model='searchBar.search.bairro')
+								option(value='' disabled style='display: none') Bairro
 								option Todos
 								option Bairro1
-								option Bairro2
-						.col-md-3
-							select.selectpicker.form-control(title='Categoria' data-container='body')
+								option Bairro2	
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchBar.search.categoria')
+								option(value='' disabled style='display: none') Categoria
 								option Tudo
 								option Compra
 								option Aluguel
-						.col-md-3
-							rzslider(rz-slider-model='searchBar.sliderPrice.minValue' rz-slider-high='searchBar.sliderPrice.maxValue' rz-slider-options='searchBar.sliderPrice.options')
-						.col-md-3
-							rzslider(rz-slider-model='searchBar.sliderArea.minValue' rz-slider-high='searchBar.sliderArea.maxValue' rz-slider-options='searchBar.sliderArea.options')
-						.col-md-3
-							select.selectpicker.form-control(title='Dormitórios' data-container='body')
+						.col-xs-12.col-sm-6.col-md-3
+							rzslider(rz-slider-model='searchBar.search.sliderPrice.minValue' rz-slider-high='searchBar.search.sliderPrice.maxValue' rz-slider-options='searchBar.search.sliderPrice.options')
+						.col-xs-12.col-sm-6.col-md-3
+							rzslider(rz-slider-model='searchBar.search.sliderArea.minValue' rz-slider-high='searchBar.search.sliderArea.maxValue' rz-slider-options='searchBar.search.sliderArea.options')
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Dormitórios' data-container='body' ng-model='searchBar.search.dormitorios')
+								option(value='' disabled style='display: none') Dormitórios
 								option Tudo
-								option 1
-								option 2
-								option 3
-								option 4+
-						.col-md-3
-							select.selectpicker.form-control(title='Banheiros' data-container='body')
+								option 1 dormitório
+								option 2 dormitórios
+								option 3 dormitórios
+								option 4+ dormitórios
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Banheiros' data-container='body' ng-model='searchBar.search.banheiros')
+								option(value='' disabled style='display: none') Banheiros
 								option Tudo
-								option 1
-								option 2
-								option 3
-								option 4+
-						.col-md-3
-							select.selectpicker.form-control(title='Suítes' data-container='body')
-								option Sim
-								option Não
-						.col-md-3
-							select.selectpicker.form-control(title='Garagem' data-container='body')
-								option Sim
-								option Não
-				.col-xs-12.remove-padding
-					a.collapsed.center-block.text-center(href='' data-toggle='collapse' data-target='#advanced-search')
+								option 1 banheiro
+								option 2 banheiros
+								option 3 banheiros
+								option 4+ banheiros
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suites')
+								option(value='' disabled style='display: none') Suíte
+								option Com suíte
+								option Sem suíte
+						.col-xs-12.col-sm-6.col-md-3
+							select.selectpicker.form-control(title='Garagem' data-container='body' ng-model='searchBar.search.garagem')
+								option(value='' disabled  style='display: none') Garagem
+								option Com garagem
+								option Sem garagem
+
+					.col-xs-12.col-sm-6.col-md-3
+						button.btn.btn-primary.btn-block.btn-lg
+							i.glyphicon.glyphicon-search
+							|  Pesquisar
+					.col-xs-12.remove-padding
+						//- Texto colocado via CSS
+						a.collapsed.center-block.text-center(href='' data-toggle='collapse' data-target='#advanced-search')
