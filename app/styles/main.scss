@@ -13,7 +13,7 @@ $main-color-lighter: lighten($main-color, 20%);
 
 $brand-primary: $main-color;
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Archivo+Black|Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Archivo+Black|Work+Sans');
 
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../bower_components/compass-sass-mixins/lib/compass";

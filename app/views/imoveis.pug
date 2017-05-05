@@ -28,7 +28,7 @@
 				option Cidade1
 				option Cidade2
 
-		span#expand-search
+		span#expand-search.collapse.in
 			.col-xs-12.col-sm-6.hidden-md.hidden-lg
 				select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
 					option(value='' disabled style='display: none') Tipo
@@ -80,76 +80,16 @@
 					option Sem suíte
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Garagem' data-container='body' ng-model='searchBar.search.garagem')
-					option(value='' disabled  style='display: none') Garagem
+					option(value='' disabled style='display: none') Garagem
 					option Com garagem
 					option Sem garagem
 		.col-xs-12.col-sm-6.col-md-3
 			button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.pesquisar()')
 				i.glyphicon.glyphicon-search
 				|  Pesquisar
-
-//- .container.search-filters.offset-top-15.offset-bottom-15(ng-controller='SearchBarCtrl as searchBar')
-	.row
-		.col-md-3
-			input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
-		.col-md-3
-			select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
-				option(value='' disabled style='display: none') Tipo
-				option(value='0') Todos
-				option(value='1') Tipo1
-				option(value='2') Tipo2
-		.col-md-3
-			select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
-				option(value='' disabled style='display: none') Cidade
-				option Todas
-				option Cidade1
-				option Cidade2
-		.col-md-3
-			select.selectpicker.form-control(title='Bairro' data-container='body' ng-model='searchBar.search.bairro')
-				option(value='' disabled style='display: none') Bairro
-				option Todos
-				option Bairro1
-				option Bairro2				
-		.col-md-3
-			select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchBar.search.categoria')
-				option(value='' disabled style='display: none') Categoria
-				option Tudo
-				option Compra
-				option Aluguel
-		.col-md-3
-			select.selectpicker.form-control(title='Dormitórios' data-container='body' ng-model='searchBar.search.dormitorios')
-				option(value='' disabled style='display: none') Dormitórios
-				option Tudo
-				option 1
-				option 2
-				option 3
-				option 4+
-		.col-md-3
-			select.selectpicker.form-control(title='Banheiros' data-container='body' ng-model='searchBar.search.banheiros')
-				option(value='' disabled style='display: none') Banheiros
-				option Tudo
-				option 1
-				option 2
-				option 3
-				option 4+
-		.col-md-3
-			select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suites')
-				option(value='' disabled style='display: none') Suítes
-				option Sim
-				option Não
-		.col-md-3
-			select.selectpicker.form-control(title='Garagem' data-container='body' ng-model='searchBar.search.garagem')
-				option(value='' disabled  style='display: none') Garagem
-				option Sim
-				option Não
-		.col-md-3
-			rzslider(rz-slider-model='searchBar.search.sliderPrice.minValue' rz-slider-high='searchBar.search.sliderPrice.maxValue' rz-slider-options='searchBar.search.sliderPrice.options')
-		.col-md-3
-			rzslider(rz-slider-model='searchBar.search.sliderArea.minValue' rz-slider-high='searchBar.search.sliderArea.maxValue' rz-slider-options='searchBar.search.sliderArea.options')
-		.col-md-3
-			button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.pesquisar()')
-				i.glyphicon.glyphicon-search
-				|  Pesquisar
+		.col-xs-12.remove-padding.visible-xs-block
+			//- Texto colocado via CSS
+			a.center-block.text-center(href='' data-toggle='collapse' data-target='#expand-search')
 
 .background-gray
 	.container

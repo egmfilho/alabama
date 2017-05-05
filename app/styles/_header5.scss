@@ -179,6 +179,18 @@
 			text-align: center;
 			padding: 15px;
 
+			p {
+				font-size: .8em;
+
+				@media (min-width: $screen-sm-min) {
+					font-size: 1em;
+				}
+
+				b {
+					font-size: 1.2em;
+				}
+			}
+
 			.btn.btn-default {
 				color: $main-color-dark;
 				position: absolute;
