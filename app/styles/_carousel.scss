@@ -39,4 +39,26 @@
 	.carousel-inner {
 		height: 500px;
 	}
+
+	.left, .right {
+		background: none;
+
+		span.glyphicon {
+			background-color: $main-color;
+			padding: 7px;
+			border-radius: 50%;
+		}
+	}
+
+	.left {
+		span.glyphicon {
+			margin-left: -35px;
+		}
+	}
+
+	.right {
+		span.glyphicon {
+			margin-right: -35px;
+		}
+	}
 }

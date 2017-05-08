@@ -77,13 +77,14 @@
 						i.pull-right {{immobile.immobile_value_iptu | currency:'R$ ':2}}
 				.separator
 				h3.offset-top-30.offset-bottom-30 Tenho Interesse
-				input.form-control.offset-top-15(type='text' placeholder='Nome')
-				input.form-control.offset-top-15(type='text' placeholder='Telefone')
-				input.form-control.offset-top-15(type='email' placeholder='Email')
-				textarea.form-control.offset-top-15(rows='5')
-				button.btn.btn-primary.btn-lg.btn-block.offset-top-30
-					i.fa.fa-envelope-o
-					|  Enviar
+				form(name='interest' method='POST')
+					input.form-control.offset-top-15(type='text' placeholder='Nome' name='nome' required)
+					input.form-control.offset-top-15(type='text' placeholder='Telefone' name='telefone' required)
+					input.form-control.offset-top-15(type='email' placeholder='Email' name='email' required)
+					textarea.form-control.offset-top-15(type='text' rows='5' name='mensagem' required ng-value='interestMessage')
+					button.btn.btn-primary.btn-lg.btn-block.offset-top-30(type='submit')
+						i.fa.fa-envelope-o
+						|  Enviar
 
 	.row.offset-top-15(ng-if='immobile.feature_immobile.length')
 		.col-xs-12
@@ -125,4 +126,4 @@
 					div(ng-non-bindable='')
 						h4 {{immobile.immobile_name}}
 
-card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='root_imoveis')
+card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='imovel.related' ng-if='imovel.related.length')

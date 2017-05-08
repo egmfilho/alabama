@@ -5,7 +5,7 @@ angular.module('alabama.services')
 
 		return {
 
-			loadAllImmobiles: function() {
+			loadAllImmobiles: function(limit) {
 				var deferred = $q.defer();
 				
 				$http({
@@ -18,7 +18,8 @@ angular.module('alabama.services')
 						get_District: true,
 						get_City: true,
 						get_UF: true,
-						get_GalleryImage: true
+						get_GalleryImage: true,
+						limit: limit
 					}
 				}).then(function(immobileData) {
 					var array = [ ];						
@@ -52,6 +53,37 @@ angular.module('alabama.services')
 						get_GalleryImage: true
 					}
 				}).then(function(immobileData) {
+					var array = [ ];
+					
+					angular.forEach(immobileData.data.data, function(item) {
+						array.push(new Immobile(item));
+					});
+
+					deferred.resolve(array);
+				}, function(error) {
+					console.log('deu erro: ' + error);
+					deferred.reject();
+				});
+
+				return deferred.promise;
+			},
+
+			loadLastOnes: function() {
+				var deferred = $q.defer();
+				
+				$http({
+					method: 'POST',
+					url: URLS.root + 'api/immobile.php?module=getListNews',
+					crossDomain: true,
+					data: {
+						json: 1,
+						get_Address: true,
+						get_District: true,
+						get_City: true,
+						get_UF: true,
+						get_GalleryImage: true
+					}
+				}).then(function(immobileData) {
 					var array = [ ];						
 					
 					angular.forEach(immobileData.data.data, function(item) {
@@ -66,7 +98,6 @@ angular.module('alabama.services')
 
 				return deferred.promise;
 			}
-
 		}
 
 	}]);

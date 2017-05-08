@@ -12,6 +12,10 @@
 	transition:         $properties;
 }
 
+.display-none {
+	display: none !important;
+}
+
 .offset-top-15 {
 	margin-top: 15px !important;
 }

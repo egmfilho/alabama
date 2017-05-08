@@ -3,6 +3,8 @@
 angular.module('alabama.services')
 	.factory('Immobile', ['$http', '$q', 'URLS', function($http, $q, URLS) {  
 
+		var related = [ ];
+
 		function Immobile(immobileData) {
 			if (immobileData) {
 				this.setData(immobileData);
@@ -23,9 +25,18 @@ angular.module('alabama.services')
 			});
 		}
 
+		function setRelated(array) {
+			angular.forEach(array, function(item, index) {
+				related.push(new Immobile(item));
+			});			
+		}
+
 		Immobile.prototype = {
 			setData: function(immobileData) {
 				angular.extend(this, immobileData);
+				this.immobile_value = parseInt(this.immobile_value); // para corrigir o preço de string pra int
+				this.immobile_value_condominium = parseInt(this.immobile_value_condominium); // para corrigir o preço de string pra int
+				this.immobile_value_iptu = parseInt(this.immobile_value_iptu); // para corrigir o preço de string pra int
 			},
 			get: function(code) {
 				var scope = this, 
@@ -47,11 +58,11 @@ angular.module('alabama.services')
 						group_feature: true
 					}
 				}).then(function(immobileData) {
-					scope.setData(immobileData.data.data);
-					scope.immobile_value = parseInt(scope.immobile_value); // para corrigir o preço de string pra int
-					scope.immobile_value_condominium = parseInt(scope.immobile_value_condominium); // para corrigir o preço de string pra int
-					scope.immobile_value_iptu = parseInt(scope.immobile_value_iptu); // para corrigir o preço de string pra int
+					console.log(immobileData);
+					scope.setData(immobileData.data.data);					
 					setPictures(scope);
+					if (immobileData.data.info.related) 
+						setRelated(immobileData.data.info.related);					
 					deferred.resolve();
 				}, function(error) {
 					console.log('deu erro: ' + error);
@@ -104,6 +115,10 @@ angular.module('alabama.services')
 					labelText: '',
 					labelColor: '',
 				};
+			},
+
+			getRelated: function() {
+				return related;
 			}
 		};
 

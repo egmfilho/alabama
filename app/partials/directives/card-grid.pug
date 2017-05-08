@@ -10,11 +10,16 @@
 				.col-xs-12.col-sm-6.col-md-4(ng-repeat='card in cardGridArray')
 
 					card(
-						picture='{{card.picture}}' 
+						code='{{card.code}}'
+						picture='{{card.picture}}'
 						title='{{card.title}}' 
 						subtitle='{{card.subtitle}}' 
 						description='{{card.description}}' 
 						price='{{card.price}}' 
 						url='{{card.url}}' 
+						bed='{{card.bed}}'
+						suite='{{card.suite}}'
+						bath='{{card.bath}}'
+						parking='{{card.parking}}'
 						label-text='{{card.labelText}}' 
 						label-color='{{card.labelColor}}')

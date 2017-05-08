@@ -137,3 +137,15 @@
 				
 			.col-md-9
 				card-list(cards='imoveis.cardList' name='Resultados' ng-if='imoveis.cardList.length')
+				.col-xs-12
+					nav.pull-right.offset-top-30
+						ul.pagination
+							li(ng-class='{"disabled": imoveis.pagination.index == 0}')
+								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index - 1)') 
+									span &laquo;
+							li(ng-repeat='n in getNumber(imoveis.pagination.getPageAmount()) track by $index' ng-class='{"active": $index == imoveis.pagination.index, "display-none": imoveis.pagination.hidePage($index)}')
+								a(href='' ng-click='imoveis.pagination.goTo($index)')
+									span {{$index + 1}}
+							li(ng-class='{"disabled": imoveis.pagination.index == 29}')
+								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index + 1)')
+									span &raquo;

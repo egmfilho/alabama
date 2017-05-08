@@ -13,17 +13,17 @@ function HeaderCtrl($scope, $filter, ImmobileManager) {
 
 	$scope.featuredList = [];
 
-	$scope.getFeaturedList = function() {
-		$scope.featuredList = [];
-		ImmobileManager.loadAllFeatured().then(function(success) {
-			angular.forEach(success, function(item) {			
-				$scope.featuredList.push(item.convertToCardInfo());
-			});
-			console.log($scope.featuredList);
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getFeaturedList = function() {
+	// 	$scope.featuredList = [];
+	// 	ImmobileManager.loadAllFeatured().then(function(success) {
+	// 		angular.forEach(success, function(item) {			
+	// 			$scope.featuredList.push(item.convertToCardInfo());
+	// 		});
+	// 		console.log($scope.featuredList);
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	jQuery('.header5 #carousel-showcase').carousel({
 		pause: null,

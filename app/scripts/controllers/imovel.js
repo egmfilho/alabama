@@ -11,7 +11,9 @@ ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', 'Immobile
 
 function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) {
 
-	var self = this;	
+	var self = this;
+
+	this.related = [ ];
 
 	$scope.$on('$viewContentLoaded', function () {
 		self.currentSlide = 0;
@@ -23,34 +25,23 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 			$rootScope.loading.load();
 			$scope.immobile.get($location.search()['codigo']).then(function(success) {
 				self.ready = true;
+
+				angular.forEach($scope.immobile.getRelated(), function(item, index) {
+					self.related.push(item.convertToCardInfo());
+				});
+				$scope.interestMessage = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.district_name + ' ' + $scope.immobile.Address.District.City.city_name;
 				$rootScope.loading.unload();
-				// teste();
 			});
 		}
 	});
 
-	function teste() {
-		console.log($scope.immobile);
-		var image = 'http://lorempixel.com/1280/800/nature/';
-		$scope.immobile.GalleryImage = [
-			{ "url": image + '1', "thumb": image + '1'},
-			{ "url": image + '2', "thumb": image + '2'},
-			{ "url": image + '3', "thumb": image + '3'},
-			{ "url": image + '4', "thumb": image + '4'},
-			{ "url": image + '5', "thumb": image + '5'},
-			{ "url": image + '6', "thumb": image + '6'},
-			{ "url": image + '7', "thumb": image + '7'},
-			{ "url": image + '8', "thumb": image + '8'},
-			{ "url": image + '9', "thumb": image + '9'}
-		];
-	}
-
 	$scope.openLightbox = function() {
+		if ($window.innerWidth < 768) return;
+
 		var images = [];
 		angular.forEach($scope.immobile.GalleryImage, function(item) {
 			images.push(item.url);
 		});
-		console.log('oppening lightbox on index: ' + self.currentSlide);
 		Lightbox.openModal(images, self.currentSlide || 0);
 	};
 
@@ -101,5 +92,25 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 		// settings: "unslick"
 		// instead of a settings object
 	];
+
+	jQuery('form[name="interest"]').on('submit', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			$rootScope.loading.load();
+			jQuery.ajax({
+				url: './external/mail.php',
+				method: 'POST',
+				dataType: 'json',
+				data: jQuery('form').serialize(),
+				success: function(data) {
+					$rootScope.loading.unload();
+					$scope.$apply();
+				},
+				error: function(data) {
+					$rootScope.loading.unload();
+					$scope.$apply();
+				}
+			});
+		});
 
 }

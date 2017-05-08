@@ -3,10 +3,10 @@
 	div(ng-include='"partials/carousel.html"')
 
 // Cards Carousel
-card-carousel(carousel-id='sliding-cards' name='Mais visitados' interval='5000' cards='home.imoveis')
+card-carousel(carousel-id='sliding-cards' name='Destaques' interval='5000' cards='home.featuredList' ng-if='home.featuredList.length')
 
 // Circle Icons
 div(ng-include='"partials/link-icons.html"')
 
 // Card Grid
-card-grid(cards='home.imoveis' name='O patrão ficou maluco!')
+card-grid(cards='home.lastOnes' name='Últimos cadastrados')

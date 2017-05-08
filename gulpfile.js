@@ -3,6 +3,7 @@
 const gulp 	     = require('gulp');
 const gutil 	 = require('gulp-util');
 const connect    = require('gulp-connect');
+const rename     = require('gulp-rename');
 const pug 	     = require('gulp-pug');
 const sass       = require('gulp-sass');
 const uglify     = require('gulp-uglify');
@@ -33,6 +34,7 @@ gulp.task('connect', function() {
 gulp.task('index', function() {
 	return gulp.src(source + 'index.pug')
 		.pipe(pug({ }).on('error', error_handler))
+		.pipe(rename('index.php'))
 		.pipe(gulp.dest(dest))
 		.pipe(connect.reload());
 });
