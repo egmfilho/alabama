@@ -11,7 +11,7 @@
 						b &nbsp;/&nbsp;Imóveis
 
 .container.search-filters.offset-bottom-30(ng-controller='SearchBarCtrl as searchBar')
-	.row
+	.row(ng-if='searchBar.isReady')
 		.col-xs-12.col-sm-6.col-md-3
 			input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
 
@@ -19,40 +19,40 @@
 			select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
 				option(value='' disabled style='display: none') Tipo
 				option(value='0') Todos
-				option(value='1') Tipo1
-				option(value='2') Tipo2
+				option(value='1') Compra
+				option(value='2') Aluguel
 		.col-md-3.hidden-xs.hidden-sm
 			select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
 				option(value='' disabled style='display: none') Cidade
-				option Todas
-				option Cidade1
-				option Cidade2
+				option(value='0') Todas
+				option(ng-repeat='cidade in searchBar.filters.address.city' ng-value='cidade.city_id') 
+					| {{cidade.city_name}}
 
 		span#expand-search.collapse.in
 			.col-xs-12.col-sm-6.hidden-md.hidden-lg
 				select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
 					option(value='' disabled style='display: none') Tipo
 					option(value='0') Todos
-					option(value='1') Tipo1
-					option(value='2') Tipo2
+					option(value='1') Compra
+					option(value='2') Aluguel
 			.col-xs-12.col-sm-6.hidden-md.hidden-lg
 				select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
 					option(value='' disabled style='display: none') Cidade
-					option Todas
-					option Cidade1
-					option Cidade2
+					option(value='0') Todas
+					option(ng-repeat='cidade in searchBar.filters.address.city' ng-value='cidade.city_id') 
+						| {{cidade.city_name}}
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Bairro' data-container='body' ng-model='searchBar.search.bairro')
 					option(value='' disabled style='display: none') Bairro
-					option Todos
-					option Bairro1
-					option Bairro2	
+					option(value='0') Todos
+					option(ng-repeat='bairro in searchBar.filters.address.district' ng-value='bairro.district_id')
+						| {{bairro.district_name}} ({{bairro.count_immobile}})
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchBar.search.categoria')
 					option(value='' disabled style='display: none') Categoria
-					option Tudo
-					option Compra
-					option Aluguel
+					option(value='0') Tudo
+					option(ng-repeat='categoria in searchBar.filters.category' ng-value='categoria.immobile_category_id')
+						| {{categoria.immobile_category_name}}
 			.col-xs-12.col-sm-6.col-md-3
 				rzslider(rz-slider-model='searchBar.search.sliderPrice.minValue' rz-slider-high='searchBar.search.sliderPrice.maxValue' rz-slider-options='searchBar.search.sliderPrice.options')
 			.col-xs-12.col-sm-6.col-md-3
@@ -60,29 +60,31 @@
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Dormitórios' data-container='body' ng-model='searchBar.search.dormitorios')
 					option(value='' disabled style='display: none') Dormitórios
-					option Tudo
-					option 1 dormitório
-					option 2 dormitórios
-					option 3 dormitórios
-					option 4+ dormitórios
+					option(value='0') Tudo
+					option(value='1') 1 dormitório
+					option(value='2') 2 dormitórios
+					option(value='3') 3 dormitórios
+					option(value='4') 4+ dormitórios
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Banheiros' data-container='body' ng-model='searchBar.search.banheiros')
 					option(value='' disabled style='display: none') Banheiros
-					option Tudo
-					option 1 banheiro
-					option 2 banheiros
-					option 3 banheiros
-					option 4+ banheiros
+					option(value='0') Tudo
+					option(value='1') 1 banheiro
+					option(value='2') 2 banheiros
+					option(value='3') 3 banheiros
+					option(value='4') 4+ banheiros
 			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suites')
+				select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suite')
 					option(value='' disabled style='display: none') Suíte
-					option Com suíte
-					option Sem suíte
+					option(value='0') Todos
+					option(value='1') Sem suíte
+					option(value='2') Com suíte
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Garagem' data-container='body' ng-model='searchBar.search.garagem')
 					option(value='' disabled style='display: none') Garagem
-					option Com garagem
-					option Sem garagem
+					option(value='0') Todos
+					option(value='1') Sem garagem
+					option(value='2') Com garagem
 		.col-xs-12.col-sm-6.col-md-3
 			button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.pesquisar()')
 				i.glyphicon.glyphicon-search
@@ -136,9 +138,9 @@
 									| Hadouken
 				
 			.col-md-9
-				card-list(cards='imoveis.cardList' name='Resultados' ng-if='imoveis.cardList.length')
+				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.totalItems}} Resultados' is-grid='false' ng-if='imoveis.cardList.length')
 				.col-xs-12
-					nav.pull-right.offset-top-30
+					nav.pull-right.offset-top-30(ng-show='imoveis.pagination.totalItems > imoveis.pagination.itemsPerPage')
 						ul.pagination
 							li(ng-class='{"disabled": imoveis.pagination.index == 0}')
 								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index - 1)') 
@@ -146,6 +148,6 @@
 							li(ng-repeat='n in getNumber(imoveis.pagination.getPageAmount()) track by $index' ng-class='{"active": $index == imoveis.pagination.index, "display-none": imoveis.pagination.hidePage($index)}')
 								a(href='' ng-click='imoveis.pagination.goTo($index)')
 									span {{$index + 1}}
-							li(ng-class='{"disabled": imoveis.pagination.index == 29}')
+							li(ng-class='{"disabled": imoveis.pagination.index >= imoveis.pagination.getPageAmount() - 1}')
 								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index + 1)')
 									span &raquo;

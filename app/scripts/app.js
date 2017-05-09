@@ -143,9 +143,9 @@ angular.module('alabama', [
 			$rootScope.$apply();
 		};
 
-		$rootScope.scrollTop = function() {
+		$rootScope.scrollTop = function(y, delay) {
 			if ($rootScope.scrollY >= 100) {
-				jQuery('body').animate({ scrollTop: 0 }, '500');
+				jQuery('body').animate({ scrollTop: (y || 0) }, delay || 500);
 			}
 		}
 

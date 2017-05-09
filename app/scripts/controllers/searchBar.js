@@ -3,15 +3,14 @@
 angular.module('alabama.controllers')
 	.controller('SearchBarCtrl', SearchBar);
 
-SearchBar.$inject = [ '$rootScope', '$scope', '$filter' ];
+SearchBar.$inject = [ '$rootScope', '$scope', '$filter', '$timeout', 'Filters' ];
 
-function SearchBar($rootScope, $scope, $filter) {
+function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
 
+	var self = this;
+
+	this.isReady = false;
 	this.search = { };
-
-	setTimeout(function() {
-		$rootScope.startBootstrapSelect();
-	}, 500);
 
 	function disableAll() {
 		jQuery('.selectpicker').attr('disabled', true).selectpicker('setStyle', 'disabled', 'add');
@@ -79,8 +78,31 @@ function SearchBar($rootScope, $scope, $filter) {
 		}
 	};
 
+	this.filters = new Filters();
+	$rootScope.loading.load();
+	this.filters.load().then(function(res) {
+		console.log(self.filters);
+		
+		self.search.sliderPrice.minValue = parseFloat(self.filters.value.min);
+		self.search.sliderPrice.options.floor = parseFloat(self.filters.value.min);
+		self.search.sliderPrice.maxValue = parseFloat(self.filters.value.max);
+		self.search.sliderPrice.options.ceil = parseFloat(self.filters.value.max);
+
+		self.search.sliderArea.minValue = parseFloat(self.filters.area.min);
+		self.search.sliderArea.options.floor = parseFloat(self.filters.area.min);
+		self.search.sliderArea.maxValue = parseFloat(self.filters.area.max);
+		self.search.sliderArea.options.ceil = parseFloat(self.filters.area.max);		
+
+		self.isReady = true;
+
+		$timeout(function() {
+			$rootScope.startBootstrapSelect();
+			$rootScope.loading.unload();
+		}, 250);
+	});
+
 	this.pesquisar = function() {
-		console.log(this.search);
+		$scope.$emit('newSearch', this.search);
 	};
 
 }

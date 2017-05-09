@@ -7,19 +7,21 @@ ImoveisCtrl.$inject = ['$rootScope', '$scope', 'ImmobileManager'];
 
 function ImoveisCtrl($rootScope, $scope, ImmobileManager) {
 
-	var self = this;
+	var self = this, filtros = { };
 
 	this.cardList = [];	
 	this.pagination = {
 		index: 0,
-		totalItems: 20,
+		totalItems: 0,
 		itemsPerPage: 12,
 		getPageAmount: function() {
 			return Math.round(this.totalItems / this.itemsPerPage);
 		},
 		goTo: function(page) {
+			if (page < 0 || page >= this.getPageAmount()) return;
+
 			this.index = page;
-			getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage);
+			getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage, filtros);
 		},
 		hidePage: function(page) {
 			if (this.index <= 2) {
@@ -36,15 +38,22 @@ function ImoveisCtrl($rootScope, $scope, ImmobileManager) {
 		getCardList(self.pagination.itemsPerPage);
 	});
 
-	function getCardList(limit) {
+	$scope.$on('newSearch', function(event, filters) {
+		angular.extend(filtros, filters);
+		self.pagination.goTo(0);
+	});
+
+	function getCardList(limit, filters) {
 		self.cardList = [];
 		$rootScope.loading.load();
-		ImmobileManager.loadAllImmobiles(limit).then(function(success) {
-			angular.forEach(success, function(item) {
+		ImmobileManager.loadAllImmobiles(limit, filters).then(function(success) {
+			angular.forEach(success.data, function(item) {
 				self.cardList.push(item.convertToCardInfo());
 			});
+			self.pagination.totalItems = success.info.immobile_count;
 			console.log(self.cardList);
-			$rootScope.loading.unload();
+			$rootScope.scrollTop(300, 1);
+			$rootScope.loading.unload();			
 		}, function(error) {
 			console.log(error);
 			$rootScope.loading.unload();

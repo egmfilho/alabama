@@ -28,7 +28,7 @@ angular.module('alabama.services')
 		function setRelated(array) {
 			angular.forEach(array, function(item, index) {
 				related.push(new Immobile(item));
-			});			
+			});
 		}
 
 		Immobile.prototype = {

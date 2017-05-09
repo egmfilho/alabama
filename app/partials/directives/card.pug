@@ -43,3 +43,5 @@
 		span.description.text-gray {{description | truncate: (hideDescription ? 80 : 110)}}
 		span.price.text-primary
 			| Valor: {{price | currency : 'R$ ' : 0}}
+		span.text-light.text-gray.pull-right(ng-show='isHorizontal')
+			| Código: {{code}}

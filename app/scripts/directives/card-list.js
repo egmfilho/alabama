@@ -8,13 +8,13 @@ angular.module('alabama.directives')
 	.directive('cardList', ['$window', function($window) {
 
 		function link(scope, element, attrs) {			
-			$window.addEventListener('resize', onWindowResize);			
+			$window.addEventListener('resize', onWindowResize);
 			function onWindowResize() {
 				var width = $window.innerWidth;
 
-				if (!scope.listHorizontal) {
-					scope.listHorizontal = true;
-				}
+				// if (!scope.listHorizontal) {
+				// 	scope.listHorizontal = true;
+				// }
 
 				if (scope.listHorizontal) {
 					if (width < 768) {
@@ -36,13 +36,16 @@ angular.module('alabama.directives')
 			scope: {
 				cardListArray: '=cards',
 				cardListName: '@name',
-				cardListHideControls: '=hideControls'
+				cardListHideControls: '=hideControls',
+				cardListIsGrid: '&isGrid'
 			},
 			link: link,
 			controller: ['$scope', function($scope) {
 				$scope.setCardListHorizontal = function(value) {
 					$scope.listHorizontal = value;
 				};
+
+				// $scope.setCardListHorizontal(!$scope.cardListIsGrid);
 			}]
 		}
 
