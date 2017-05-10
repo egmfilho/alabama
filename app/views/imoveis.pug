@@ -19,7 +19,7 @@
 			select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
 				option(value='' disabled style='display: none') Tipo
 				option(value='0') Todos
-				option(value='1') Compra
+				option(value='1') Venda
 				option(value='2') Aluguel
 		.col-md-3.hidden-xs.hidden-sm
 			select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
@@ -33,7 +33,7 @@
 				select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
 					option(value='' disabled style='display: none') Tipo
 					option(value='0') Todos
-					option(value='1') Compra
+					option(value='1') Venda
 					option(value='2') Aluguel
 			.col-xs-12.col-sm-6.hidden-md.hidden-lg
 				select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
@@ -54,9 +54,9 @@
 					option(ng-repeat='categoria in searchBar.filters.category' ng-value='categoria.immobile_category_id')
 						| {{categoria.immobile_category_name}}
 			.col-xs-12.col-sm-6.col-md-3
-				rzslider(rz-slider-model='searchBar.search.sliderPrice.minValue' rz-slider-high='searchBar.search.sliderPrice.maxValue' rz-slider-options='searchBar.search.sliderPrice.options')
+				rzslider(rz-slider-model='searchBar.search.minValue' rz-slider-high='searchBar.search.maxValue' rz-slider-options='searchBar.sliderPrice.options')
 			.col-xs-12.col-sm-6.col-md-3
-				rzslider(rz-slider-model='searchBar.search.sliderArea.minValue' rz-slider-high='searchBar.search.sliderArea.maxValue' rz-slider-options='searchBar.search.sliderArea.options')
+				rzslider(rz-slider-model='searchBar.search.minArea' rz-slider-high='searchBar.search.maxArea' rz-slider-options='searchBar.sliderArea.options')
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Dormitórios' data-container='body' ng-model='searchBar.search.dormitorios')
 					option(value='' disabled style='display: none') Dormitórios
@@ -97,48 +97,19 @@
 	.container
 		.row
 			.col-md-3.filters
-				- var filtro1 = 'cabrunco'
-				.panel.panel-primary(name=filtro1)
+				.panel.panel-primary.simple-shadow(ng-repeat='(key, value) in imoveis.resumo' name='{{key}}' ng-class='{"display-none": imoveis.getFiltros()[value.model] > 0}')
 					.panel-heading
-						a(href='' data-toggle='collapse' data-target='.panel[name="' + filtro1 + '"] .collapse')
-							| Filtro 1
+						a(href='' data-toggle='collapse' data-target='.panel[name="{{key}}"] .collapse')
+							| {{key}}
 					.collapse
 						.panel-body
 							.checkbox
-								label
+								label(ng-repeat='(key2, value2) in value.data track by $index' style='display: block')
 									input(type='checkbox') 
-									| Forévis
-							.checkbox
-								label
-									input(type='checkbox') 
-									| Cachorro
-							.checkbox
-								label
-									input(type='checkbox') 
-									| Hadouken
-
-				- var filtro2 = 'james'
-				.panel.panel-primary.simple-shadow(name=filtro2)
-					.panel-heading
-						a(href='' data-toggle='collapse' data-target='.panel[name="' + filtro2 + '"] .collapse')
-							| Filtro 2
-					.collapse
-						.panel-body
-							.checkbox
-								label
-									input(type='checkbox') 
-									| Forévis
-							.checkbox
-								label
-									input(type='checkbox') 
-									| Cachorro
-							.checkbox
-								label
-									input(type='checkbox') 
-									| Hadouken
+									| {{value.labels[$index]}} ({{value2}})
 				
 			.col-md-9
-				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.totalItems}} Resultados' is-grid='false' ng-if='imoveis.cardList.length')
+				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.getLabelResultado()}}' is-grid='false' ng-if='imoveis.cardList.length')
 				.col-xs-12
 					nav.pull-right.offset-top-30(ng-show='imoveis.pagination.totalItems > imoveis.pagination.itemsPerPage')
 						ul.pagination

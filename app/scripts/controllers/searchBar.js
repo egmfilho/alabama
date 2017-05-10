@@ -3,9 +3,9 @@
 angular.module('alabama.controllers')
 	.controller('SearchBarCtrl', SearchBar);
 
-SearchBar.$inject = [ '$rootScope', '$scope', '$filter', '$timeout', 'Filters' ];
+SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters' ];
 
-function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
+function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 
 	var self = this;
 
@@ -16,9 +16,7 @@ function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
 		jQuery('.selectpicker').attr('disabled', true).selectpicker('setStyle', 'disabled', 'add');
 	};
 
-	this.search.sliderPrice = {
-		minValue: 1,
-		maxValue: 2000000,		
+	this.sliderPrice = {
 		options: {
 			disabled: false,
 			floor: 1,
@@ -56,9 +54,7 @@ function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
 		}
 	};
 
-	this.search.sliderArea = {
-		minValue: 1,
-		maxValue: 500,
+	this.sliderArea = {
 		options: {
 			floor: 1,
 			ceil: 500,
@@ -83,15 +79,15 @@ function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
 	this.filters.load().then(function(res) {
 		console.log(self.filters);
 		
-		self.search.sliderPrice.minValue = parseFloat(self.filters.value.min);
-		self.search.sliderPrice.options.floor = parseFloat(self.filters.value.min);
-		self.search.sliderPrice.maxValue = parseFloat(self.filters.value.max);
-		self.search.sliderPrice.options.ceil = parseFloat(self.filters.value.max);
+		self.search.minValue = parseFloat(self.filters.value.min);
+		self.search.maxValue = parseFloat(self.filters.value.max);
+		self.sliderPrice.options.floor = parseFloat(self.filters.value.min);
+		self.sliderPrice.options.ceil = parseFloat(self.filters.value.max);
 
-		self.search.sliderArea.minValue = parseFloat(self.filters.area.min);
-		self.search.sliderArea.options.floor = parseFloat(self.filters.area.min);
-		self.search.sliderArea.maxValue = parseFloat(self.filters.area.max);
-		self.search.sliderArea.options.ceil = parseFloat(self.filters.area.max);		
+		self.search.minArea = parseFloat(self.filters.area.min);
+		self.search.maxArea = parseFloat(self.filters.area.max);
+		self.sliderArea.options.floor = parseFloat(self.filters.area.min);		
+		self.sliderArea.options.ceil = parseFloat(self.filters.area.max);		
 
 		self.isReady = true;
 
@@ -105,4 +101,24 @@ function SearchBar($rootScope, $scope, $filter, $timeout, Filters) {
 		$scope.$emit('newSearch', this.search);
 	};
 
+	function updateSelects() {
+		$timeout(function() { jQuery('.selectpicker').selectpicker('refresh'); }, 100);
+	}
+
+	$scope.$on('updateFilters', function(event, value) {
+		angular.extend(self.search, value);
+		updateSelects();
+	});
+
+	function generateUrl() {
+		return {
+			codigo: self.search.codigo,
+			tipo: self.search.tipo,
+			cidade: self.search.cidade
+		}
+	}
+
+	this.selfRedirect = function() {
+		$location.path('/imoveis').search(self.search);
+	}
 }

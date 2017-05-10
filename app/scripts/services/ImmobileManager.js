@@ -18,12 +18,12 @@ angular.module('alabama.services')
 					},
 					immobile_category_id: filtros.categoria,
 					immobile_area_total: {
-						min: filtros.sliderArea ? filtros.sliderArea.minValue : null,
-						max: filtros.sliderArea ? filtros.sliderArea.maxValue : null
+						min: filtros.minArea,
+						max: filtros.maxArea
 					},
 					immobile_value: {
-						min: filtros.sliderPrice ? filtros.sliderPrice.minValue : null,
-						max: filtros.sliderPrice ? filtros.sliderPrice.maxValue : null
+						min: filtros.minValue,
+						max: filtros.maxValue
 					},
 					immobile_bedroom: filtros.dormitorios,
 					immobile_bathroom: filtros.banheiros,
