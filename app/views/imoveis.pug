@@ -96,19 +96,20 @@
 .background-gray
 	.container
 		.row
-			.col-md-3.filters
-				.panel.panel-primary.simple-shadow(ng-repeat='(key, value) in imoveis.resumo' name='{{key}}' ng-class='{"display-none": imoveis.getFiltros()[value.model] > 0}')
-					.panel-heading
-						a(href='' data-toggle='collapse' data-target='.panel[name="{{key}}"] .collapse')
-							| {{key}}
-					.collapse
-						.panel-body
-							.checkbox
-								label(ng-repeat='(key2, value2) in value.data track by $index' style='display: block')
-									input(type='checkbox') 
-									| {{value.labels[$index]}} ({{value2}})
+			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')
+				.container-doido
+					.panel.panel-primary.simple-shadow(ng-repeat='(key, value) in imoveis.resumo' name='{{key}}' ng-class='{"display-none": imoveis.getFiltros()[value.model] > 0}')
+						.panel-heading
+							a(href='' data-toggle='collapse' data-target='.panel[name="{{key}}"] .collapse')
+								| {{key}}
+						.collapse.in
+							.panel-body
+								.checkbox
+									label(ng-repeat='(key2, value2) in value.data track by $index' style='display: block')
+										input(type='checkbox') 
+										| {{value.labels[$index]}} ({{value2}})
 				
-			.col-md-9
+			.col-xs-12.col-sm-8.col-md-9
 				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.getLabelResultado()}}' is-grid='false' ng-if='imoveis.cardList.length')
 				.col-xs-12
 					nav.pull-right.offset-top-30(ng-show='imoveis.pagination.totalItems > imoveis.pagination.itemsPerPage')

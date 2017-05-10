@@ -57,7 +57,7 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 	this.sliderArea = {
 		options: {
 			floor: 1,
-			ceil: 500,
+			ceil: 5000,
 			hideLimitLabels: true,
 			showTicks: false,
 			translate: function(value, sliderId, label) {
@@ -79,13 +79,13 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 	this.filters.load().then(function(res) {
 		console.log(self.filters);
 		
-		self.search.minValue = parseFloat(self.filters.value.min);
-		self.search.maxValue = parseFloat(self.filters.value.max);
+		self.search.minValue = self.search.minValue ? self.search.minValue : parseFloat(self.filters.value.min);
+		self.search.maxValue = self.search.maxValue ? self.search.maxValue : parseFloat(self.filters.value.max);
 		self.sliderPrice.options.floor = parseFloat(self.filters.value.min);
 		self.sliderPrice.options.ceil = parseFloat(self.filters.value.max);
 
-		self.search.minArea = parseFloat(self.filters.area.min);
-		self.search.maxArea = parseFloat(self.filters.area.max);
+		self.search.minArea = self.search.minArea ? self.search.minArea : parseFloat(self.filters.area.min);
+		self.search.maxArea = self.search.maxArea ? self.search.maxArea : parseFloat(self.filters.area.max);
 		self.sliderArea.options.floor = parseFloat(self.filters.area.min);		
 		self.sliderArea.options.ceil = parseFloat(self.filters.area.max);		
 
@@ -101,22 +101,13 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 		$scope.$emit('newSearch', this.search);
 	};
 
-	function updateSelects() {
-		$timeout(function() { jQuery('.selectpicker').selectpicker('refresh'); }, 100);
-	}
-
 	$scope.$on('updateFilters', function(event, value) {
 		angular.extend(self.search, value);
-		updateSelects();
+		$timeout(function() { 
+			jQuery('.selectpicker').selectpicker('refresh'); 
+			$scope.$broadcast('rzSliderForceRender');
+		});
 	});
-
-	function generateUrl() {
-		return {
-			codigo: self.search.codigo,
-			tipo: self.search.tipo,
-			cidade: self.search.cidade
-		}
-	}
 
 	this.selfRedirect = function() {
 		$location.path('/imoveis').search(self.search);

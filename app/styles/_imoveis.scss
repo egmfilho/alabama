@@ -1,25 +1,37 @@
 .filters {
-	> .panel {
-		margin-bottom: 5px;
-		border-radius: 0;
+	position: relative;
 
-		@include box-shadow(0, 0, 3px, rgba(0, 0, 0, .3));
+	.container-doido {
+		margin-top: 90px;
 
-		&:first-child {
-			margin-top: 90px;
-		}
-
-		.panel-heading {
+		> .panel {
+			margin-bottom: 5px;
 			border-radius: 0;
 
-			a {
-				display: block;
-				color: white;
+			@include box-shadow(0, 0, 3px, rgba(0, 0, 0, .3));
 
-				&:hover, &:focus {
-					text-decoration: none;
+			// &:first-child {
+			// 	margin-top: 90px;
+			// }
+
+			.panel-heading {
+				border-radius: 0;
+
+				a {
+					display: block;
+					color: white;
+
+					&:hover, &:focus {
+						text-decoration: none;
+					}
 				}
 			}
+		}
+
+		&.floating {
+			margin-top: 15px;
+			position: fixed;
+			top: 0;
 		}
 	}
 }

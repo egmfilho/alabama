@@ -3,18 +3,17 @@
 angular.module('alabama.controllers')
 	.controller('ImoveisCtrl', ImoveisCtrl);
 
-ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', 'ImmobileManager'];
+ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', 'ImmobileManager'];
 
-function ImoveisCtrl($rootScope, $scope, $location, ImmobileManager) {
+function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 
 	var self = this, filtros = { };
 
 	(function getParams() {
-		console.log($location.search());
-		filtros.codigo = $location.search().codigo;
-		filtros.tipo = $location.search().tipo;
-		filtros.cidade = $location.search().cidade;
-		setTimeout(function() {$scope.$broadcast('updateFilters', filtros);}, 200);
+		angular.extend(filtros, $location.search());
+		$timeout(function() {
+			$scope.$broadcast('updateFilters', filtros);
+		});
 	}());
 
 	this.getFiltros = function() {
@@ -61,13 +60,8 @@ function ImoveisCtrl($rootScope, $scope, $location, ImmobileManager) {
 		getCardList(self.pagination.itemsPerPage, filtros);
 	});
 
-	$scope.$on('$locationChangeStart', function() {
-		$location.search({});
-	});
-
 	$scope.$on('newSearch', function(event, filters) {
 		angular.extend(filtros, filters);
-		console.log('almondega', filtros);
 		self.pagination.goTo(0);
 	});
 
@@ -122,4 +116,25 @@ function ImoveisCtrl($rootScope, $scope, $location, ImmobileManager) {
 
 		console.log(self.resumo);
 	}
+
+	$scope.$watch(function(scope) {
+		return $rootScope.scrollY;
+	}, function() {
+		var top = jQuery('.filters').position().top + 75,
+			y = $rootScope.scrollY,
+			originalWidth = jQuery('.filters > .container-doido').css('width'),
+			topeira;
+
+		topeira = jQuery('.footer').position().top - y - jQuery(window).innerHeight();
+
+		if (top - y <= 0) {
+			jQuery('.filters > .container-doido').addClass('floating').css('width', originalWidth).css('margin-top', 15);
+
+			if (topeira < 0) {
+				jQuery('.filters > .container-doido').css('margin-top', topeira + 30);
+			}
+		} else {
+			jQuery('.filters > .container-doido').removeClass('floating').css('width', '100%').css('margin-top', 90);			
+		}
+	});
 }
