@@ -28,7 +28,8 @@ angular.module('alabama.services')
 					immobile_bedroom: filtros.dormitorios,
 					immobile_bathroom: filtros.banheiros,
 					immobile_suite: filtros.suite,
-					immobile_parking_spot: filtros.garagem
+					immobile_parking_spot: filtros.garagem,
+					order: filtros.order
 				};
 
 				data = {

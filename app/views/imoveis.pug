@@ -97,22 +97,33 @@
 	.container
 		.row
 			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')
-				.container-doido
+				.container-doido(watch-height)
 					.panel.panel-primary.simple-shadow(name='Ordenação')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Ordenação"] .collapse')
 								| Ordenação
 						.collapse.in
 							.panel-body
-								div
-									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
-										| Valor
-									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
-										| Cachorro
-									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
-										| Fandangos
-									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
-										| Drone
+								div(ng-init='menorArea={column: 6, order: 1}')
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", menorArea)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == menorArea.column && imoveis.getFiltros().order.order == menorArea.order}')
+										i.fa.fa-sort-amount-asc
+										|  Menor área
+								div(ng-init='maiorArea={column: 6, order: 0}')
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", maiorArea)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == maiorArea.column  && imoveis.getFiltros().order.order == maiorArea.order}')
+										i.fa.fa-sort-amount-desc
+										|  Maior área
+								div(ng-init='menorValor={column: 3, order: 1}')
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", menorValor)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == menorValor.column && imoveis.getFiltros().order.order == menorValor.order}')
+										i.fa.fa-sort-numeric-asc
+										|  Menor valor
+								div(ng-init='maiorValor={column: 3, order: 0}')
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", maiorValor)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == maiorValor.column && imoveis.getFiltros().order.order == maiorValor.order}')
+										i.fa.fa-sort-numeric-desc
+										|  Maior valor
+								div(ng-init='maisRecentes={column: 0, order: 0}')
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", maisRecentes)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == maisRecentes.column && imoveis.getFiltros().order.order == maisRecentes.order}')
+										i.fa.fa-clock-o
+										|  Mais recentes
 
 					.panel.panel-primary.simple-shadow(name='Dormitórios')
 						.panel-heading
@@ -122,7 +133,7 @@
 							.panel-body
 								div(style='display: block' ng-repeat='d in imoveis.resumo.bedroom track by $index')
 									a(href='' ng-click='imoveis.setFiltro("bedroom", d.filter)' ng-class='{"text-bold text-uppercase": d.filter == imoveis.getFiltros().dormitorios}')
-										| {{d.filter}}{{d.filter == 4 ? '+' : ''}} {{d.filter == 1 ? 'dormitório' : 'dormitórios'}} ({{d.count}})
+										| {{d.filter == 0 ? 'Sem' : d.filter}}{{d.filter == 4 ? '+' : ''}} {{d.filter == 1 ? 'dormitório' : 'dormitórios'}} ({{d.count}})
 										span(ng-if='d.filter == imoveis.getFiltros().dormitorios')
 											| &nbsp;
 											i.fa.fa-remove
@@ -133,9 +144,12 @@
 								| Banheiros
 						.collapse.in
 							.panel-body
-								div
-									a(href='' ng-repeat='b in imoveis.resumo.bathroom track by $index' style='display: block' ng-click='imoveis.setFiltro("bathroom", b.filter)')
-										| {{b.filter}}{{b.filter == 4 ? '+' : ''}} {{b.filter == 1 ? 'banheiro' : 'banheiros'}} ({{b.count}})
+								div(style='display: block' ng-repeat='b in imoveis.resumo.bathroom track by $index')
+									a(href='' ng-click='imoveis.setFiltro("bathroom", b.filter)' ng-class='{"text-bold text-uppercase": b.filter == imoveis.getFiltros().banheiros}')
+										| {{b.filter == 0 ? 'Sem' : b.filter}}{{b.filter == 4 ? '+' : ''}} {{b.filter == 1 ? 'banheiro' : 'banheiros'}} ({{b.count}})
+										span(ng-if='b.filter == imoveis.getFiltros().banheiros')
+											| &nbsp;
+											i.fa.fa-remove
 
 					.panel.panel-primary.simple-shadow(name='Suíte')
 						.panel-heading
@@ -143,9 +157,12 @@
 								| Suíte
 						.collapse.in
 							.panel-body
-								div
-									a(href='' ng-repeat='s in imoveis.resumo.suite track by $index' style='display: block' ng-click='imoveis.setFiltro("suite", s.filter)')
+								div(style='display: block' ng-repeat='s in imoveis.resumo.suite track by $index')
+									a(href='' ng-click='imoveis.setFiltro("suite", s.filter)' ng-class='{"text-bold text-uppercase": s.filter == imoveis.getFiltros().suite}')
 										| {{s.filter == 1 ? 'Sem suíte' : 'Com suíte'}} ({{s.count}})
+										span(ng-if='s.filter == imoveis.getFiltros().suite')
+											| &nbsp;
+											i.fa.fa-remove
 
 					.panel.panel-primary.simple-shadow(name='Garagem')
 						.panel-heading
@@ -153,9 +170,12 @@
 								| Garagem
 						.collapse.in
 							.panel-body
-								div
-									a(href='' ng-repeat='g in imoveis.resumo.parking_spot track by $index' style='display: block' ng-click='imoveis.setFiltro("parking_spot", g.filter)')
+								div(style='display: block' ng-repeat='g in imoveis.resumo.parking_spot track by $index')
+									a(href='' ng-click='imoveis.setFiltro("parking_spot", g.filter)' ng-class='{"text-bold text-uppercase": g.filter == imoveis.getFiltros().garagem}')
 										| {{g.filter == 1 ? 'Sem garagem' : 'Com garagem'}} ({{g.count}})
+										span(ng-if='g.filter == imoveis.getFiltros().garagem')
+											| &nbsp;
+											i.fa.fa-remove
 				
 			.col-xs-12.col-sm-8.col-md-9
 				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.getLabelResultado()}}' is-grid='false' ng-if='imoveis.cardList.length')

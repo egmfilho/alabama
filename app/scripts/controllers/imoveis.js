@@ -11,9 +11,14 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 
 	(function getParams() {
 		angular.extend(filtros, $location.search());
+		if (filtros.order)
+			filtros.order = JSON.parse(filtros.order);
+		else
+			filtros.order = {column: 0, order: 0};
 		$timeout(function() {
 			$scope.$broadcast('updateFilters', filtros);
 		});
+		console.log('OS PARAMS:', filtros);
 	}());
 
 	this.getFiltros = function() {
@@ -88,8 +93,11 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 	// Fixa o menu lateral de filtros quando o usuario dá scroll na tela
 	$scope.$watch(function(scope) {
 		return $rootScope.scrollY;
-	}, function() {
+	}, updateSideMenu);
 
+	$scope.$on('heightChange', updateSideMenu);
+
+	function updateSideMenu() {
 		var containerFilters = new function() {
 			this.elem = jQuery('.filters > .container-doido');
 			this.originalWidth = this.elem.css('width');
@@ -101,7 +109,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		};
 
 		var y = $rootScope.scrollY,
-			pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(), 
+			// pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(), 
+			pageBottom = jQuery('.footer').position().top - y - containerFilters.height, 
 			cardListHeight = parseInt(jQuery('div[name="card-list"]').css('height'));
 
 		// Se o menu lateral for maior que os resultados, retira a classe floating e nao age no menu.
@@ -115,16 +124,19 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 
 			// Aqui empurra o menu pra cima quando bate no fim da pagina
 			if (pageBottom < 0) {
-				containerFilters.elem.css('margin-top', pageBottom + 30);
+				containerFilters.elem.css('margin-top', pageBottom - 130);
 			}
 		} else {
 			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);
 		}
-	});
+	}
 
 	this.setFiltro = function(filter, value) {
 
 		switch (filter) {
+			case 'order':
+				filtros.order = value;
+				break;
 			case 'bedroom': 
 				if (filtros.dormitorios == value)
 					filtros.dormitorios = null;
@@ -133,15 +145,24 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 				break;
 
 			case 'bathroom': 
-				filtros.banheiros = value;
+				if (filtros.banheiros == value)
+					filtros.banheiros = null;
+				else
+					filtros.banheiros = value;
 				break;
 
 			case 'suite': 
-				filtros.suite = value;
+				if (filtros.suite == value)
+					filtros.suite = null;
+				else
+					filtros.suite = value;
 				break;
 
 			case 'parking_spot': 
-				filtros.garagem = value;
+				if (filtros.garagem == value)
+					filtros.garagem = null;
+				else
+					filtros.garagem = value;
 				break;
 		}
 

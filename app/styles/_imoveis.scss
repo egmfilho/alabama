@@ -26,6 +26,16 @@
 					}
 				}
 			}
+
+			.panel-body {
+				> div {
+					margin-top: 5px;
+
+					&:first-child {
+						margin-top: 0px;
+					}
+				}
+			}
 		}
 
 		&.floating {

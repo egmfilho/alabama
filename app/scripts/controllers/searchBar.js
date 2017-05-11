@@ -87,7 +87,9 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 		self.search.minArea = self.search.minArea ? self.search.minArea : parseFloat(self.filters.area.min);
 		self.search.maxArea = self.search.maxArea ? self.search.maxArea : parseFloat(self.filters.area.max);
 		self.sliderArea.options.floor = parseFloat(self.filters.area.min);		
-		self.sliderArea.options.ceil = parseFloat(self.filters.area.max);		
+		self.sliderArea.options.ceil = parseFloat(self.filters.area.max);
+
+		self.search.order = self.filters.order;
 
 		self.isReady = true;
 
@@ -136,6 +138,8 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 	});
 
 	this.selfRedirect = function() {
-		$location.path('/imoveis').search(self.search);
+		var temp = self.search;
+		temp.order = JSON.stringify(temp.order);
+		$location.path('/imoveis').search(temp);
 	}
 }
