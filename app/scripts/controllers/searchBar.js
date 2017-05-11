@@ -97,16 +97,42 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 		}, 250);
 	});
 
-	this.pesquisar = function() {
-		$scope.$emit('newSearch', this.search);
+	$scope.$watch(function() {
+		return self.search.cidade;
+	}, function() {
+		$rootScope.loading.load();
+		self.filters.loadDistrictsFromCity(self.search.cidade).then(function(success) {
+			$timeout(function() { jQuery('.selectpicker').selectpicker('refresh');  }, 290);
+			$rootScope.loading.unload();
+		}, function(error) {
+			$rootScope.loading.unload();
+		});
+	});
+
+	this.getDistrictsFrom = function(cidade) {
+		console.log('get districts from: ' + cidade);
 	};
 
-	$scope.$on('updateFilters', function(event, value) {
+	this.pesquisar = function() {
+		// $scope.$emit('newSearch', this.search);
+		this.selfRedirect();
+	};
+
+	function updateFilters(value) {
 		angular.extend(self.search, value);
 		$timeout(function() { 
 			jQuery('.selectpicker').selectpicker('refresh'); 
 			$scope.$broadcast('rzSliderForceRender');
 		});
+	}
+
+	$scope.$on('updateFilters', function(event, value) {
+		updateFilters(value);
+	});
+
+	$scope.$on('update&search', function(event, value) {
+		updateFilters(value);
+		self.selfRedirect();
 	});
 
 	this.selfRedirect = function() {

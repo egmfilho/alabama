@@ -25,7 +25,7 @@
 			select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
 				option(value='' disabled style='display: none') Cidade
 				option(value='0') Todas
-				option(ng-repeat='cidade in searchBar.filters.address.city' ng-value='cidade.city_id') 
+				option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
 					| {{cidade.city_name}}
 
 		span#expand-search.collapse.in
@@ -39,14 +39,14 @@
 				select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
 					option(value='' disabled style='display: none') Cidade
 					option(value='0') Todas
-					option(ng-repeat='cidade in searchBar.filters.address.city' ng-value='cidade.city_id') 
+					option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
 						| {{cidade.city_name}}
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Bairro' data-container='body' ng-model='searchBar.search.bairro')
 					option(value='' disabled style='display: none') Bairro
 					option(value='0') Todos
-					option(ng-repeat='bairro in searchBar.filters.address.district' ng-value='bairro.district_id')
-						| {{bairro.district_name}} ({{bairro.count_immobile}})
+					option(ng-repeat='bairro in searchBar.filters.districts' ng-value='bairro.district_id')
+						| {{bairro.district_name}} ({{bairro.immobiles}})
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchBar.search.categoria')
 					option(value='' disabled style='display: none') Categoria
@@ -98,16 +98,64 @@
 		.row
 			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')
 				.container-doido
-					.panel.panel-primary.simple-shadow(ng-repeat='(key, value) in imoveis.resumo' name='{{key}}' ng-class='{"display-none": imoveis.getFiltros()[value.model] > 0}')
+					.panel.panel-primary.simple-shadow(name='Ordenação')
 						.panel-heading
-							a(href='' data-toggle='collapse' data-target='.panel[name="{{key}}"] .collapse')
-								| {{key}}
+							a(href='' data-toggle='collapse' data-target='.panel[name="Ordenação"] .collapse')
+								| Ordenação
 						.collapse.in
 							.panel-body
-								.checkbox
-									label(ng-repeat='(key2, value2) in value.data track by $index' style='display: block')
-										input(type='checkbox') 
-										| {{value.labels[$index]}} ({{value2}})
+								div
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
+										| Valor
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
+										| Cachorro
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
+										| Fandangos
+									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", d.filter)')
+										| Drone
+
+					.panel.panel-primary.simple-shadow(name='Dormitórios')
+						.panel-heading
+							a(href='' data-toggle='collapse' data-target='.panel[name="Dormitórios"] .collapse')
+								| Dormitórios
+						.collapse.in
+							.panel-body
+								div(style='display: block' ng-repeat='d in imoveis.resumo.bedroom track by $index')
+									a(href='' ng-click='imoveis.setFiltro("bedroom", d.filter)' ng-class='{"text-bold text-uppercase": d.filter == imoveis.getFiltros().dormitorios}')
+										| {{d.filter}}{{d.filter == 4 ? '+' : ''}} {{d.filter == 1 ? 'dormitório' : 'dormitórios'}} ({{d.count}})
+										span(ng-if='d.filter == imoveis.getFiltros().dormitorios')
+											| &nbsp;
+											i.fa.fa-remove
+
+					.panel.panel-primary.simple-shadow(name='Banheiros')
+						.panel-heading
+							a(href='' data-toggle='collapse' data-target='.panel[name="Banheiros"] .collapse')
+								| Banheiros
+						.collapse.in
+							.panel-body
+								div
+									a(href='' ng-repeat='b in imoveis.resumo.bathroom track by $index' style='display: block' ng-click='imoveis.setFiltro("bathroom", b.filter)')
+										| {{b.filter}}{{b.filter == 4 ? '+' : ''}} {{b.filter == 1 ? 'banheiro' : 'banheiros'}} ({{b.count}})
+
+					.panel.panel-primary.simple-shadow(name='Suíte')
+						.panel-heading
+							a(href='' data-toggle='collapse' data-target='.panel[name="Suíte"] .collapse')
+								| Suíte
+						.collapse.in
+							.panel-body
+								div
+									a(href='' ng-repeat='s in imoveis.resumo.suite track by $index' style='display: block' ng-click='imoveis.setFiltro("suite", s.filter)')
+										| {{s.filter == 1 ? 'Sem suíte' : 'Com suíte'}} ({{s.count}})
+
+					.panel.panel-primary.simple-shadow(name='Garagem')
+						.panel-heading
+							a(href='' data-toggle='collapse' data-target='.panel[name="Garagem"] .collapse')
+								| Garagem
+						.collapse.in
+							.panel-body
+								div
+									a(href='' ng-repeat='g in imoveis.resumo.parking_spot track by $index' style='display: block' ng-click='imoveis.setFiltro("parking_spot", g.filter)')
+										| {{g.filter == 1 ? 'Sem garagem' : 'Com garagem'}} ({{g.count}})
 				
 			.col-xs-12.col-sm-8.col-md-9
 				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.getLabelResultado()}}' is-grid='false' ng-if='imoveis.cardList.length')

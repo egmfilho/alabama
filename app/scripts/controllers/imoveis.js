@@ -21,6 +21,7 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 	};
 
 	this.cardList = [];	
+	this.resumo = [];
 	this.pagination = {
 		index: 0,
 		totalItems: 0,
@@ -60,10 +61,10 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		getCardList(self.pagination.itemsPerPage, filtros);
 	});
 
-	$scope.$on('newSearch', function(event, filters) {
-		angular.extend(filtros, filters);
-		self.pagination.goTo(0);
-	});
+	// $scope.$on('newSearch', function(event, filters) {
+	// 	angular.extend(filtros, filters);
+	// 	self.pagination.goTo(0);
+	// });
 
 	function getCardList(limit, filters) {
 		self.cardList = [];
@@ -72,8 +73,9 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 			angular.forEach(success.data, function(item) {
 				self.cardList.push(item.convertToCardInfo());
 			});
-			self.setResumo();
-			self.pagination.totalItems = success.info.immobile_count;
+			self.pagination.totalItems = success.info.summary.immobiles;
+			self.resumo = success.info.summary.features;
+			console.log(self.resumo);
 			console.log(self.cardList);
 			$rootScope.scrollTop(300, 1);
 			$rootScope.loading.unload();			
@@ -83,58 +85,66 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		});
 	}
 
-	this.setResumo = function() {
-		this.resumo = {
-			'Dormitórios': {
-				model: 'dormitorios',
-				labels: ['1 dormitório', '2 dormitórios', '3 dormitórios', '4+ dormitórios'],
-				data: { 1: 0, 2: 0, 3: 0, 4: 0 }
-			},
-			'Banheiros': {
-				model: 'banheiros',
-				labels: ['1 banheiro', '2 banheiros', '3 banheiros', '4+ banheiros'],
-				data: { 1: 0, 2: 0, 3: 0, 4: 0 }
-			},
-			'Suíte': {
-				model: 'suite',
-				labels: ['Com suíte', 'Sem suíte'],
-				data: { 1: 0, 2: 0 }
-			},
-			'Garagem': {
-				model: 'garagem',
-				labels: ['Com garagem', 'Sem garagem'],
-				data: { 1: 0, 2: 0 }
-			}
-		};
-
-		angular.forEach(self.cardList, function(item, index) {
-			self.resumo['Dormitórios'].data[Math.min(item.bed, 4)]++;
-			self.resumo['Banheiros'].data[Math.min(item.bath, 4)]++;
-			self.resumo['Suíte'].data[!item.suite ? 1 : 2]++;
-			self.resumo['Garagem'].data[!item.garagem ? 1 : 2]++;
-		});
-
-		console.log(self.resumo);
-	}
-
+	// Fixa o menu lateral de filtros quando o usuario dá scroll na tela
 	$scope.$watch(function(scope) {
 		return $rootScope.scrollY;
 	}, function() {
-		var top = jQuery('.filters').position().top + 75,
-			y = $rootScope.scrollY,
-			originalWidth = jQuery('.filters > .container-doido').css('width'),
-			topeira;
 
-		topeira = jQuery('.footer').position().top - y - jQuery(window).innerHeight();
+		var containerFilters = new function() {
+			this.elem = jQuery('.filters > .container-doido');
+			this.originalWidth = this.elem.css('width');
+			this.height =  parseInt(this.elem.css('height'));
+			this.filters = new function() {
+				this.elem = jQuery('.filters');
+				this.top = this.elem.position().top + 75;
+			};
+		};
 
-		if (top - y <= 0) {
-			jQuery('.filters > .container-doido').addClass('floating').css('width', originalWidth).css('margin-top', 15);
+		var y = $rootScope.scrollY,
+			pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(), 
+			cardListHeight = parseInt(jQuery('div[name="card-list"]').css('height'));
 
-			if (topeira < 0) {
-				jQuery('.filters > .container-doido').css('margin-top', topeira + 30);
+		// Se o menu lateral for maior que os resultados, retira a classe floating e nao age no menu.
+		if (cardListHeight <= containerFilters.height) {
+			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);
+			return;
+		}
+
+		if (containerFilters.filters.top - y <= 0) {
+			containerFilters.elem.addClass('floating').css('width', containerFilters.originalWidth).css('margin-top', 15);
+
+			// Aqui empurra o menu pra cima quando bate no fim da pagina
+			if (pageBottom < 0) {
+				containerFilters.elem.css('margin-top', pageBottom + 30);
 			}
 		} else {
-			jQuery('.filters > .container-doido').removeClass('floating').css('width', '100%').css('margin-top', 90);			
+			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);
 		}
 	});
+
+	this.setFiltro = function(filter, value) {
+
+		switch (filter) {
+			case 'bedroom': 
+				if (filtros.dormitorios == value)
+					filtros.dormitorios = null;
+				else
+					filtros.dormitorios = value
+				break;
+
+			case 'bathroom': 
+				filtros.banheiros = value;
+				break;
+
+			case 'suite': 
+				filtros.suite = value;
+				break;
+
+			case 'parking_spot': 
+				filtros.garagem = value;
+				break;
+		}
+
+		$scope.$broadcast('update&search', filtros);
+	};
 }

@@ -50,4 +50,4 @@ ng-map.offset-top-30.offset-bottom-30(default-style="true" center='-22.415787,-4
 			p {{contato.mapInfo.address}}
 			p {{contato.mapInfo.contact}}
 
-card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='root_imoveis')
+card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='contato.array' ng-if='contato.array.length')

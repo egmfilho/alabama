@@ -58,6 +58,22 @@ angular.module('alabama', [
 	}])
 	.config(['$routeProvider', function($routeProvider) {
 
+		var genericController = ['$rootScope', 'ImmobileManager', function ($rootScope, ImmobileManager) {
+			var self = this;
+			self.array = [];
+			$rootScope.loading.load();
+			ImmobileManager.loadMostVisited().then(function(success) {
+				angular.forEach(success, function(item) {			
+					self.array.push(item.convertToCardInfo());
+				});
+				$rootScope.loading.unload();
+				console.log(self.array);
+			}, function(error) {
+				console.log(error);
+				$rootScope.loading.unload();
+			});	
+		}];
+
 		$routeProvider
 		.when('/', {
 			name: 'home',
@@ -67,7 +83,9 @@ angular.module('alabama', [
 		})
 		.when('/sobre', {
 			name: 'sobre',
-			templateUrl: 'views/sobre.html'
+			templateUrl: 'views/sobre.html',
+			controller: genericController,
+			controllerAs: 'sobre'
 		})
 		.when('/imoveis', {
 			name: 'imoveis',
@@ -82,7 +100,9 @@ angular.module('alabama', [
 		})
 		.when('/equipe', {
 			name: 'equipe',
-			templateUrl: 'views/equipe.html'
+			templateUrl: 'views/equipe.html',
+			controller: genericController,
+			controllerAs: 'equipe'
 		})
 		.when('/contato', {
 			name: 'contato',
