@@ -106,6 +106,7 @@ angular.module('alabama.services')
 					parsedName: this.immobile_name.replace(/ /g, '-'),
 					subtitle: this.Address ? this.Address.District.district_name + ' - ' + this.Address.District.City.city_name : '',
 					description: this.immobile_description || '',
+					type: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
 					price: parseInt(this.immobile_value),
 					url: this.url,
 					bed: this.immobile_bedroom,

@@ -78,8 +78,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 			angular.forEach(success.data, function(item) {
 				self.cardList.push(item.convertToCardInfo());
 			});
-			self.pagination.totalItems = success.info.summary.immobiles;
-			self.resumo = success.info.summary.features;
+			self.pagination.totalItems = success.info.summary ? success.info.summary.immobiles : 0;
+			self.resumo = success.info.summary ? success.info.summary.features : { };
 			console.log(self.resumo);
 			console.log(self.cardList);
 			$rootScope.scrollTop(300, 1);
@@ -95,9 +95,13 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		return $rootScope.scrollY;
 	}, updateSideMenu);
 
-	$scope.$on('heightChange', updateSideMenu);
+	// Para evitar que o menu fique por cima do footer ao descer recolhido e abrir depois
+	jQuery('.container-doido .collapse')
+		.on('shown.bs.collapse', updateSideMenu)
+		.on('hidden.bs.collapse', updateSideMenu);
 
 	function updateSideMenu() {
+		console.log(' u[date saoe ,emiu');
 		var containerFilters = new function() {
 			this.elem = jQuery('.filters > .container-doido');
 			this.originalWidth = this.elem.css('width');
@@ -122,9 +126,9 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		if (containerFilters.filters.top - y <= 0) {
 			containerFilters.elem.addClass('floating').css('width', containerFilters.originalWidth).css('margin-top', 15);
 
-			// Aqui empurra o menu pra cima quando bate no fim da pagina
-			if (pageBottom < 0) {
-				containerFilters.elem.css('margin-top', pageBottom - 130);
+			// Aqui empurra o menu pra cima quando bate no fim da pagina (15px antes do fim)
+			if (pageBottom < 15) {
+				containerFilters.elem.css('margin-top', pageBottom);// - 130);
 			}
 		} else {
 			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);

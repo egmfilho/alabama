@@ -3,20 +3,23 @@
 		| {{labelText}}
 	.picture
 		div(ng-style='{"background-image": "url({{picture || \'../images/no-pic.png\'}})"}')
+			.type(ng-if='type')
+				span.glyphicon.glyphicon-tag
+				|  {{type}}
 			.icons(ng-if='!isHorizontal')
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios' ng-if='bed && bed > 0')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
 					| {{bed}}  
 					i.fa.fa-bed
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes' ng-if='suite && suite > 0')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{suite}} suítes' ng-if='suite && suite > 0')
 					| {{suite}}  
 					i.fa.fa-bathtub
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros' ng-if='bath && bath > 0')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bath}} banheiros' ng-if='bath && bath > 0')
 					| {{bath}}  
 					i.fa.fa-shower
 
-				span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas' ng-if='parking && parking > 0')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
 					| {{parking}}  
 					i.fa.fa-car
 	.info
@@ -25,19 +28,19 @@
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}
 		.icons(ng-if='isHorizontal')
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 dormitórios' ng-if='bed && bed > 0')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
 				| {{bed}}  
 				i.fa.fa-bed
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 suítes' ng-if='suite && suite > 0')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{suite}} suítes' ng-if='suite && suite > 0')
 				| {{suite}}  
 				i.fa.fa-bathtub
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 banheiros' ng-if='bath && bath > 0')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bath}} banheiros' ng-if='bath && bath > 0')
 				| {{bath}}  
 				i.fa.fa-shower
 
-			span(name='icon' data-toggle='tooltip' data-placement='top' title='2 vagas' ng-if='parking && parking > 0')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
 				| {{parking}}  
 				i.fa.fa-car
 		span.description.text-gray {{description | truncate: (hideDescription ? 80 : 110)}}

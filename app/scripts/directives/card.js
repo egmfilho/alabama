@@ -36,7 +36,8 @@ angular.module('alabama.directives')
 				labelText: '@',
 				labelColor: '@',
 				isHorizontal: '=',
-				hideDescription: '='
+				hideDescription: '=',
+				type: '@'
 			},
 			link: link
 		}

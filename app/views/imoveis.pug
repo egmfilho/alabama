@@ -94,10 +94,16 @@
 			a.center-block.text-center(href='' data-toggle='collapse' data-target='#expand-search')
 
 .background-gray
-	.container
+	.container(ng-if='!imoveis.cardList.length')
+		.no-results
+			.text
+				i.fa.fa-home.icon-xlg
+				h2 Nenhum resultado.
+				h3 Tente remover alguns filtros.
+	.container(ng-if='imoveis.cardList.length')
 		.row
 			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')
-				.container-doido(watch-height)
+				.container-doido
 					.panel.panel-primary.simple-shadow(name='Ordenação')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Ordenação"] .collapse')

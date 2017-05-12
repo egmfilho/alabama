@@ -70,7 +70,18 @@
 			background-size: cover;
 			background-position: center;
 			background-image: url('../images/slides/19424.jpg');	
-			position: relative;		
+			position: relative;
+
+			.type {
+				// background-color: rgba(#000, .5);
+				background-color: $main-color;
+				color: white;
+				padding: 5px 10px;
+				border-radius: 5px;
+				position: absolute;
+				top: 15px;
+				right: 15px;
+			}
 
 			.icons {
 				display: block;

@@ -36,6 +36,23 @@ body {
 	// background-color: $background-color;
 }
 
+#loading {
+	.logo {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin-top: 150px;
+		background-image: url(' ../images/PN/logo.png');
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 600px;
+		height: 400px;
+	}
+}
+
 .text-sans {
 	font-family: 'Open Sans', sans-serif;
 }
