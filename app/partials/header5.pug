@@ -71,12 +71,12 @@ span(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
 
 			.row.remove-margin.container-carousel(ng-if='currentPath === "/"')
 				.col-xs-12(style='padding: 0')
-					#carousel-showcase.carousel.slide(data-ride='carousel')
+					#carousel-showcase.carousel.slide(data-ride='carousel' data-pause='false')
 						.info
-							p 
+							p.offset-top-30.offset-bottom-15 
 								b Grupo Paiva 
-									br 
-									| Imóveis e Seguros
+								br 
+								| Corretora e Imobiliária
 							p.offset-top-30
 								| Trabalhando e pensando na realização do seu sonho.
 							a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Ver Imóveis
@@ -95,7 +95,7 @@ span(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
 
 		.container-fluid(ng-if='currentPath === "/"' ng-controller='SearchBarCtrl as searchBar')
 			.search.container.offset-top-30.offset-bottom-15
-				.row
+				.row(ng-if='searchBar.isReady')
 					.col-xs-12.col-sm-6.col-md-3
 						input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
 
@@ -109,7 +109,7 @@ span(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
 						select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
 							option(value='' disabled style='display: none') Cidade
 							option(value='0') Todas
-							option(ng-repeat='cidade in searchBar.filters.address.city' ng-value='cidade.city_id') 
+							option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
 								| {{cidade.city_name}}
 					.col-xs-12.col-sm-6.col-md-3
 						button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.selfRedirect()')

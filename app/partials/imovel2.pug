@@ -27,7 +27,7 @@
 				i.fa.fa-calendar
 				| &nbsp;{{immobile.immobile_date | date:'dd/MM/yyyy'}}
 			h1.title
-				| {{immobile.immobile_name}} em {{immobile.Address.District.district_name}} {{immobile.Address.District.City.city_name}}
+				| {{immobile.immobile_name}} em {{immobile.Address.District.City.city_name}}
 
 	.row
 		.col-sm-8.col-md-9
@@ -119,11 +119,13 @@
 		div(ng-repeat-end='')
 
 	.row
-		.col-xs-12(ng-if='imovel.ready && immobile.immobile_latitude && immobile.immobile_longitude')
+		.col-xs-12(ng-if='imovel.ready && immobile.immobile_latitude && immobile.immobile_latitude != 0 && immobile.immobile_longitude && immobile.immobile_longitude != 0')
 			ng-map.offset-top-30.offset-bottom-30(default-style="true" center="{{immobile.immobile_latitude + ',' + immobile.immobile_longitude}}" zoom='15' scrollwheel='false')
 				marker(id='#marker' position="{{immobile.immobile_latitude + ',' + immobile.immobile_longitude}}" on-click='contato.map.showInfoWindow("#info-window")')
 				info-window(id='#info-window' visible-on-marker='#marker')
 					div(ng-non-bindable='')
 						h4 {{immobile.immobile_name}}
+						p {{immobile.Address.address_public_place}} {{immobile.Address.address_number}}
+						p {{immobile.Address.District.district_name}}, {{immobile.Address.District.City.city_name}} - {{immobile.Address.District.City.UF.uf_code}}
 
 card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='imovel.related' ng-if='imovel.related.length')

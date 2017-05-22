@@ -7,6 +7,10 @@
 				span.glyphicon.glyphicon-tag
 				|  {{type}}
 			.icons(ng-if='!isHorizontal')
+				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
+					| {{area}} 
+					span  m&#178; &nbsp;
+
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
 					| {{bed}}  
 					i.fa.fa-bed
@@ -28,6 +32,10 @@
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}
 		.icons(ng-if='isHorizontal')
+			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
+				| {{area}} 
+				b  m&#178; &nbsp;
+
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
 				| {{bed}}  
 				i.fa.fa-bed

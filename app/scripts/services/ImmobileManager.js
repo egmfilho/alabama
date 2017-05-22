@@ -13,8 +13,8 @@ angular.module('alabama.services')
 					immobile_code: filtros.codigo,
 					immobile_type: filtros.tipo,
 					immobile_address: {
-						city_id: filtros.cidade,
-						district_id: filtros.bairro
+						city_id: filtros.cidade || 0,
+						district_id: filtros.bairro || 0
 					},
 					immobile_category_id: filtros.categoria,
 					immobile_area_total: {
@@ -25,10 +25,10 @@ angular.module('alabama.services')
 						min: filtros.minValue,
 						max: filtros.maxValue
 					},
-					immobile_bedroom: filtros.dormitorios,
-					immobile_bathroom: filtros.banheiros,
-					immobile_suite: filtros.suite,
-					immobile_parking_spot: filtros.garagem,
+					immobile_bedroom: filtros.dormitorios || 0,
+					immobile_bathroom: filtros.banheiros || 0,
+					immobile_suite: filtros.suite || 0,
+					immobile_parking_spot: filtros.garagem || 0,
 					order: filtros.order
 				};
 

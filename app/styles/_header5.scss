@@ -59,10 +59,10 @@
 		height: 30px;
 		color: white;
 		background-color: $main-color-dark;
-		padding: 8px 20px;
+		padding: 5px 20px;
 
 		.contato {
-			font-size: .85em;
+			font-size: 1em;
 			font-weight: 200;
 			letter-spacing: 1px;
 			text-align: left;			
@@ -175,19 +175,19 @@
 			position: absolute;
 			z-index: 3;
 			font-family: 'Open Sans', sans-serif;
-			font-size: 2em;
+			font-size: 1.7em;
 			text-align: center;
 			padding: 15px;
 
 			p {
-				font-size: .8em;
+				font-size: .9em;
 
 				@media (min-width: $screen-sm-min) {
 					font-size: 1em;
 				}
 
 				b {
-					font-size: 1.2em;
+					font-size: 1.3em;
 				}
 			}
 

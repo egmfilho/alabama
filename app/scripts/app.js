@@ -67,9 +67,7 @@ angular.module('alabama', [
 					self.array.push(item.convertToCardInfo());
 				});
 				$rootScope.loading.unload();
-				console.log(self.array);
 			}, function(error) {
-				console.log(error);
 				$rootScope.loading.unload();
 			});	
 		}];
@@ -115,7 +113,7 @@ angular.module('alabama', [
 		});
 
 	}])
-	.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+	.run(['$rootScope', '$location', '$window', '$timeout', function($rootScope, $location, $window, $timeout) {
 
 		$rootScope.loading = {
 			count: 0,
@@ -131,6 +129,7 @@ angular.module('alabama', [
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.currentPath = $location.path();
+			jQuery('.bootstrap-select.open button').dropdown('toggle');
 		});
 
 		$rootScope.$on('$routeChangeSuccess', function(event, current, previous) {

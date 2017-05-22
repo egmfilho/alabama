@@ -27,6 +27,7 @@ angular.module('alabama.directives')
 				title: '@',
 				subtitle: '@',
 				description: '@',
+				area: '@',
 				price: '@',
 				url: '@',
 				bed: '@',

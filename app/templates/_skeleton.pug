@@ -12,9 +12,11 @@ html
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
 		meta(charset='utf-8')
 
+		link(rel='shortcut icon' href='./favicon.ico' type='image/x-icon')
+
 		// Stylesheets
 		link(rel='stylesheet' href='styles/vendor.min.css')
-		link(rel='stylesheet' href='styles/reguas.css')
+		//- link(rel='stylesheet' href='styles/reguas.css')
 		link(rel='stylesheet' href='styles/main.css')
 
 	body(ng-app='alabama')
@@ -28,12 +30,12 @@ html
 
 		#loading(ng-show='loading.isLoading()')
 			.logo
-			.spinner(style='transform: scale(2)')
-				.rect1
-				.rect2
-				.rect3
-				.rect4
-				.rect5
+				.spinner(style='transform: scale(2)')
+					.rect1
+					.rect2
+					.rect3
+					.rect4
+					.rect5
 
 		block page
 

@@ -11,14 +11,19 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 
 	(function getParams() {
 		angular.extend(filtros, $location.search());
+		
 		if (filtros.order)
 			filtros.order = JSON.parse(filtros.order);
 		else
 			filtros.order = {column: 0, order: 0};
+
+		if (!filtros.page)
+			filtros.page = 1;		
+		
 		$timeout(function() {
 			$scope.$broadcast('updateFilters', filtros);
+			self.pagination.setPage(filtros.page - 1);
 		});
-		console.log('OS PARAMS:', filtros);
 	}());
 
 	this.getFiltros = function() {
@@ -44,26 +49,35 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 			return Math.max(1, Math.ceil(this.totalItems / this.itemsPerPage));
 		},
 		goTo: function(page) {
-			if (page >= 0 && page < this.getPageAmount()) {
-				this.index = page;
-				getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage, filtros);
-			} else {
-				console.log('page out of range', page);
-			}
+			// Código antigo, sem usar url. Não atualiza a página
+			// if (page >= 0 && page < this.getPageAmount()) {
+			// 	this.index = page;
+			// 	getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage, filtros);
+			// } else {
+			// 	console.log('page out of range', page);
+			// }
+			filtros.page = page + 1;
+			filtros.order = JSON.stringify(filtros.order);
+			$location.path('/imoveis').search(filtros);
 		},
+		setPage: function(page) {
+			this.index = page;
+			getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage, filtros);
+		}, 
 		hidePage: function(page) {
 			if (this.index <= 2) {
 				return page > 4;
-			} else if (this.index > 2 && this.index < this.total - 2){
+			} else if (this.index > 2 && this.index < this.getPageAmount() - 2) {
 				return page < this.index - 2 || page  > this.index + 2;
-			} else if (this.index >= this.total - 2) {
-				return page < (this.total - 1) - 4;
+			} else if (this.index >= this.getPageAmount() - 2) {
+				return page < (this.getPageAmount() - 1) - 4;
 			}
 		}
 	};
 
 	$scope.$on('$viewContentLoaded', function() {
-		getCardList(self.pagination.itemsPerPage, filtros);
+		// Recebe a pagina pela url, default: primeira pagina
+		// getCardList(self.pagination.itemsPerPage, filtros);
 	});
 
 	// $scope.$on('newSearch', function(event, filters) {
@@ -80,10 +94,9 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 			});
 			self.pagination.totalItems = success.info.summary ? success.info.summary.immobiles : 0;
 			self.resumo = success.info.summary ? success.info.summary.features : { };
-			console.log(self.resumo);
-			console.log(self.cardList);
 			$rootScope.scrollTop(300, 1);
-			$rootScope.loading.unload();			
+			$rootScope.loading.unload();
+			setOnCollapseFilters();
 		}, function(error) {
 			console.log(error);
 			$rootScope.loading.unload();
@@ -96,14 +109,22 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 	}, updateSideMenu);
 
 	// Para evitar que o menu fique por cima do footer ao descer recolhido e abrir depois
-	jQuery('.container-doido .collapse')
-		.on('shown.bs.collapse', updateSideMenu)
-		.on('hidden.bs.collapse', updateSideMenu);
+	function setOnCollapseFilters() {
+		$timeout(function() {
+			jQuery('.container-doido .collapse')
+				.unbind('shown.bs.collapse')
+				.unbind('hidden.bs.collapse')
+				.on('shown.bs.collapse', updateSideMenu)
+				.on('hidden.bs.collapse', updateSideMenu);
+		});
+	}
 
 	function updateSideMenu() {
-		console.log(' u[date saoe ,emiu');
 		var containerFilters = new function() {
 			this.elem = jQuery('.filters > .container-doido');
+
+			if (!this.elem.length) return;
+
 			this.originalWidth = this.elem.css('width');
 			this.height =  parseInt(this.elem.css('height'));
 			this.filters = new function() {
@@ -111,6 +132,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 				this.top = this.elem.position().top + 75;
 			};
 		};
+
+		if (!containerFilters.elem.length) return;
 
 		var y = $rootScope.scrollY,
 			// pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(), 

@@ -14,7 +14,6 @@ angular.module('alabama.controllers')
 			});
 			$rootScope.loading.unload();
 		}, function(error) {
-			console.log(error);
 			$rootScope.loading.unload();
 		});
 	}
@@ -28,7 +27,6 @@ angular.module('alabama.controllers')
 			});
 			$rootScope.loading.unload();
 		}, function(error) {
-			console.log(error);
 			$rootScope.loading.unload();
 		});	
 	}

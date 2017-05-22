@@ -77,7 +77,6 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 	this.filters = new Filters();
 	$rootScope.loading.load();
 	this.filters.load().then(function(res) {
-		console.log(self.filters);
 		
 		self.search.minValue = self.search.minValue ? self.search.minValue : parseFloat(self.filters.value.min);
 		self.search.maxValue = self.search.maxValue ? self.search.maxValue : parseFloat(self.filters.value.max);

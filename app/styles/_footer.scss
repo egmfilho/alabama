@@ -2,10 +2,13 @@
 	$height: 250px;
 	
 	padding-top: 20px;
-	border-top: 20px solid $main-color-darker;
+	// border-top: 20px solid $main-color-darker;
 	height: $height;
 	background-color: white;
 	color: $gray;
+	position: relative;
+
+	@include box-shadow(0, 2px, 5px, rgba(#000, .5));
 
 	.logo {
 		width: 100%;
@@ -65,6 +68,18 @@
 					}
 				}
 			}
+		}
+	}
+
+	.futura {
+		text-align: center;
+		background-color: $main-color-darker;
+		margin-top: 40px;
+		padding: 6px;
+
+		a {
+			color: white;
+			font-family: 'Open Sans', sans-serif;
 		}
 	}
 }

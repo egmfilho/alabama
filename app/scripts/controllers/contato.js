@@ -10,9 +10,9 @@ angular.module('alabama.controllers')
 		});
 
 		this.mapInfo = {
-			title: 'Grupo Paiva',
-			address: 'Rua Azul de Setembro, Bairo dos Manolo 333 - Teresópolis RJ - 28000-180',
-			contact: '(21) 99999-8888'
+			title: 'Grupo Paiva Corretora e Imobiliária',
+			address: 'Av. Oliveira Botelho, 499 - Alto, Teresópolis - RJ, 25961-145',
+			contact: '(21) 2642-3468'
 		};
 
 		self.array = [];
@@ -22,9 +22,7 @@ angular.module('alabama.controllers')
 				self.array.push(item.convertToCardInfo());
 			});
 			$rootScope.loading.unload();
-			console.log(self.array);
 		}, function(error) {
-			console.log(error);
 			$rootScope.loading.unload();
 		});
 

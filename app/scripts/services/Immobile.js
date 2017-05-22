@@ -58,7 +58,6 @@ angular.module('alabama.services')
 						group_feature: true
 					}
 				}).then(function(immobileData) {
-					console.log(immobileData);
 					scope.setData(immobileData.data.data);					
 					setPictures(scope);
 					if (immobileData.data.info.related) 
@@ -104,9 +103,10 @@ angular.module('alabama.services')
 					pictureLg: this.getMainPictureUrl(),
 					title: this.immobile_name,
 					parsedName: this.immobile_name.replace(/ /g, '-'),
-					subtitle: this.Address ? this.Address.District.district_name + ' - ' + this.Address.District.City.city_name : '',
+					subtitle: this.Address ? this.Address.District.City.city_name : '',
 					description: this.immobile_description || '',
 					type: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
+					area: parseInt(this.immobile_area_total),
 					price: parseInt(this.immobile_value),
 					url: this.url,
 					bed: this.immobile_bedroom,
