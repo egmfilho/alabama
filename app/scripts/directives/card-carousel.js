@@ -20,6 +20,18 @@ angular.module('alabama.directives')
 		}
 
 		function link(scope, element, attrs) {
+
+			scope.prev = function() {
+				if ($window.innerWidth >= 768) return;
+
+				jQuery('#' + scope.cardCarouselId).carousel('prev');
+			};
+
+			scope.next = function() {
+				if ($window.innerWidth >= 768) return; 
+
+				jQuery('#' + scope.cardCarouselId).carousel('next');
+			};
 			
 			function setCarouselInterval() {
 				var carouselElem = jQuery('#' + scope.cardCarouselId);

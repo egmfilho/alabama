@@ -3,7 +3,12 @@
 	
 	padding-top: 20px;
 	// border-top: 20px solid $main-color-darker;
-	height: $height;
+	
+	height: auto;
+	@media (min-width: $screen-sm-min) {
+		height: $height;
+	}
+
 	background-color: white;
 	color: $gray;
 	position: relative;
@@ -32,13 +37,19 @@
 
 		&.info {
 			margin: 0;
+			padding-left: 0;
+
+			@media (min-width: $screen-sm-min) {
+				padding-left: 40px;
+			}
 
 			li {
-				float: left;
+				text-align: center;
 
 				@media(min-width: $screen-sm-min) {
 					// width: 150px;
 					width: 200px;	
+					float: left;
 				}
 
 				@media(min-width: $screen-md-min) {
@@ -59,6 +70,12 @@
 				ul.links {
 					padding-left: 10px;
 					padding-top: 10px;
+					margin-bottom: 20px;
+
+					@media (min-width: $screen-sm-min) {
+						margin-bottom: 0; 
+					}
+
 					li {
 						font-size: 16px;
 
@@ -74,8 +91,11 @@
 	.futura {
 		text-align: center;
 		background-color: $main-color-darker;
-		margin-top: 40px;
 		padding: 6px;
+
+		@media (min-width: $screen-sm-min) {
+			margin-top: 40px;
+		}
 
 		a {
 			color: white;

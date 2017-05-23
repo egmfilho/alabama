@@ -29,13 +29,15 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 				angular.forEach($scope.immobile.getRelated(), function(item, index) {
 					self.related.push(item.convertToCardInfo());
 				});
-				$scope.interestMessage = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.district_name + ' ' + $scope.immobile.Address.District.City.city_name;
+				$scope.interestMessage = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.City.city_name;
 				$rootScope.loading.unload();
 			});
 		}
 	});
 
-	$scope.openLightbox = function() {
+	$scope.openLightbox = function(index) {
+		self.currentSlide = index || 0;
+
 		if ($window.innerWidth < 768) return;
 
 		var images = [];
@@ -113,4 +115,11 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 			});
 		});
 
+	$scope.carouselPrev = function() {
+		jQuery('#immobile-pictures-xs').carousel('prev');
+	};
+
+	$scope.carouselNext = function() {
+		jQuery('#immobile-pictures-xs').carousel('next');
+	};
 }

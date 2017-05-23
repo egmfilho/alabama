@@ -12,7 +12,7 @@
 		.container
 			.row
 				.col-xs-12
-					.card-carousel.carousel.slide.row(id='{{cardCarouselId}}' data-ride='carousel')
+					.card-carousel.carousel.slide.row(id='{{cardCarouselId}}' data-ride='carousel' ng-swipe-left='next()' ng-swipe-right='prev()')
 						.carousel-inner(role='listbox' style='height: auto')
 							.item(ng-class='{"active": $index == 0}' ng-repeat='block in blocks track by $index')
 

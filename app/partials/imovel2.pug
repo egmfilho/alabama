@@ -32,7 +32,7 @@
 	.row
 		.col-sm-8.col-md-9
 			.row.pane.perfil-imovel
-				.col-xs-12
+				.col-xs-12.hidden-xs
 					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
 						.picture(ng-repeat='pic in immobile.GalleryImage')
 							div
@@ -44,6 +44,16 @@
 					slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' swipe-to-slide='true' responsive='imovel.responsive2')
 						.thumb(ng-style='{}' ng-repeat='pic in immobile.GalleryImage')
 							.picture(ng-style='{"background-image": "url({{pic.thumb}})"}')
+
+				.col-xs-12.visible-xs-block
+					#immobile-pictures-xs.carousel.slide.row(data-ride='carousel' data-pause='false' ng-swipe-left='carouselNext()' ng-swipe-right='carouselPrev()')
+						.carousel-inner(role='listbox')
+							.item(ng-class='{"active": $index == 0}' ng-repeat='pic in immobile.GalleryImage track by $index')
+
+								.picture(ng-style='{"background-image": "url(" + pic.url + ")"}' ng-click='openLightbox($index)')
+
+						ol.carousel-indicators
+							li(data-target='#immobile-pictures-xs' data-slide-to='$index' ng-class='{"active": $index == 0}' ng-repeat='n in getNumber(immobile.GalleryImage.length) track by $index')
 
 			.row.pane.pane-gray
 				.col-xs-12.description
@@ -124,7 +134,7 @@
 				marker(id='#marker' position="{{immobile.immobile_latitude + ',' + immobile.immobile_longitude}}" on-click='contato.map.showInfoWindow("#info-window")')
 				info-window(id='#info-window' visible-on-marker='#marker')
 					div(ng-non-bindable='')
-						h4 {{immobile.immobile_name}}
+						h4.hidden-xs {{immobile.immobile_name}}
 						p {{immobile.Address.address_public_place}} {{immobile.Address.address_number}}
 						p {{immobile.Address.District.district_name}}, {{immobile.Address.District.City.city_name}} - {{immobile.Address.District.City.UF.uf_code}}
 

@@ -264,7 +264,6 @@
 
 		.spinner {
 			margin: 100px auto;
-			margin-top: 320px;
 			width: 50px;
 			height: 40px;
 			text-align: center;
@@ -314,6 +313,35 @@
 			}  20% {
 				transform: scaleY(1.0);
 				-webkit-transform: scaleY(1.0);
+			}
+		}
+	}
+
+	.logo {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin-top: 150px;
+		background-image: url(' ../images/PN/logo.png');
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+
+		width: 300px;
+		height: 200px;
+
+		.spinner {
+			margin-top: 180px;
+		}
+
+		@media (min-width: $screen-sm-min) {
+			width: 600px;
+			height: 400px;
+
+			.spinner {
+				margin-top: 320px;
 			}
 		}
 	}
