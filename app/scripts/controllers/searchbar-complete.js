@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('alabama.controllers')
-	.controller('SearchBarCtrl', SearchBar);
+	.controller('SearchbarCompleteCtrl', SearchBar);
 
 SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters' ];
 

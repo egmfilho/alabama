@@ -2,12 +2,12 @@ a.card {
 	$hover-animation-time: .5s;
 	$height-animation-time: .25s;
 
+	/* Sobrescreve as propriedades herdadas do elemento <a> */
 	display: block;
 	color: $text-color;
 
 	@extend .simple-shadow;
 
-	//display: inline-block;
 	position: relative;
 	width: 100%;
 	
@@ -112,9 +112,10 @@ a.card {
 		padding: 10px 15px;
 
 		.title {
-			font-size: 1.4em;
+			font-size: 1.1em;
 			display: block;
 			font-family: 'Open Sans', sans-serif;
+			text-transform: capitalize;
 		}
 
 		.subtitle {
@@ -164,6 +165,10 @@ a.card {
 			max-width: 70%;
 			height: 100%;
 			position: absolute;
+
+			.title {
+				font-size: 1.4em;
+			}
 
 			.subtitle {
 				margin-bottom: 10px;

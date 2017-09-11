@@ -10,88 +10,8 @@
 						a(href='/home') Home
 						b &nbsp;/&nbsp;Imóveis
 
-.container.search-filters.offset-bottom-30(ng-controller='SearchBarCtrl as searchBar')
-	.row(ng-if='searchBar.isReady')
-		.col-xs-12.col-sm-6.col-md-3
-			input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
-
-		.col-md-3.hidden-xs.hidden-sm
-			select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
-				option(value='' disabled style='display: none') Tipo
-				option(value='0') Todos
-				option(value='1') Venda
-				option(value='2') Aluguel
-		.col-md-3.hidden-xs.hidden-sm
-			select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
-				option(value='' disabled style='display: none') Cidade
-				option(value='0') Todas
-				option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
-					| {{cidade.city_name}}
-
-		span#expand-search.collapse.in
-			.col-xs-12.col-sm-6.hidden-md.hidden-lg
-				select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
-					option(value='' disabled style='display: none') Tipo
-					option(value='0') Todos
-					option(value='1') Venda
-					option(value='2') Aluguel
-			.col-xs-12.col-sm-6.hidden-md.hidden-lg
-				select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
-					option(value='' disabled style='display: none') Cidade
-					option(value='0') Todas
-					option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
-						| {{cidade.city_name}}
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Bairro' data-container='body' ng-model='searchBar.search.bairro')
-					option(value='' disabled style='display: none') Bairro
-					option(value='0') Todos
-					option(ng-repeat='bairro in searchBar.filters.districts' ng-value='bairro.district_id')
-						| {{bairro.district_name}} ({{bairro.immobiles}})
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchBar.search.categoria')
-					option(value='' disabled style='display: none') Categoria
-					option(value='0') Tudo
-					option(ng-repeat='categoria in searchBar.filters.category' ng-value='categoria.immobile_category_id')
-						| {{categoria.immobile_category_name}}
-			.col-xs-12.col-sm-6.col-md-3
-				rzslider(rz-slider-model='searchBar.search.minValue' rz-slider-high='searchBar.search.maxValue' rz-slider-options='searchBar.sliderPrice.options')
-			.col-xs-12.col-sm-6.col-md-3
-				rzslider(rz-slider-model='searchBar.search.minArea' rz-slider-high='searchBar.search.maxArea' rz-slider-options='searchBar.sliderArea.options')
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Dormitórios' data-container='body' ng-model='searchBar.search.dormitorios')
-					option(value='' disabled style='display: none') Dormitórios
-					option(value='0') Tudo
-					option(value='1') 1 dormitório
-					option(value='2') 2 dormitórios
-					option(value='3') 3 dormitórios
-					option(value='4') Mais de 4 dormitórios
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Banheiros' data-container='body' ng-model='searchBar.search.banheiros')
-					option(value='' disabled style='display: none') Banheiros
-					option(value='0') Tudo
-					option(value='1') 1 banheiro
-					option(value='2') 2 banheiros
-					option(value='3') 3 banheiros
-					option(value='4') Mais de 4 banheiros
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suite')
-					option(value='' disabled style='display: none') Suíte
-					option(value='0') Todos
-					option(value='1') Sem suíte
-					option(value='2') Com suíte
-			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Garagem' data-container='body' ng-model='searchBar.search.garagem')
-					option(value='' disabled style='display: none') Garagem
-					option(value='0') Todos
-					option(value='1') Sem garagem
-					option(value='2') Com garagem
-		.col-xs-12.col-sm-6.col-md-3
-			button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.pesquisar()')
-				i.glyphicon.glyphicon-search
-				|  Pesquisar
-		.col-xs-12.remove-padding.visible-xs-block
-			//- Texto colocado via CSS
-			a.center-block.text-center(href='' data-toggle='collapse' data-target='#expand-search')
+.container
+	searchbar-complete
 
 .background-gray
 	.container(ng-if='!imoveis.cardList.length')
@@ -188,12 +108,18 @@
 				.col-xs-12
 					nav.pull-right.offset-top-30(ng-show='imoveis.pagination.totalItems > imoveis.pagination.itemsPerPage')
 						ul.pagination
-							li(ng-class='{"disabled": imoveis.pagination.index == 0}')
+							li(title='primeira' ng-class='{"disabled": imoveis.pagination.index == 0}')
+								a(href='' ng-click='imoveis.pagination.goTo(0)') 
+									i.fa.fa-angle-double-left
+							li(title='anterior' ng-class='{"disabled": imoveis.pagination.index == 0}')
 								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index - 1)') 
-									span &laquo;
+									i.fa.fa-angle-left
 							li(ng-repeat='n in getNumber(imoveis.pagination.getPageAmount()) track by $index' ng-class='{"active": $index == imoveis.pagination.index, "display-none": imoveis.pagination.hidePage($index)}')
 								a(href='' ng-click='imoveis.pagination.goTo($index)')
 									span {{$index + 1}}
-							li(ng-class='{"disabled": imoveis.pagination.index >= imoveis.pagination.getPageAmount() - 1}')
+							li(title='seguinte' ng-class='{"disabled": imoveis.pagination.index >= imoveis.pagination.getPageAmount() - 1}')
 								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.index + 1)')
-									span &raquo;
+									i.fa.fa-angle-right
+							li(title='última' ng-class='{"disabled": imoveis.pagination.index >= imoveis.pagination.getPageAmount() - 1}')
+								a(href='' ng-click='imoveis.pagination.goTo(imoveis.pagination.getPageAmount() - 1)')
+									i.fa.fa-angle-double-right
