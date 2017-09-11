@@ -1,0 +1,128 @@
+span(ng-controller='HeaderCtrl as header' ng-init='getFeaturedList()')
+	.header5-mobile.hidden-sm.hidden-md.hidden-lg
+		.close.pull-right(ng-click='header.hideHeader5Mobile()')
+			i.glyphicon.glyphicon-remove
+		ul
+			li(role='presentation' name='home')
+				a(href='/' ng-click='header.hideHeader5Mobile()') Home
+			
+			li(role='presentation' name='sobre')
+				a(href='/sobre' ng-click='header.hideHeader5Mobile()') Sobre
+
+			li(role='presentation' name='imoveis')
+				a(href='/imoveis' ng-click='header.hideHeader5Mobile()') Imóveis
+
+			li(role='presentation' name='seguros')
+				a(target="_blank" href='http://www.segurospaiva.com.br/' ng-click='header.hideHeader5Mobile()') Seguros
+
+			li(role='presentation' name='equipe')
+				a(href='/equipe' ng-click='header.hideHeader5Mobile()') Equipe
+
+			li(role='presentation' name='contato')
+				a(href='/contato' ng-click='header.hideHeader5Mobile()') Contato
+		.contacts
+			div
+				i.fa.fa-whatsapp
+				span  (21) 97169-0349
+			div
+				i.fa.fa-phone
+				span  (21) 2642-3468
+			div
+				i.fa.fa-envelope-o
+				span  sac@pnimobiliaria.com.br
+
+	#header.header6
+		.container-narrow
+			.contact-stripe.hidden-xs
+				.container
+					.contato
+						span
+							i.fa.fa-whatsapp
+							span  (21) 97169-0349
+						span
+							i.fa.fa-phone
+							span  (21) 2642-3468
+						span
+							i.fa.fa-envelope-o
+							span  sac@pnimobiliaria.com.br
+
+			.menu
+				.container
+					.row
+						.col-xs-12.col-sm-3
+							a(href='/' ng-click='header.hideHeader5Mobile()')
+								.logo
+							button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleHeader5Mobile()')
+								i.fa.fa-navicon
+
+						.hidden-xs.col-sm-9
+							ul.nav.nav-pills
+								li(role='presentation' name='home')
+									a(href='/') Home
+								
+								li(role='presentation' name='sobre')
+									a(href='/sobre') Sobre
+
+								li(role='presentation' name='imoveis')
+									a(href='/imoveis') Imóveis
+
+								li(role='presentation' name='seguros')
+									a(target="_blank" href='http://www.segurospaiva.com.br/') Seguros
+
+								li(role='presentation' name='equipe')
+									a(href='/equipe') Equipe
+
+								li(role='presentation' name='contato')
+									a(href='/contato') Contato
+
+			.row.remove-margin.container-carousel(ng-if='currentPath === "/"')
+				.col-xs-12(style='padding: 0')
+					#carousel-showcase.carousel.slide(data-ride='carousel' data-pause='false')
+						.info
+							p.offset-top-30.offset-bottom-15 
+								b Grupo Paiva 
+								br 
+								| Corretora e Imobiliária
+							p.offset-top-30
+								| Trabalhando e pensando na realização do seu sonho.
+							a.btn.btn-default.btn-block.btn-lg(href='/imoveis') Ver Imóveis
+
+						//- Wrapper for slides
+						.carousel-inner.clearfix(role='listbox')
+							.item.active
+								.cover
+								.picture
+							.item
+								.cover
+								.picture
+							.item
+								.cover
+								.picture
+
+		//- .banner(ng-if='currentPath === "/"')
+			a(href='/imoveis')
+				img(src='images/PN/Banner-Paiva.png')
+		//- .container-fluid(ng-if='currentPath === "/"' ng-controller='SearchBarCtrl as searchBar')
+			.search.container.offset-top-30.offset-bottom-15
+				.row(ng-if='searchBar.isReady')
+					.col-xs-12.col-sm-6.col-md-3
+						input.form-control.input-lg(placeholder='Código' ng-model='searchBar.search.codigo')
+
+					.col-md-3.hidden-xs.hidden-sm
+						select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchBar.search.tipo')
+							option(value='' disabled style='display: none') Tipo
+							option(value='0') Todos
+							option(value='1') Venda
+							option(value='2') Aluguel
+					.col-md-3.hidden-xs.hidden-sm
+						select.selectpicker.form-control(title='Cidade' data-container='body' ng-model='searchBar.search.cidade')
+							option(value='' disabled style='display: none') Cidade
+							option(value='0') Todas
+							option(ng-repeat='cidade in searchBar.filters.city' ng-value='cidade.city_id') 
+								| {{cidade.city_name}}
+					.col-xs-12.col-sm-6.col-md-3
+						button.btn.btn-primary.btn-block.btn-lg(ng-click='searchBar.selfRedirect()')
+							i.glyphicon.glyphicon-search
+							|  Pesquisar
+					.col-xs-12.remove-padding
+						a.collapsed.center-block.text-center(href='/imoveis') Mais opções
