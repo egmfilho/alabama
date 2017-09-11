@@ -10,10 +10,12 @@ angular.module('alabama.directives')
 		function link(scope, element, attrs) {
 			jQuery('[data-toggle="tooltip"]').tooltip();
 
+			scope.customUrl = '/imovel?codigo=' + scope.code + '&nome=' + (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-');
+
 			element.bind('click', function() {
 				scope.$apply(function() {
 					$location.search({});
-					$location.path('/imovel').search('codigo', scope.code).search('nome', (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-'));
+					// $location.path('/imovel').search('codigo', scope.code).search('nome', (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-'));
 				});
 			});
 		}

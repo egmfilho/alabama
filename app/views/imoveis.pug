@@ -64,7 +64,7 @@
 					option(value='1') 1 dormitório
 					option(value='2') 2 dormitórios
 					option(value='3') 3 dormitórios
-					option(value='4') 4+ dormitórios
+					option(value='4') Mais de 4 dormitórios
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Banheiros' data-container='body' ng-model='searchBar.search.banheiros')
 					option(value='' disabled style='display: none') Banheiros
@@ -72,7 +72,7 @@
 					option(value='1') 1 banheiro
 					option(value='2') 2 banheiros
 					option(value='3') 3 banheiros
-					option(value='4') 4+ banheiros
+					option(value='4') Mais de 4 banheiros
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Suítes' data-container='body' ng-model='searchBar.search.suite')
 					option(value='' disabled style='display: none') Suíte
@@ -139,7 +139,7 @@
 							.panel-body
 								div(style='display: block' ng-repeat='d in imoveis.resumo.bedroom track by $index')
 									a(href='' ng-click='imoveis.setFiltro("bedroom", d.filter)' ng-class='{"text-bold text-uppercase": d.filter == imoveis.getFiltros().dormitorios}')
-										| {{d.filter == 0 ? 'Sem' : d.filter}}{{d.filter == 4 ? '+' : ''}} {{d.filter == 1 ? 'dormitório' : 'dormitórios'}} ({{d.count}})
+										| {{d.filter == 4 ? 'Mais de' : ''}} {{d.filter == 0 ? 'Sem' : d.filter}} {{d.filter == 1 ? 'dormitório' : 'dormitórios'}} ({{d.count}})
 										span(ng-if='d.filter == imoveis.getFiltros().dormitorios')
 											| &nbsp;
 											i.fa.fa-remove
@@ -152,7 +152,7 @@
 							.panel-body
 								div(style='display: block' ng-repeat='b in imoveis.resumo.bathroom track by $index')
 									a(href='' ng-click='imoveis.setFiltro("bathroom", b.filter)' ng-class='{"text-bold text-uppercase": b.filter == imoveis.getFiltros().banheiros}')
-										| {{b.filter == 0 ? 'Sem' : b.filter}}{{b.filter == 4 ? '+' : ''}} {{b.filter == 1 ? 'banheiro' : 'banheiros'}} ({{b.count}})
+										| {{b.filter == 4 ? 'Mais de' : ''}} {{b.filter == 0 ? 'Sem' : b.filter}} {{b.filter == 1 ? 'banheiro' : 'banheiros'}} ({{b.count}})
 										span(ng-if='b.filter == imoveis.getFiltros().banheiros')
 											| &nbsp;
 											i.fa.fa-remove

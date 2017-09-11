@@ -1,4 +1,4 @@
-.card(ng-class='{"card-horizontal": isHorizontal}')
+a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}')
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
 	.picture

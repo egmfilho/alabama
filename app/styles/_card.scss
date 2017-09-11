@@ -1,6 +1,9 @@
-.card {
+a.card {
 	$hover-animation-time: .5s;
 	$height-animation-time: .25s;
+
+	display: block;
+	color: $text-color;
 
 	@extend .simple-shadow;
 
