@@ -1,12 +1,14 @@
-a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}')
+a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}' ng-mouseenter='onMouseEnter()' ng-mouseleave='onMouseLeave()')
+	
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
+	
 	.picture
-		div(ng-style='{"background-image": "url({{picture || \'../images/no-pic.png\'}})"}')
-			.type(ng-if='type')
-				span.glyphicon.glyphicon-tag
-				|  {{type}}
-			.icons(ng-if='!isHorizontal')
+		div(style='background-image: url(\' {{currentPicture()}} \')')
+			//- img(src='{{currentPicture()}}')
+			.category(ng-if='category')
+				|  {{category}}
+			//- .icons(ng-if='!isHorizontal')
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
 					| {{area}} 
 					span  m&#178; &nbsp;
@@ -27,14 +29,17 @@ a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}')
 					| {{parking}}  
 					i.fa.fa-car
 	.info
-		span.title {{title | truncate: (isHorizontal ? 50 : 50)}}
+		span.title 
+			| {{title | truncate: (isHorizontal ? 50 : 50)}}
+
 		span.subtitle(ng-if='subtitle')
 			i.glyphicon.glyphicon-map-marker
 			|  {{subtitle}}
+
 		.icons(ng-if='isHorizontal')
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
 				| {{area}} 
-				b  m&#178; &nbsp;
+				b  m&#178;
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
 				| {{bed}}  
@@ -51,8 +56,12 @@ a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}')
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
 				| {{parking}}  
 				i.fa.fa-car
-		span.description.text-gray.hidden-xs {{description | truncate: (hideDescription ? 80 : 110)}}
+		
+		span.description.text-gray.hidden-xs 
+			| {{description | truncate: (hideDescription ? 80 : 110)}}
+
 		span.price.text-primary
 			| Valor: {{price | currency : 'R$ ' : 0}}
+
 		span.text-light.text-gray.pull-right(ng-show='isHorizontal')
 			| Código: {{code}}

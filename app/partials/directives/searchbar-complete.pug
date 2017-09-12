@@ -4,8 +4,8 @@
 			input.form-control.input-lg(placeholder='Código' ng-model='searchbar.search.codigo')
 
 		.col-md-3.hidden-xs.hidden-sm
-			select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchbar.search.tipo')
-				option(value='' disabled style='display: none') Tipo
+			select.selectpicker.form-control(title='Categoria' data-container='body' autocomplete='off' ng-model='searchbar.search.categoria')
+				option(value='' disabled style='display: none') Categoria
 				option(value='0') Todos
 				option(value='1') Venda
 				option(value='2') Aluguel
@@ -18,8 +18,8 @@
 
 		span#expand-search.collapse.in
 			.col-xs-12.col-sm-6.hidden-md.hidden-lg
-				select.selectpicker.form-control(title='Tipo' data-container='body' autocomplete='off' ng-model='searchbar.search.tipo')
-					option(value='' disabled style='display: none') Tipo
+				select.selectpicker.form-control(title='Categoria' data-container='body' autocomplete='off' ng-model='searchbar.search.categoria')
+					option(value='' disabled style='display: none') Categoria
 					option(value='0') Todos
 					option(value='1') Venda
 					option(value='2') Aluguel
@@ -36,8 +36,8 @@
 					option(ng-repeat='bairro in searchbar.filters.districts' ng-value='bairro.district_id')
 						| {{bairro.district_name}} ({{bairro.immobiles}})
 			.col-xs-12.col-sm-6.col-md-3
-				select.selectpicker.form-control(title='Categoria' data-container='body' ng-model='searchbar.search.categoria')
-					option(value='' disabled style='display: none') Categoria
+				select.selectpicker.form-control(title='Tipo' data-container='body' ng-model='searchbar.search.tipo')
+					option(value='' disabled style='display: none') Tipo
 					option(value='0') Tudo
 					option(ng-repeat='categoria in searchbar.filters.category' ng-value='categoria.immobile_category_id')
 						| {{categoria.immobile_category_name}}

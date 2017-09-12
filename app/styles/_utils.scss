@@ -12,6 +12,22 @@
 	transition:         $properties;
 }
 
+@mixin blur($radius) {
+	-webkit-filter: blur($radius);
+	-moz-filter: blur($radius);
+	-o-filter: blur($radius);
+	-ms-filter: blur($radius);
+	filter: blur($radius);
+}
+
+@mixin rotate($rotation) {
+	-webkit-transform: rotate($rotation);
+	-moz-transform:    rotate($rotation);
+	-ms-transform:     rotate($rotation);
+	-o-transform:      rotate($rotation);
+	transform:         rotate($rotation);
+}
+
 .display-none {
 	display: none !important;
 }

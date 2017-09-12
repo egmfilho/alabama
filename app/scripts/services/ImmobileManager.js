@@ -11,12 +11,12 @@ angular.module('alabama.services')
 
 				filters = !filtros ? {} : {
 					immobile_code: filtros.codigo,
-					immobile_type: filtros.tipo,
+					immobile_type: filtros.categoria,
 					immobile_address: {
 						city_id: filtros.cidade || 0,
 						district_id: filtros.bairro || 0
 					},
-					immobile_category_id: filtros.categoria,
+					immobile_category_id: filtros.tipo,
 					immobile_area_total: {
 						min: filtros.minArea,
 						max: filtros.maxArea

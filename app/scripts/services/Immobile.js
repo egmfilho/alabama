@@ -34,6 +34,7 @@ angular.module('alabama.services')
 		Immobile.prototype = {
 			setData: function(immobileData) {
 				angular.extend(this, immobileData);
+				this.immobile_date = immobileData.immobile_date ? new Date(immobileData.immobile_date.replace(' ', 'T')) : null; // formata a data
 				this.immobile_value = parseInt(this.immobile_value); // para corrigir o preço de string pra int
 				this.immobile_value_condominium = parseInt(this.immobile_value_condominium); // para corrigir o preço de string pra int
 				this.immobile_value_iptu = parseInt(this.immobile_value_iptu); // para corrigir o preço de string pra int
@@ -96,6 +97,13 @@ angular.module('alabama.services')
 
 				return '';
 			},
+			getThumbUrlArray: function() {
+				var array = this.GalleryImage.map(function(item) {
+					return item.thumb;
+				});
+
+				return array;
+			},
 			convertToCardInfo: function() {
 				return {
 					code: this.immobile_code,
@@ -105,7 +113,7 @@ angular.module('alabama.services')
 					parsedName: this.immobile_name.replace(/ /g, '-'),
 					subtitle: this.Address ? this.Address.District.City.city_name : '',
 					description: this.immobile_description || '',
-					type: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
+					category: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
 					area: parseInt(this.immobile_area_total),
 					price: parseInt(this.immobile_value),
 					url: this.url,
@@ -115,6 +123,7 @@ angular.module('alabama.services')
 					parking: this.immobile_parking_spot,
 					labelText: '',
 					labelColor: '',
+					thumbs: this.getThumbUrlArray()
 				};
 			},
 

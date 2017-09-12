@@ -210,56 +210,72 @@
 			width: auto;
 			max-width: 100%;
 			text-align: center;	
-			// width: 100%;
-			// background-size: contain;
-			// background-position: center;
-			// background-repeat: no-repeat;
-			// background-color: #bbb;
-			// background-image: url('https://wallpaperscraft.com/image/house_residential_design_beautifully_13642_1920x1080.jpg');
-			// color: white;
-			// font-size: 60px;			
+			position: relative;
 
 			div {
-				display: inline-block;
-				height: 400px;
+				width: 100%; 
 				max-width: 100%;
-				position: relative;
-				margin: 0 auto;
+				height: 400px;
 
-				.img-responsive {
-					display: initial;
-					width: auto;
-					max-height: 100%;
-					cursor: pointer;
-				}
-
-				.text {
-					width: 100%;
-					height: auto;
-					max-height: 80px;
-					padding: 3px;
-					background-color: rgba(#000, .5);
-					color: white;
-					font-family: 'Open Sans', sans-serif;
+				&.blurry {
+					background-size: cover; 
+					background-position: center; 
+					opacity: .9;
 					position: absolute;
-					z-index: 10;
-					bottom: -100px;
-					display: block;
-
-					@include transition(bottom .5s);
-
-					p {
-						font-size: 14px;
-					}
+					left: 0;
+					top: 0;
+					z-index: 1;
+		
+					@include blur(6px);
 				}
-
-				&:hover {
-					.text {
-						bottom: 0;
-					}
+		
+				&.dark-cover {
+					background-color: black;
+					opacity: .2;
+					position: absolute;
+					left: 0;
+					top: 0;
+					z-index: 2;
 				}
-			}						
+		
+				&.clean {
+					background-size: contain; 
+					background-position: center; 
+					background-repeat: no-repeat;
+					position: absolute;
+					left: 0;
+					top: 0;
+					z-index: 3;
+				}
+			}
+
+			.text {
+				width: 100%;
+				height: auto;
+				max-height: 80px;
+				padding: 3px;
+				background-color: rgba(#000, .5);
+				color: white;
+				font-family: 'Open Sans', sans-serif;
+				position: absolute;
+				z-index: 10;
+				bottom: -100px;
+				display: block;
+
+				@include transition(bottom .5s);
+
+				p {
+					font-size: 14px;
+				}
+			}
+
+			&:hover {
+				.text {
+					bottom: 0;
+				}
+			}
 		}
+
 	}
 
 	.slider-nav {

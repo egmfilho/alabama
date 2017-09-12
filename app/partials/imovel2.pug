@@ -39,9 +39,16 @@
 				.col-xs-12.hidden-xs
 					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
 						.picture(ng-repeat='pic in immobile.GalleryImage')
-							div
-								img.img-responsive(ng-src='{{pic.url}}' ng-click='openLightbox()')
+							//- div
+							//- div(style='width: 100%; height: 100%; background-image: url("{{pic.url}}"); background-size: contain; background-position: center; background-repeat: no-repeat;')
+								//- img.img-responsive(ng-src='{{pic.url}}' ng-click='openLightbox()')
 								.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
+									h4.text-center {{pic.gallery_image_title}}
+									p.text-sm.text-center {{pic.gallery_image_text}}
+							.blurry(style='background-image: url("{{pic.url}}")')
+							.dark-cover
+							.clean(style='background-image: url("{{pic.url}}")' ng-click='openLightbox()')
+							.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
 									h4.text-center {{pic.gallery_image_title}}
 									p.text-sm.text-center {{pic.gallery_image_text}}
 

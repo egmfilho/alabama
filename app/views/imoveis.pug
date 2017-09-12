@@ -104,7 +104,9 @@
 											i.fa.fa-remove
 				
 			.col-xs-12.col-sm-8.col-md-9
+			
 				card-list(cards='imoveis.cardList' name='{{imoveis.pagination.getLabelResultado()}}' is-grid='false' ng-if='imoveis.cardList.length')
+				
 				.col-xs-12
 					nav.pull-right.offset-top-30(ng-show='imoveis.pagination.totalItems > imoveis.pagination.itemsPerPage')
 						ul.pagination

@@ -20,6 +20,33 @@ angular.module('alabama.directives')
 			});
 		}
 
+		function controller($scope, $timeout) {
+			var timer, index = 0;
+
+			$scope.currentPicture = function() {
+				if ($scope.thumbs && $scope.thumbs.length) {
+					return $scope.thumbs[index];
+				} else if ($scope.picture) {
+					return $scope.picture;
+				}
+			};
+			
+			$scope.onMouseEnter = function() {
+				timer = $timeout(function() {
+					index = (index + 1) % $scope.thumbs.length;
+					$scope.onMouseEnter();
+				}, 2000);
+			};
+
+			$scope.onMouseLeave = function() {
+				$timeout.cancel(timer);
+				timer = null;
+				index = 0;
+			}
+		}
+
+		controller.$inject = [ '$scope', '$timeout' ];
+
 		return {
 			restrict: 'E',
 			templateUrl: 'partials/directives/card.html',
@@ -40,9 +67,11 @@ angular.module('alabama.directives')
 				labelColor: '@',
 				isHorizontal: '=',
 				hideDescription: '=',
-				type: '@'
+				category: '@',
+				thumbs: '='
 			},
-			link: link
+			link: link,
+			controller: controller
 		}
 
 	}]);

@@ -5,6 +5,7 @@ a.card {
 	/* Sobrescreve as propriedades herdadas do elemento <a> */
 	display: block;
 	color: $text-color;
+	text-decoration: none;
 
 	@extend .simple-shadow;
 
@@ -13,7 +14,7 @@ a.card {
 	
 	height: 400px;
 	@media (min-width: $screen-sm-min) {
-		height: 430px;
+		height: 400px;
 	}
 
 	max-height: 430px;
@@ -58,17 +59,13 @@ a.card {
 		position: absolute;
 		top: 23px;
 		left: -59px;
-		-webkit-transform: rotate(-38deg);
-		-moz-transform:    rotate(-38deg);
-		-ms-transform:     rotate(-38deg);
-		-o-transform:      rotate(-38deg);
-		transform:         rotate(-38deg);
+		@include rotate(-38deg);
 		z-index: 10;
 	}
 
 	.picture {
 		width: 100%;
-		height: 240px;
+		height: 200px;
 		// Moldura da foto				
 		padding: 0;
 
@@ -77,18 +74,24 @@ a.card {
 			height: 100%;
 			background-size: cover;
 			background-position: center;
-			background-image: url('../images/slides/19424.jpg');	
+			background-color: black;
+			background-image: url('../images/no-pic.png');
+			transition: background-image 0.5s ease-in-out;
 			position: relative;
 
-			.type {
-				// background-color: rgba(#000, .5);
+			img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+
+			.category {
 				background-color: $main-color;
 				color: white;
-				padding: 5px 10px;
-				border-radius: 5px;
+				padding: 5px 15px;
 				position: absolute;
-				top: 15px;
-				right: 15px;
+				left: 0;
+				bottom: 0;
 			}
 
 			.icons {
@@ -110,21 +113,24 @@ a.card {
 
 	.info {
 		padding: 10px 15px;
+		text-decoration: none;
 
 		.title {
 			font-size: 1.1em;
 			display: block;
 			font-family: 'Open Sans', sans-serif;
+			font-weight: bold;
 			text-transform: capitalize;
 		}
 
 		.subtitle {
-			font-size: 1.1em;
+			font-size: 1em;
 			display: block;
 			margin-top: 5px;
 			margin-bottom: 10px;
-			color: $gray;
-			font-weight: 200;
+			color: $main-color;
+			// font-weight: 200;
+			letter-spacing: 1px;
 
 			i {
 				color: $main-color;
@@ -133,21 +139,16 @@ a.card {
 
 		.description {
 			font-family: 'Open Sans', sans-serif;
-			font-size: 1em;
+			font-size: .92em;
 			display: block;
+			line-height: 20px;
 		}
 
 		.price {
-			font-size: 1.2em;
+			font-size: 1.25em;
 			display: block;
 			margin-top: 10px;
-			// font-weight: bold !important;
 			font-family: 'Work Sans', sans-serif;
-
-			// strong {
-			// 	font-size: 1.1em;
-			// 	font-weight: bold;
-			// }
 		}
 	}
 
@@ -155,8 +156,15 @@ a.card {
 		height: 240px;
 
 		.picture {			
+			height: 240px;
 			display: inline-block;
 			max-width: 30%;
+
+			.category {
+				top: 0;
+				left: 0;
+				bottom: auto;
+			}
 		}
 
 		.info {
@@ -175,14 +183,21 @@ a.card {
 			}
 
 			.icons {
-				margin-bottom: 10px;
-				margin-left: 20px;
+				margin: 20px;
 				display: block;
-				font-size: 1.5em;
+				font-size: 1.1em;
+				color: $main-color;
 
 				> span {
-					margin-right: 25px;
+					margin-right: 10px;					
+					padding: 5px 15px;
+					border: 1px solid $main-color;
+					border-radius: 4px;
 				}
+			}
+
+			.description {
+				font-size: 1.05em;
 			}
 
 			.price {
