@@ -7,13 +7,20 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', 'Immobile', 'Lightbox'];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', '$http', 'Immobile', 'Lightbox'];
 
-function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) {
+function ImovelCtrl($rootScope, $scope, $location, $window, $http, Immobile, Lightbox) {
 
 	var self = this;
 
 	this.related = [ ];
+
+	self.interest = {
+		nome: 'caboclo',
+		telefone: null,
+		email: null,
+		mensagem: null
+	};
 
 	$scope.$on('$viewContentLoaded', function () {
 		self.currentSlide = 0;
@@ -29,7 +36,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 				angular.forEach($scope.immobile.getRelated(), function(item, index) {
 					self.related.push(item.convertToCardInfo());
 				});
-				$scope.interestMessage = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.City.city_name;
+				self.interest.mensagem = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.City.city_name;
 				$rootScope.loading.unload();
 			});
 		}
@@ -95,25 +102,17 @@ function ImovelCtrl($rootScope, $scope, $location, $window, Immobile, Lightbox) 
 		// instead of a settings object
 	];
 
-	jQuery('form[name="interest"]').on('submit', function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			$rootScope.loading.load();
-			jQuery.ajax({
-				url: './external/mail.php',
-				method: 'POST',
-				dataType: 'json',
-				data: jQuery('form').serialize(),
-				success: function(data) {
-					$rootScope.loading.unload();
-					$scope.$apply();
-				},
-				error: function(data) {
-					$rootScope.loading.unload();
-					$scope.$apply();
-				}
-			});
+	$scope.submitForm = function() {
+		$http({
+			url: './external/mail.php',
+			method: 'POST',
+			data: self.interest
+		}).then(function(success) {
+			alert('formulario enviado');
+		}, function(error) {
+			alert('formulario nao enviado');
 		});
+	};
 
 	$scope.carouselPrev = function() {
 		jQuery('#immobile-pictures-xs').carousel('prev');

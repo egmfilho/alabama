@@ -18,7 +18,11 @@
 	position: relative;
 
 	.container-doido {
-		margin-top: 90px;
+		margin-top: 15px;
+
+		&.transition {
+			@include transition(margin-top 0.2s);
+		}
 
 		> .panel {
 			margin-bottom: 5px;

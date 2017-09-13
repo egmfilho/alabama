@@ -1,26 +1,3 @@
-// modelo1
-// 	header1
-// 	home
-// 		carousel
-// 	sobre
-// 	imoveis
-// 		imovel1
-
-// modelo2
-// 	header2
-// 	home
-// 		carousel
-// 	sobre
-// 	imoveis
-// 		imovel1
-
-// modelo3
-// 	header3	
-
-// modelo4
-// 	header4
-
-
 'use strict';
 
 angular.module('alabama.constants', [ ]);

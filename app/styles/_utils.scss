@@ -44,6 +44,10 @@
 	margin-top: 60px !important;
 }
 
+.offset-top-90 {
+	margin-top: 90px !important;
+}
+
 .offset-bottom-15 {
 	margin-bottom: 15px !important;
 }
@@ -271,7 +275,7 @@
 	left: 0;
 	right: 0;
 	z-index: 100000;
-	background-color: rgba(#fff, 1);
+	background-color: $main-color;
 
 	> div {
 		position: absolute;
@@ -291,7 +295,7 @@
 		}
 
 		.spinner > div {
-			background-color: rgba($main-color, 0.9);
+			background-color: white;
 			height: 100%;
 			width: 6px;
 			display: inline-block;
@@ -343,8 +347,8 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
-		margin-top: 150px;
-		background-image: url(' ../images/PN/logo.png');
+		margin-top: 250px;
+		background-image: url(' ../images/PN/logo2.png');
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -353,15 +357,15 @@
 		height: 200px;
 
 		.spinner {
-			margin-top: 180px;
+			margin-top: 150px;
 		}
 
 		@media (min-width: $screen-sm-min) {
-			width: 600px;
-			height: 400px;
+			width: 400px;
+			height: 200px;
 
 			.spinner {
-				margin-top: 320px;
+				margin-top: 200px;
 			}
 		}
 	}

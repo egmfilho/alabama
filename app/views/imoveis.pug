@@ -23,6 +23,7 @@
 	.container(ng-if='imoveis.cardList.length')
 		.row
 			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')
+				.offset-top-90
 				.container-doido
 					.panel.panel-primary.simple-shadow(name='Ordenação')
 						.panel-heading
@@ -53,9 +54,9 @@
 										i.fa.fa-clock-o
 										|  Mais recentes
 
-					.panel.panel-primary.simple-shadow(name='Dormitórios')
+					.panel.panel-primary.simple-shadow(name='Dormitorios')
 						.panel-heading
-							a(href='' data-toggle='collapse' data-target='.panel[name="Dormitórios"] .collapse')
+							a(href='' data-toggle='collapse' data-target='.panel[name="Dormitorios"] .collapse')
 								i.fa.fa-bed &nbsp;
 								| Dormitórios
 								i.fa.fa-angle-down.pull-right

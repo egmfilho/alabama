@@ -119,6 +119,13 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		});
 	}
 
+	$scope.$watch(function() {
+		return parseInt(jQuery('.filters .collapsing').css('height')) || 0;
+	}, function(newVal, oldVal) {
+		console.log(newVal);
+		updateSideMenu();
+	});
+
 	function updateSideMenu() {
 		var containerFilters = new function() {
 			this.elem = jQuery('.filters > .container-doido');
@@ -136,13 +143,14 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		if (!containerFilters.elem.length) return;
 
 		var y = $rootScope.scrollY,
-			// pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(), 
-			pageBottom = jQuery('.footer').position().top - y - containerFilters.height, 
+			// pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(),
+			marginBottom = 20, 
+			pageBottom = jQuery('.footer').position().top - (y + marginBottom) - containerFilters.height, 
 			cardListHeight = parseInt(jQuery('div[name="card-list"]').css('height'));
 
 		// Se o menu lateral for maior que os resultados, retira a classe floating e nao age no menu.
 		if (cardListHeight <= containerFilters.height) {
-			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);
+			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 15);
 			return;
 		}
 
@@ -151,10 +159,10 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 
 			// Aqui empurra o menu pra cima quando bate no fim da pagina (15px antes do fim)
 			if (pageBottom < 15) {
-				containerFilters.elem.css('margin-top', pageBottom);// - 130);
+				containerFilters.elem.css('margin-top', pageBottom);
 			}
 		} else {
-			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 90);
+			containerFilters.elem.removeClass('floating').css('width', '100%').css('margin-top', 15);
 		}
 	}
 
