@@ -27,7 +27,9 @@
 					.panel.panel-primary.simple-shadow(name='Ordenação')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Ordenação"] .collapse')
+								i.fa.fa-list-ol &nbsp;
 								| Ordenação
+								i.fa.fa-angle-down.pull-right
 						.collapse.in
 							.panel-body
 								div(ng-init='menorArea={column: 6, order: 1}')
@@ -54,8 +56,10 @@
 					.panel.panel-primary.simple-shadow(name='Dormitórios')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Dormitórios"] .collapse')
+								i.fa.fa-bed &nbsp;
 								| Dormitórios
-						.collapse.in
+								i.fa.fa-angle-down.pull-right
+						.collapse
 							.panel-body
 								div(style='display: block' ng-repeat='d in imoveis.resumo.bedroom track by $index')
 									a(href='' ng-click='imoveis.setFiltro("bedroom", d.filter)' ng-class='{"text-bold text-uppercase": d.filter == imoveis.getFiltros().dormitorios}')
@@ -67,8 +71,10 @@
 					.panel.panel-primary.simple-shadow(name='Banheiros')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Banheiros"] .collapse')
+								i.fa.fa-shower &nbsp;
 								| Banheiros
-						.collapse.in
+								i.fa.fa-angle-down.pull-right
+						.collapse
 							.panel-body
 								div(style='display: block' ng-repeat='b in imoveis.resumo.bathroom track by $index')
 									a(href='' ng-click='imoveis.setFiltro("bathroom", b.filter)' ng-class='{"text-bold text-uppercase": b.filter == imoveis.getFiltros().banheiros}')
@@ -80,8 +86,10 @@
 					.panel.panel-primary.simple-shadow(name='Suíte')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Suíte"] .collapse')
+								i.fa.fa-bathtub &nbsp;
 								| Suíte
-						.collapse.in
+								i.fa.fa-angle-down.pull-right
+						.collapse
 							.panel-body
 								div(style='display: block' ng-repeat='s in imoveis.resumo.suite track by $index')
 									a(href='' ng-click='imoveis.setFiltro("suite", s.filter)' ng-class='{"text-bold text-uppercase": s.filter == imoveis.getFiltros().suite}')
@@ -93,8 +101,10 @@
 					.panel.panel-primary.simple-shadow(name='Garagem')
 						.panel-heading
 							a(href='' data-toggle='collapse' data-target='.panel[name="Garagem"] .collapse')
+								i.fa.fa-car &nbsp;
 								| Garagem
-						.collapse.in
+								i.fa.fa-angle-down.pull-right
+						.collapse
 							.panel-body
 								div(style='display: block' ng-repeat='g in imoveis.resumo.parking_spot track by $index')
 									a(href='' ng-click='imoveis.setFiltro("parking_spot", g.filter)' ng-class='{"text-bold text-uppercase": g.filter == imoveis.getFiltros().garagem}')

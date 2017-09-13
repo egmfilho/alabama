@@ -35,7 +35,7 @@ angular.module('alabama.directives')
 				timer = $timeout(function() {
 					index = (index + 1) % $scope.thumbs.length;
 					$scope.onMouseEnter();
-				}, 2000);
+				}, !timer ? 500 : 2000);
 			};
 
 			$scope.onMouseLeave = function() {

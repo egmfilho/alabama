@@ -98,11 +98,15 @@ angular.module('alabama.services')
 				return '';
 			},
 			getThumbUrlArray: function() {
-				var array = this.GalleryImage.map(function(item) {
-					return item.thumb;
-				});
+				if (!!this.GalleryImage && this.GalleryImage.length) {
+					var array = this.GalleryImage.map(function(item) {
+						return item.thumb;
+					});
+	
+					return array;
+				}
 
-				return array;
+				return null;
 			},
 			convertToCardInfo: function() {
 				return {

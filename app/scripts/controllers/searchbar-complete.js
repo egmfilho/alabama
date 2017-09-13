@@ -3,9 +3,9 @@
 angular.module('alabama.controllers')
 	.controller('SearchbarCompleteCtrl', SearchBar);
 
-SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters' ];
+SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters', 'SearchbarComplete' ];
 
-function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
+function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters, SearchbarComplete) {
 
 	var self = this;
 
@@ -90,6 +90,8 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 
 		self.search.order = self.filters.order;
 
+		angular.extend(self.search, SearchbarComplete.getFilters());
+
 		self.isReady = true;
 
 		$timeout(function() {
@@ -138,6 +140,9 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 
 	this.selfRedirect = function() {
 		var temp = self.search;
+
+		SearchbarComplete.setFilters(self.search);
+
 		temp.order = JSON.stringify(temp.order);
 		$location.path('/imoveis').search(temp);
 	}

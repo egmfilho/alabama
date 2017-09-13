@@ -23,6 +23,7 @@
 		> .panel {
 			margin-bottom: 5px;
 			border-radius: 0;
+			border: none;
 
 			@include box-shadow(0, 0, 3px, rgba(0, 0, 0, .3));
 
@@ -36,14 +37,19 @@
 				a {
 					display: block;
 					color: white;
+					letter-spacing: 1px;
 
 					&:hover, &:focus {
 						text-decoration: none;
 					}
+
+					i.fa {
+						font-size: 1.5em;
+					}
 				}
 			}
 
-			.panel-body {
+			.panel-body {				
 				> div {
 					margin-top: 5px;
 
