@@ -3,9 +3,9 @@
 angular.module('alabama.controllers')
 	.controller('SearchbarCompleteCtrl', SearchBar);
 
-SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters', 'SearchbarComplete' ];
+SearchBar.$inject = [ '$rootScope', '$scope', '$location', '$filter', '$timeout', 'Filters' ];
 
-function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters, SearchbarComplete) {
+function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 
 	var self = this;
 
@@ -75,7 +75,7 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters, Se
 	};
 
 	this.filters = new Filters();
-	$rootScope.loading.load();
+	// $rootScope.loading.load();
 	this.filters.load().then(function(res) {
 		
 		self.search.minValue = self.search.minValue ? self.search.minValue : parseFloat(self.filters.value.min);
@@ -90,35 +90,28 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters, Se
 
 		self.search.order = self.filters.order;
 
-		angular.extend(self.search, SearchbarComplete.getFilters());
-
 		self.isReady = true;
 
 		$timeout(function() {
 			$rootScope.startBootstrapSelect();
-			$rootScope.loading.unload();
+			// $rootScope.loading.unload();
 		}, 250);
 	});
 
 	$scope.$watch(function() {
 		return self.search.cidade;
 	}, function() {
-		$rootScope.loading.load();
+		// $rootScope.loading.load();
 		self.filters.loadDistrictsFromCity(self.search.cidade).then(function(success) {
 			$timeout(function() { jQuery('.selectpicker').selectpicker('refresh');  }, 290);
-			$rootScope.loading.unload();
+			// $rootScope.loading.unload();
 		}, function(error) {
-			$rootScope.loading.unload();
+			// $rootScope.loading.unload();
 		});
 	});
 
-	this.getDistrictsFrom = function(cidade) {
-		console.log('get districts from: ' + cidade);
-	};
-
 	this.pesquisar = function() {
-		// $scope.$emit('newSearch', this.search);
-		this.selfRedirect();
+		$scope.$emit('search', this.search);
 	};
 
 	function updateFilters(value) {
@@ -132,18 +125,4 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters, Se
 	$scope.$on('updateFilters', function(event, value) {
 		updateFilters(value);
 	});
-
-	$scope.$on('update&search', function(event, value) {
-		updateFilters(value);
-		self.selfRedirect();
-	});
-
-	this.selfRedirect = function() {
-		var temp = self.search;
-
-		SearchbarComplete.setFilters(self.search);
-
-		temp.order = JSON.stringify(temp.order);
-		$location.path('/imoveis').search(temp);
-	}
 }

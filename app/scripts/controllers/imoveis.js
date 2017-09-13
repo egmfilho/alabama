@@ -3,27 +3,39 @@
 angular.module('alabama.controllers')
 	.controller('ImoveisCtrl', ImoveisCtrl);
 
-ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', 'ImmobileManager'];
+ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', 'ImmobileManager', 'SearchFilters'];
 
-function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
+function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, SearchFilters) {
 
 	var self = this, filtros = { };
 
 	(function getParams() {
-		angular.extend(filtros, $location.search());
-		
-		if (filtros.order)
-			filtros.order = JSON.parse(filtros.order);
-		else
-			filtros.order = {column: 0, order: 0};
+		if (angular.equals($location.search(), { })) {
+			if (SearchFilters.get()) {
+				filtros = SearchFilters.get();
+			}
+
+			search();
+			return;
+		}
+
+		var order = {
+			column: $location.search().order ? $location.search().order.split('-')[0] : 0,
+			order: $location.search().order ? $location.search().order.split('-')[1] : 0
+		};
+
+		filtros = $location.search();
+		filtros.order = order;
 
 		if (!filtros.page)
 			filtros.page = 1;		
 		
+		SearchFilters.set(filtros);
+
 		$timeout(function() {
 			$scope.$broadcast('updateFilters', filtros);
 			self.pagination.setPage(filtros.page - 1);
-		});
+		}, 500);
 	}());
 
 	this.getFiltros = function() {
@@ -49,16 +61,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 			return Math.max(1, Math.ceil(this.totalItems / this.itemsPerPage));
 		},
 		goTo: function(page) {
-			// Código antigo, sem usar url. Não atualiza a página
-			// if (page >= 0 && page < this.getPageAmount()) {
-			// 	this.index = page;
-			// 	getCardList(this.itemsPerPage * this.index + ',' + this.itemsPerPage, filtros);
-			// } else {
-			// 	console.log('page out of range', page);
-			// }
 			filtros.page = page + 1;
-			filtros.order = JSON.stringify(filtros.order);
-			$location.path('/imoveis').search(filtros);
+			search();
 		},
 		setPage: function(page) {
 			this.index = page;
@@ -75,15 +79,10 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 		}
 	};
 
-	$scope.$on('$viewContentLoaded', function() {
-		// Recebe a pagina pela url, default: primeira pagina
-		// getCardList(self.pagination.itemsPerPage, filtros);
+	$scope.$on('search', function(event, filters) {
+		angular.extend(filtros, filters);
+		self.pagination.goTo(0);
 	});
-
-	// $scope.$on('newSearch', function(event, filters) {
-	// 	angular.extend(filtros, filters);
-	// 	self.pagination.goTo(0);
-	// });
 
 	function getCardList(limit, filters) {
 		self.cardList = [];
@@ -118,13 +117,6 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 				.on('hidden.bs.collapse', updateSideMenu);
 		});
 	}
-
-	$scope.$watch(function() {
-		return parseInt(jQuery('.filters .collapsing').css('height')) || 0;
-	}, function(newVal, oldVal) {
-		console.log(newVal);
-		updateSideMenu();
-	});
 
 	function updateSideMenu() {
 		var containerFilters = new function() {
@@ -201,6 +193,16 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager) {
 				break;
 		}
 
-		$scope.$broadcast('update&search', filtros);
+		search();
 	};
+
+	function search() {
+		var temp = angular.extend({}, filtros, {
+			order: filtros.order ? filtros.order.column + '-' + filtros.order.order : '0-0'
+		});
+
+		SearchFilters.set(filtros);
+
+		$location.path('/imoveis').search(temp);
+	}
 }

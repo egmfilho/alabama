@@ -26,12 +26,21 @@
 
 .container.imovel.offset-top-15.offset-bottom-60(ng-if='imovel.ready')
 	.row
+
 		.col-xs-12
-			h5.text-gray.text-sans
-				i.fa.fa-calendar
-				| &nbsp;{{immobile.immobile_date | date:'dd/MM/yyyy'}}
 			h1.title
 				| {{immobile.immobile_name}} em {{immobile.Address.District.City.city_name}} - {{immobile.Address.District.City.UF.uf_code}}
+
+	.row
+		.col-sm-6.hidden-xs
+			a.btn.btn-primary(href='/imoveis')
+				i.fa.fa-chevron-left &nbsp;
+				| Imóveis
+
+		.col-xs-12.col-sm-6
+			h5.text-gray.text-sans.text-right
+				i.fa.fa-calendar
+				| &nbsp;{{immobile.immobile_date | date:'dd/MM/yyyy'}}
 
 	.row
 		.col-sm-8.col-md-9

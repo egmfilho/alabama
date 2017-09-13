@@ -7,15 +7,17 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', '$http', 'Immobile', 'Lightbox'];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', '$http', '$timeout', 'Immobile', 'Lightbox', 'SearchFilters'];
 
-function ImovelCtrl($rootScope, $scope, $location, $window, $http, Immobile, Lightbox) {
+function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Immobile, Lightbox, SearchFilters) {
 
 	var self = this;
 
 	this.related = [ ];
 
 	self.interest = {
+		immobile_id: null,
+		immobile_name: null,
 		nome: 'caboclo',
 		telefone: null,
 		email: null,
@@ -23,6 +25,10 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, Immobile, Lig
 	};
 
 	$scope.$on('$viewContentLoaded', function () {
+		$timeout(function() {
+			$scope.$broadcast('updateFilters', SearchFilters.get());
+		}, 200);
+
 		self.currentSlide = 0;
 
 		self.isXS = $window.innerWidth < 768;
@@ -36,6 +42,8 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, Immobile, Lig
 				angular.forEach($scope.immobile.getRelated(), function(item, index) {
 					self.related.push(item.convertToCardInfo());
 				});
+				self.interest.immobile_id = $scope.immobile.immobile_id;
+				self.interest.immobile_name = $scope.immobile.immobile_code + ' - ' + $scope.immobile.immobile_name;
 				self.interest.mensagem = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.City.city_name;
 				$rootScope.loading.unload();
 			});

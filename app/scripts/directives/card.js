@@ -32,6 +32,9 @@ angular.module('alabama.directives')
 			};
 			
 			$scope.onMouseEnter = function() {
+				if (!$scope.thumbs || !$scope.thumbs.length)
+					return;
+
 				timer = $timeout(function() {
 					index = (index + 1) % $scope.thumbs.length;
 					$scope.onMouseEnter();
@@ -39,6 +42,9 @@ angular.module('alabama.directives')
 			};
 
 			$scope.onMouseLeave = function() {
+				if (!timer) 
+					return;
+
 				$timeout.cancel(timer);
 				timer = null;
 				index = 0;

@@ -4,16 +4,16 @@
 	'use strict';
 
 	angular.module('alabama.services')
-		.factory('SearchbarComplete', [function() {
+		.factory('SearchFilters', [function() {
 
 			var _filters = null;
 
 			return {
-				setFilters: function(filters) {
+				set: function(filters) {
 					_filters = JSON.stringify(filters);
 				},
 
-				getFilters: function() {
+				get: function() {
 					if (!_filters) return;
 
 					return JSON.parse(_filters);
