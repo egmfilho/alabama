@@ -7,7 +7,7 @@ ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', 'Immobil
 
 function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, SearchFilters) {
 
-	var self = this, filtros = { };
+	var self = this, filtros = { }, _isLoading;
 
 	(function getParams() {
 		if (angular.equals($location.search(), { })) {
@@ -37,6 +37,10 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 			self.pagination.setPage(filtros.page - 1);
 		}, 500);
 	}());
+
+	this.isLoading = function() {
+		return _isLoading;
+	};
 
 	this.getFiltros = function() {
 		return filtros;
@@ -86,7 +90,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 
 	function getCardList(limit, filters) {
 		self.cardList = [];
-		$rootScope.loading.load();
+		// $rootScope.loading.load();
+		_isLoading = true;
 		ImmobileManager.loadAllImmobiles(limit, filters).then(function(success) {
 			angular.forEach(success.data, function(item) {
 				self.cardList.push(item.convertToCardInfo());
@@ -94,11 +99,13 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 			self.pagination.totalItems = success.info.summary ? success.info.summary.immobiles : 0;
 			self.resumo = success.info.summary ? success.info.summary.features : { };
 			$rootScope.scrollTop(300, 1);
-			$rootScope.loading.unload();
+			// $rootScope.loading.unload();
 			setOnCollapseFilters();
+			_isLoading = false;
 		}, function(error) {
 			console.log(error);
 			$rootScope.loading.unload();
+			_isLoading = false;
 		});
 	}
 

@@ -18,7 +18,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 	self.interest = {
 		immobile_id: null,
 		immobile_name: null,
-		nome: 'caboclo',
+		nome: null,
 		telefone: null,
 		email: null,
 		mensagem: null

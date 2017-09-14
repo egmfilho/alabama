@@ -2,6 +2,26 @@ a.card {
 	$hover-animation-time: .5s;
 	$height-animation-time: .25s;
 
+	@include keyframe(dummyCard) {
+		0% {
+			transform: translateX(-300px)
+		}
+	
+		100% {
+			transform: translateX(300px)
+		}
+	}
+
+	@include keyframe(dummyCardHorizontal) {
+		0% {
+			transform: translateX(-300px)
+		}
+	
+		100% {
+			transform: translateX(300px)
+		}
+	}
+
 	/* Sobrescreve as propriedades herdadas do elemento <a> */
 	display: block;
 	color: $text-color;
@@ -23,17 +43,9 @@ a.card {
 	margin-bottom: 15px;
 	overflow: hidden;
 
-	-webkit-transform: translateY(0);
-	-moz-transform:    translateY(0);
-	-ms-transform:     translateY(0);
-	-o-transform:      translateY(0);
-	transform:         translateY(0);
+	@include transform(translateY(0));
 
-	-webkit-transition: transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease;
-	-moz-transition:    transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease;
-	-ms-transition:     transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease;
-	-o-transition:      transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease;
-	transition:         transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease;
+	@include transition(transform $hover-animation-time ease, box-shadow $hover-animation-time ease, height $height-animation-time ease);
 
 	&:hover {
 		cursor: pointer;
@@ -142,6 +154,7 @@ a.card {
 			font-size: .92em;
 			display: block;
 			line-height: 20px;
+			min-height: 65px;
 		}
 
 		.price {
@@ -149,6 +162,118 @@ a.card {
 			display: block;
 			margin-top: 10px;
 			font-family: 'Work Sans', sans-serif;
+		}
+
+		.dummy-info {
+			background: #f6f7f9;
+			overflow: hidden;
+			position: relative;
+			height: 180px;
+
+			&:before {
+				@include animation(0, 3s, linear, dummyCard);
+
+				background-image: linear-gradient(to right, #f6f7f9 0%, #e9ebee 20%, #f6f7f9 40%, #f6f7f9 100%);
+				background-repeat: no-repeat;
+				background-size: 100% 180px;
+				content: ' ';
+				display: block;
+				height: 100%;
+			}
+
+			div {
+				background-color: white;
+				position: absolute;
+				display: block;
+
+				$son-goku-height: 8px;
+				$son-gohan-height: 25px;
+				$trunks-height: 20px;
+				$vegeta-height: 12px;
+				$support-team-height: 4px;
+				$frieza-height: 20px;
+				$son-goku-ssj-iii-height: 27px;
+
+				$line-height: 14px;
+
+				&.son-goku {
+					width: 100%;
+					height: $son-goku-height;
+					top: 0;
+				}
+
+				&.son-gohan {
+					width: 10px;
+					height: $son-gohan-height;
+					left: 100px;
+					top: $son-goku-height;
+				}
+
+				&.son-gohan-ssj {
+					width: 400px;
+					height: $son-gohan-height;
+					left: 230px;
+					top: $son-goku-height;
+				}
+
+				&.son-goku-ssj {
+					width: 100%;
+					height: $son-goku-height;
+					top: #{ $son-goku-height + $son-gohan-height };
+				}
+
+				&.trunks {
+					width: 400px;
+					height: $trunks-height;
+					left: 140px;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height };
+				}
+
+				&.vegeta {
+					width: 100%;
+					height: $vegeta-height;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height };
+				}
+
+				&.piccolo {
+					width: 100%;
+					height: $support-team-height;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + $line-height };
+				}
+
+				&.yamcha {
+					width: 100%;
+					height: $support-team-height;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + $support-team-height + ($line-height * 2) };
+				}
+
+				&.tenshinhan {
+					width: 400px;
+					height: $line-height;
+					left: 160px;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + ($support-team-height * 2) + ($line-height * 2) };
+				}
+
+				&.frieza {
+					width: 100%;
+					height: $frieza-height;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + ($support-team-height * 2) + ($line-height * 3) };
+				}
+
+				&.son-goku-ssj-iii {
+					width: 400px;
+					height: $son-goku-ssj-iii-height;
+					left: 180px;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + ($support-team-height * 2) + ($line-height * 3) + $frieza-height };
+				}
+
+				&.namekuzei {
+					width: 100%;
+					height: 400px;
+					left: 0;
+					top: #{ ($son-goku-height * 2) + $son-gohan-height + $trunks-height + $vegeta-height + ($support-team-height * 2) + ($line-height * 3) + $frieza-height + $son-goku-ssj-iii-height };
+				}
+			}
 		}
 	}
 
@@ -198,6 +323,7 @@ a.card {
 
 			.description {
 				font-size: 1.05em;
+				min-height: 40px;
 			}
 
 			.price {

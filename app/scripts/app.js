@@ -35,14 +35,16 @@ angular.module('alabama', [
 	}])
 	.config(['$routeProvider', function($routeProvider) {
 
-		var genericController = ['$rootScope', 'ImmobileManager', function ($rootScope, ImmobileManager) {
+		var genericController = ['$rootScope', '$scope', 'ImmobileManager', function ($rootScope, $scope, ImmobileManager) {
 			var self = this;
-			self.array = [];
+			self.array = [ { dummy: true }, { dummy: true }, { dummy: true } ];
 			$rootScope.loading.load();
 			ImmobileManager.loadMostVisited().then(function(success) {
+				self.array = [ ];
 				angular.forEach(success, function(item) {			
 					self.array.push(item.convertToCardInfo());
 				});
+				$scope.$broadcast('update-cardCarousel');
 				$rootScope.loading.unload();
 			}, function(error) {
 				$rootScope.loading.unload();

@@ -48,45 +48,56 @@ angular.module('alabama.directives')
 			if (scope.cardCarouselInterval) {
 				$timeout(setCarouselInterval, 100);
 			}
+		}
+		
+		function controller($scope, $timeout) {
+			$window.addEventListener('resize', onWindowResize);	
 			
+			$scope.$on('update-cardCarousel', function() {
+				// To force chunk to calc again
+				$scope.currentWidthRange = ''; 
+				$timeout(onWindowResize);
+			});
 
-			$window.addEventListener('resize', onWindowResize);			
 			function onWindowResize() {
 				var width = $window.innerWidth;
-
-				if (!scope.currentWidthRange) {
-					scope.currentWidthRange = '';
+	
+				if (!$scope.currentWidthRange) {
+					$scope.currentWidthRange = '';
 				}
-
+	
 				if (width < 768) {
-					if (scope.currentWidthRange != 'xs') {
-						scope.blocks = chunkArray(scope.cardCarouselArray, 1);
-						scope.currentWidthRange = 'xs';
-						jQuery('#' + scope.cardCarouselId).carousel();
+					if ($scope.currentWidthRange != 'xs') {
+						$scope.blocks = chunkArray($scope.cardCarouselArray, 1);
+						$scope.currentWidthRange = 'xs';
+						jQuery('#' + $scope.cardCarouselId).carousel();
 					}
 				} else if (width < 992) {
-					if (scope.currentWidthRange != 'sm') {
-						scope.blocks = chunkArray(scope.cardCarouselArray, 2);
-						scope.currentWidthRange = 'sm';
-						jQuery('#' + scope.cardCarouselId).carousel();
+					if ($scope.currentWidthRange != 'sm') {
+						$scope.blocks = chunkArray($scope.cardCarouselArray, 2);
+						$scope.currentWidthRange = 'sm';
+						jQuery('#' + $scope.cardCarouselId).carousel();
 					}
 				} else if (width < 1200) {
-					if (scope.currentWidthRange != 'md') {
-						scope.blocks = chunkArray(scope.cardCarouselArray, 3);
-						scope.currentWidthRange = 'md';
-						jQuery('#' + scope.cardCarouselId).carousel();
+					if ($scope.currentWidthRange != 'md') {
+						console.log($scope.cardCarouselArray);
+						$scope.blocks = chunkArray($scope.cardCarouselArray, 3);
+						$scope.currentWidthRange = 'md';
+						jQuery('#' + $scope.cardCarouselId).carousel();
 					}
 				} else if (width >= 1200) {
-					if (scope.currentWidthRange != 'lg') {
-						scope.blocks = chunkArray(scope.cardCarouselArray, 3);
-						scope.currentWidthRange = 'lg';
-						jQuery('#' + scope.cardCarouselId).carousel();
+					if ($scope.currentWidthRange != 'lg') {
+						$scope.blocks = chunkArray($scope.cardCarouselArray, 3);
+						$scope.currentWidthRange = 'lg';
+						jQuery('#' + $scope.cardCarouselId).carousel();
 					}
 				}
-
 			}
+
 			onWindowResize();
 		}
+
+		controller.$inject = [ '$scope', '$timeout' ];
 
 		return {
 			restrict: 'E',
@@ -97,7 +108,8 @@ angular.module('alabama.directives')
 				cardCarouselInterval: '@interval',
 				cardCarouselArray: '=cards'
 			},
-			link: link
+			link: link,
+			controller: controller
 		}
 
 	}]);

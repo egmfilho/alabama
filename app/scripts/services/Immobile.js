@@ -127,7 +127,8 @@ angular.module('alabama.services')
 					parking: this.immobile_parking_spot,
 					labelText: '',
 					labelColor: '',
-					thumbs: this.getThumbUrlArray()
+					thumbs: this.getThumbUrlArray(),
+					dummy: false
 				};
 			},
 

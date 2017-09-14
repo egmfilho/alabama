@@ -1,4 +1,4 @@
-a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}' ng-mouseenter='onMouseEnter()' ng-mouseleave='onMouseLeave()')
+a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isHorizontal}' ng-mouseenter='onMouseEnter()' ng-mouseleave='onMouseLeave()')
 	
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
@@ -28,7 +28,7 @@ a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}' ng-m
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
 					| {{parking}}  
 					i.fa.fa-car
-	.info
+	.info(ng-if='!dummy')
 		span.title 
 			| {{title | truncate: (isHorizontal ? 50 : 50)}}
 
@@ -54,7 +54,7 @@ a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}' ng-m
 				i.fa.fa-shower
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
-				| {{parking}}  
+				| {{parking}}
 				i.fa.fa-car
 		
 		span.description.text-gray
@@ -65,3 +65,18 @@ a.card(ng-href='{{customUrl}}' ng-class='{"card-horizontal": isHorizontal}' ng-m
 
 		span.text-light.text-gray.pull-right(ng-show='isHorizontal')
 			| Código: {{code}}
+
+	.info(ng-if='dummy')
+		.dummy-info
+			.son-goku
+			.son-gohan
+			.son-gohan-ssj
+			.son-goku-ssj
+			.trunks
+			.vegeta
+			.piccolo
+			.yamcha
+			.tenshinhan
+			.frieza
+			.son-goku-ssj-iii
+			.namekuzei

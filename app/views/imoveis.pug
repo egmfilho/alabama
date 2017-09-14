@@ -14,12 +14,20 @@
 	searchbar-complete
 
 .background-gray
-	.container(ng-if='!imoveis.cardList.length')
+	.container(ng-if='!imoveis.cardList.length && !imoveis.isLoading()')
 		.no-results
 			.text
 				i.fa.fa-home.icon-xlg
 				h2 Nenhum resultado.
 				h3 Tente remover alguns filtros.
+
+	.container(ng-if='!imoveis.cardList.length && imoveis.isLoading()')
+		.no-results
+			.text
+				i.fa.fa-spin.fa-refresh.fa-4x
+				h2 Aguarde
+				h3 Carregando imóveis...
+
 	.container(ng-if='imoveis.cardList.length')
 		.row
 			.hidden-xs.col-sm-4.col-md-3.filters(style='position: relative')

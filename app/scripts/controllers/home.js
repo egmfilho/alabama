@@ -5,13 +5,48 @@ angular.module('alabama.controllers')
 
 	var self = this;
 
+	self.featuredList = [
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		}
+	];
+
+	self.lastOnes = [
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		},
+		{
+			dummy: true
+		}
+	];
+
 	function getDestaques() {
-		self.featuredList = [];
 		$rootScope.loading.load();
 		ImmobileManager.loadAllFeatured().then(function(success) {
+			self.featuredList = [ ];
 			angular.forEach(success, function(item) {			
+				// angular.extend(self.featuredList[index], item.convertToCardInfo());
 				self.featuredList.push(item.convertToCardInfo());
 			});
+			$scope.$broadcast('update-cardCarousel');
 			$rootScope.loading.unload();
 		}, function(error) {
 			$rootScope.loading.unload();
@@ -19,9 +54,9 @@ angular.module('alabama.controllers')
 	}
 
 	function getUltimos() {
-		self.lastOnes = [];
 		$rootScope.loading.load();
 		ImmobileManager.loadLastOnes().then(function(success) {
+			self.lastOnes = [];
 			angular.forEach(success, function(item) {			
 				self.lastOnes.push(item.convertToCardInfo());
 			});

@@ -11,13 +11,6 @@ angular.module('alabama.directives')
 			jQuery('[data-toggle="tooltip"]').tooltip();
 
 			scope.customUrl = '/imovel?codigo=' + scope.code + '&nome=' + (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-');
-
-			element.bind('click', function() {
-				scope.$apply(function() {
-					$location.search({});
-					// $location.path('/imovel').search('codigo', scope.code).search('nome', (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-'));
-				});
-			});
 		}
 
 		function controller($scope, $timeout) {
@@ -48,7 +41,7 @@ angular.module('alabama.directives')
 				$timeout.cancel(timer);
 				timer = null;
 				index = 0;
-			}
+			};
 		}
 
 		controller.$inject = [ '$scope', '$timeout' ];
@@ -74,7 +67,9 @@ angular.module('alabama.directives')
 				isHorizontal: '=',
 				hideDescription: '=',
 				category: '@',
-				thumbs: '='
+				thumbs: '=',
+				dummy: '=',
+				origin: '@'
 			},
 			link: link,
 			controller: controller

@@ -12,6 +12,14 @@
 	transition:         $properties;
 }
 
+@mixin tansform($properties) {
+	-webkit-transform: $properties;
+	-moz-transform:    $properties;
+	-ms-transform:     $properties;
+	-o-transform:      $properties;
+	transform:         $properties;
+}
+
 @mixin blur($radius) {
 	-webkit-filter: blur($radius);
 	-moz-filter: blur($radius);
@@ -26,6 +34,54 @@
 	-ms-transform:     rotate($rotation);
 	-o-transform:      rotate($rotation);
 	transform:         rotate($rotation);
+}
+
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+@mixin animation ($delay, $duration, $timing, $animation) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+	-webkit-animation-name: $animation;
+	-webkit-animation-timing-function: $timing;
+	-webkit-animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+	-moz-animation-name: $animation;
+	-moz-animation-timing-function: $timing;
+	-moz-animation-iteration-count: infinite;	
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+	-o-animation-name: $animation;
+	-o-animation-timing-function: $timing;
+	-o-animation-iteration-count: infinite;
+	-o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    animation-delay: $delay;
+    animation-duration: $duration;
+	animation-name: $animation;
+	animation-timing-function: $timing;
+	animation-iteration-count: infinite;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
 }
 
 .display-none {
