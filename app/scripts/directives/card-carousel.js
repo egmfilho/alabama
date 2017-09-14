@@ -80,7 +80,6 @@ angular.module('alabama.directives')
 					}
 				} else if (width < 1200) {
 					if ($scope.currentWidthRange != 'md') {
-						console.log($scope.cardCarouselArray);
 						$scope.blocks = chunkArray($scope.cardCarouselArray, 3);
 						$scope.currentWidthRange = 'md';
 						jQuery('#' + $scope.cardCarouselId).carousel();

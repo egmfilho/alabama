@@ -23,7 +23,46 @@ html
 
 		//- <?php include "../partials/header5.html" ?>
 
-		div(ng-include='"./partials/header6.html"')
+		header6(
+			navigation=`[
+				{
+					"nome": "Home",
+					"url": "/",
+					"target": ""
+				},
+				{
+					"nome": "Sobre",
+					"url": "/sobre",
+					"target": ""
+				},
+				{
+					"nome": "Imóveis",
+					"url": "/imoveis",
+					"target": ""
+				},
+				{
+					"nome": "Seguros",
+					"url": "http://www.segurospaiva.com.br/",
+					"target": "_blank"
+				},
+				{
+					"nome": "Equipe",
+					"url": "/equipe",
+					"target": ""
+				},
+				{
+					"nome": "Contato",
+					"url": "/contato",
+					"target": ""
+				}
+			]`
+			whatsapp='(21) 97169-0349'
+			tel='(21) 2642-3468'
+			email='sac@pnimobiliaria.com.br'
+			title='Grupo Paiva' 
+			subtitle='Corretora e Imobiliária' 
+			message='Trabalhando e pensando na realização do seu sonho.' 
+			btn-label='Ver imóveis')
 
 		.scroll-top.hidden-xs(ng-class='{"visible": scrollY >= 100}' ng-click='scrollTop()')
 			i.fa.fa-chevron-up

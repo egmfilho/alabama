@@ -171,7 +171,7 @@ a.card {
 			height: 180px;
 
 			&:before {
-				@include animation(0, 3s, linear, dummyCard);
+				@include animation(0, 2s, linear, dummyCard);
 
 				background-image: linear-gradient(to right, #f6f7f9 0%, #e9ebee 20%, #f6f7f9 40%, #f6f7f9 100%);
 				background-repeat: no-repeat;

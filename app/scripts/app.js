@@ -53,19 +53,19 @@ angular.module('alabama', [
 
 		$routeProvider
 		.when('/', {
-			name: 'home',
+			name: 'Home',
 			templateUrl: 'views/home.html',
 			controller: 'HomeCtrl',
 			controllerAs: 'home'
 		})
 		.when('/sobre', {
-			name: 'sobre',
+			name: 'Sobre',
 			templateUrl: 'views/sobre.html',
 			controller: genericController,
 			controllerAs: 'sobre'
 		})
 		.when('/imoveis', {
-			name: 'imoveis',
+			name: 'Imóveis',
 			templateUrl: 'views/imoveis.html',
 			controller: 'ImoveisCtrl',
 			controllerAs: 'imoveis'
@@ -76,13 +76,13 @@ angular.module('alabama', [
 			controllerAs: 'imovel'
 		})
 		.when('/equipe', {
-			name: 'equipe',
+			name: 'Equipe',
 			templateUrl: 'views/equipe.html',
 			controller: genericController,
 			controllerAs: 'equipe'
 		})
 		.when('/contato', {
-			name: 'contato',
+			name: 'Contato',
 			templateUrl: 'views/contato.html',
 			controller: 'ContatoCtrl',
 			controllerAs: 'contato'
