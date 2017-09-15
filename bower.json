@@ -26,9 +26,9 @@
     "bootstrap-select": "^1.12.2",
     "angularjs-slider": "^6.0.1",
     "angular-i18n": "^1.6.2",
-    "ngmap": "^1.17.8",
     "angular-bootstrap-lightbox": "^0.12.0",
-    "angular-slick": "^0.2.1"
+    "angular-slick": "^0.2.1",
+    "ngmap": "^1.18.4"
   },
   "overrides": {
     "angular-i18n": {
@@ -43,7 +43,8 @@
     },
     "ngmap": {
       "main": [
-        "build/scripts/ng-map.min.js"
+        "build/scripts/ng-map.min.js",
+        "testapp/scripts/markerclusterer_packed.js"
       ]
     }
   },
