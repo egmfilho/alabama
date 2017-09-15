@@ -15,11 +15,11 @@ angular.module('alabama.services')
 
 		function setPictures(scope) {
 
-			if (!scope.GalleryImage) {
+			if (!scope.gallery) {
 				return;
 			}
 
-			angular.forEach(scope.GalleryImage, function(item, index) {
+			angular.forEach(scope.gallery, function(item, index) {
 				item.url = URLS.root + 'files/immobile/' + item.immobile_id + '/' + item.gallery_image_id + '_large.jpg';
 				item.thumb = URLS.root + 'files/immobile/' + item.immobile_id + '/' + item.gallery_image_id + '_small.jpg';
 			});
@@ -45,17 +45,17 @@ angular.module('alabama.services')
 
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/immobile.php?module=get',
+					url: URLS.root + 'api/immobile.php?action=get',
 					crossDomain: true,
 					data: {
 						immobile_code: code,
 						json: 1,
-						get_Address: true,
-						get_District: true,
-						get_City: true,
-						get_UF: true,
-						get_GalleryImage: true,
-						get_ImmobileCategory: true,
+						get_address: true,
+						get_address_district: true,
+						get_address_city: true,
+						get_address_uf: true,
+						get_immobile_gallery: true,
+						get_immobile_category: true,
 						group_feature: true
 					}
 				}).then(function(immobileData) {
@@ -72,34 +72,34 @@ angular.module('alabama.services')
 				return deferred.promise;
 			},
 			getMainPictureUrl: function() {
-				if (!this.GalleryImage) {
+				if (!this.gallery) {
 					return;
 				}
 
-				for (var i = 0; i < this.GalleryImage.length; i++) {
-					if (this.GalleryImage[i].gallery_image_main == 'Y') {
-						return this.GalleryImage[i].url;
+				for (var i = 0; i < this.gallery.length; i++) {
+					if (this.gallery[i].gallery_image_main == 'Y') {
+						return this.gallery[i].url;
 					}
 				}
 
 				return '';
 			},
 			getMainThumbUrl: function() {
-				if (!this.GalleryImage) {
+				if (!this.gallery) {
 					return '';
 				}
 
-				for (var i = 0; i < this.GalleryImage.length; i++) {
-					if (this.GalleryImage[i].gallery_image_main == 'Y') {
-						return this.GalleryImage[i].thumb;
+				for (var i = 0; i < this.gallery.length; i++) {
+					if (this.gallery[i].gallery_image_main == 'Y') {
+						return this.gallery[i].thumb;
 					}
 				}
 
 				return '';
 			},
 			getThumbUrlArray: function() {
-				if (!!this.GalleryImage && this.GalleryImage.length) {
-					var array = this.GalleryImage.map(function(item) {
+				if (!!this.gallery && this.gallery.length) {
+					var array = this.gallery.map(function(item) {
 						return item.thumb;
 					});
 	
@@ -115,7 +115,7 @@ angular.module('alabama.services')
 					pictureLg: this.getMainPictureUrl(),
 					title: this.immobile_name,
 					parsedName: this.immobile_name.replace(/ /g, '-'),
-					subtitle: this.Address ? this.Address.District.City.city_name : '',
+					subtitle: this.address ? this.address.district.city.city_name : '',
 					description: this.immobile_description || '',
 					category: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
 					area: parseInt(this.immobile_area_total),

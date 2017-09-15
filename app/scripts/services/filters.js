@@ -23,7 +23,7 @@ angular.module('alabama.services')
 				
 				$http({
 					method: 'GET',
-					url: URLS.root + 'api/filter.php?module=getAll',
+					url: URLS.root + 'api/filter.php?action=getAll',
 					crossDomain: true
 				}).then(function(response) {
 					scope.setData(response.data.data);
@@ -47,7 +47,7 @@ angular.module('alabama.services')
 
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/filter.php?module=getDistricts',
+					url: URLS.root + 'api/filter.php?action=getDistricts',
 					crossDomain: true,
 					data: {
 						city_id: city_id
