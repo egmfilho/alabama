@@ -16,11 +16,11 @@ button.btn.btn-primary(ng-click='openLightbox()') TESTE
 
 	.row
 		.col-xs-12
-			h1.title {{immobile.immobile_name}} em {{immobile.Address.District.district_name}} {{immobile.Address.District.City.city_name}}
+			h1.title {{immobile.immobile_name}} em {{immobile.address.district.district_name}} {{immobile.address.district.city.city_name}}
 	.row.pane.perfil-imovel(ng-if='imovel.ready')
 		.col-xs-12.col-sm-8
 			slick.slider-for(infinite='true' slides-to-show='1' slides-to-scroll='1' arrows='true' as-nav-for='.slider-nav' current-index='imovel.currentSlide')
-				div.picture(ng-repeat='pic in immobile.GalleryImage')
+				div.picture(ng-repeat='pic in immobile.gallery_image')
 					div
 						img.img-responsive(ng-src='{{pic.url}}')
 						.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
@@ -29,7 +29,7 @@ button.btn.btn-primary(ng-click='openLightbox()') TESTE
 
 			div(ng-if='imovel.ready')
 				slick.hidden-xs.slider-nav(infinite='true' slides-to-show='5' slides-to-scroll='1' as-nav-for='.slider-for' center-mode='true' focus-on-select='false' responsive='imovel.responsive1' arrows='false')
-					.picture(style='height:70px; background-image: url({{pic.thumb}})' ng-repeat='pic in immobile.GalleryImage')
+					.picture(style='height:70px; background-image: url({{pic.thumb}})' ng-repeat='pic in immobile.gallery_image')
 
 		.col-xs-12.col-sm-4.interesse
 			h3 Tenho Interesse

@@ -1,7 +1,7 @@
 'use script';
 
 angular.module('alabama.controllers')
-	.controller('ContatoCtrl', ['$rootScope', '$scope', 'NgMap', 'ImmobileManager', function($rootScope, $scope, NgMap, ImmobileManager) {
+	.controller('ContatoCtrl', ['$rootScope', '$scope', 'NgMap', 'ImmobileManager', 'URLS', function($rootScope, $scope, NgMap, ImmobileManager, URLS) {
 
 		var self = this;
 
@@ -31,7 +31,7 @@ angular.module('alabama.controllers')
 			e.preventDefault();
 			$rootScope.loading.load();
 			jQuery.ajax({
-				url: './external/mail.php',
+				url: URLS.root + 'api/mail.php?action=contact',
 				method: 'POST',
 				dataType: 'json',
 				data: jQuery('form').serialize(),

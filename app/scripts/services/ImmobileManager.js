@@ -34,17 +34,17 @@ angular.module('alabama.services')
 
 				data = {
 					json: 1,
-					get_Address: true,
-					get_District: true,
-					get_City: true,
-					get_UF: true,
-					get_GalleryImage: true,
+					get_immobile_address: true,
+					get_address_district: true,
+					get_address_city: true,
+					get_address_uf: true,
+					get_immobile_gallery: true,
 					limit: limit
 				};
 				
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/immobile.php?module=getList',
+					url: URLS.root + 'api/immobile.php?action=getList',
 					crossDomain: true,
 					data: Object.assign(data, filters)
 				}).then(function(immobileData) {
@@ -68,15 +68,15 @@ angular.module('alabama.services')
 				
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/immobile.php?module=getListFeatured',
+					url: URLS.root + 'api/immobile.php?action=getListFeatured',
 					crossDomain: true,
 					data: {
 						json: 1,
-						get_Address: true,
-						get_District: true,
-						get_City: true,
-						get_UF: true,
-						get_GalleryImage: true
+						get_immobile_address: true,
+						get_address_district: true,
+						get_address_city: true,
+						get_address_uf: true,
+						get_immobile_gallery: true
 					}
 				}).then(function(immobileData) {
 					var array = [ ];
@@ -99,15 +99,15 @@ angular.module('alabama.services')
 				
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/immobile.php?module=getListNews',
+					url: URLS.root + 'api/immobile.php?action=getListNews',
 					crossDomain: true,
 					data: {
 						json: 1,
-						get_Address: true,
-						get_District: true,
-						get_City: true,
-						get_UF: true,
-						get_GalleryImage: true
+						get_immobile_address: true,
+						get_address_district: true,
+						get_address_city: true,
+						get_address_uf: true,
+						get_immobile_gallery: true
 					}
 				}).then(function(immobileData) {
 					var array = [ ];						
@@ -130,15 +130,15 @@ angular.module('alabama.services')
 				
 				$http({
 					method: 'POST',
-					url: URLS.root + 'api/immobile.php?module=getMostVisited',
+					url: URLS.root + 'api/immobile.php?action=getMostVisited',
 					crossDomain: true,
 					data: {
 						json: 1,
-						get_Address: true,
-						get_District: true,
-						get_City: true,
-						get_UF: true,
-						get_GalleryImage: true
+						get_immobile_address: true,
+						get_address_district: true,
+						get_address_city: true,
+						get_address_uf: true,
+						get_immobile_gallery: true
 					}
 				}).then(function(immobileData) {
 					var array = [ ];						

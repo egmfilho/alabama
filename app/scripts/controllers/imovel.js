@@ -7,9 +7,9 @@
 angular.module('alabama.controllers')
 	.controller('ImovelCtrl', ImovelCtrl);
 
-ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', '$http', '$timeout', 'Immobile', 'Lightbox', 'SearchFilters'];
+ImovelCtrl.$inject = [ '$rootScope', '$scope', '$location', '$window', '$http', '$timeout', 'Immobile', 'Lightbox', 'SearchFilters', 'URLS'];
 
-function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Immobile, Lightbox, SearchFilters) {
+function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Immobile, Lightbox, SearchFilters, URLS) {
 
 	var self = this;
 
@@ -17,6 +17,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 
 	self.interest = {
 		immobile_id: null,
+		immobile_code: null,
 		immobile_name: null,
 		nome: null,
 		telefone: null,
@@ -43,8 +44,9 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 					self.related.push(item.convertToCardInfo());
 				});
 				self.interest.immobile_id = $scope.immobile.immobile_id;
-				self.interest.immobile_name = $scope.immobile.immobile_code + ' - ' + $scope.immobile.immobile_name;
-				self.interest.mensagem = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.Address.District.City.city_name;
+				self.interest.immobile_code = $scope.immobile.immobile_code;
+				self.interest.immobile_name = $scope.immobile.immobile_name;
+				self.interest.mensagem = 'Tenho interesse no imóvel (' + $scope.immobile.immobile_code + ') ' + $scope.immobile.immobile_name + ' em ' + $scope.immobile.address.district.city.city_name;
 				$rootScope.loading.unload();
 			});
 		}
@@ -56,7 +58,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 		if ($window.innerWidth < 768) return;
 
 		var images = [];
-		angular.forEach($scope.immobile.GalleryImage, function(item) {
+		angular.forEach($scope.immobile.gallery, function(item) {
 			images.push(item.url);
 		});
 		Lightbox.openModal(images, self.currentSlide || 0);
@@ -112,7 +114,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 
 	$scope.submitForm = function() {
 		$http({
-			url: './external/mail.php',
+			url: URLS.root + 'api/mail.php?action=interest',
 			method: 'POST',
 			data: self.interest
 		}).then(function(success) {
