@@ -29,7 +29,7 @@
 
 		.col-xs-12
 			h1.title
-				| {{immobile.immobile_name}} em {{immobile.address.district.city.city_name}} - {{immobile.address.district.city.UF.uf_code}}
+				| {{immobile.immobile_name}} em {{immobile.address.district.city.city_name}} - {{immobile.address.district.city.uf.uf_code}}
 
 	.row
 		.col-sm-6.hidden-xs
@@ -107,7 +107,7 @@
 						i.pull-right {{immobile.immobile_value_iptu | currency:'R$ ':2}}
 				.separator
 				h3.offset-top-30.offset-bottom-30 Tenho Interesse
-				form(name='interest' ng-submit='submitForm()')
+				form(name='interest' ng-submit='submitForm()' ng-if='!imovel.enviando')
 					input.form-control.offset-top-15(type='text' placeholder='Nome' name='nome' required ng-model='imovel.interest.nome')
 					input.form-control.offset-top-15(type='text' placeholder='Telefone' name='telefone' required ng-model='imovel.interest.telefone')
 					input.form-control.offset-top-15(type='email' placeholder='Email' name='email' required ng-model='imovel.interest.email')
@@ -115,6 +115,12 @@
 					button.btn.btn-primary.btn-lg.btn-block.offset-top-30(type='submit')
 						i.fa.fa-envelope-o
 						|  Enviar
+
+				.offset-top-60(ng-if='imovel.enviando')
+					.text-white.text-center
+						i.fa.fa-envelope-o.fa-3x &nbsp;
+						i.fa.fa-spin.fa-refresh.fa-3x
+						h2.offset-top-60 Enviando...
 
 	.row.offset-top-15(ng-if='immobile.feature_immobile.length')
 		.col-xs-12
@@ -155,7 +161,7 @@
 				info-window(id='#info-window' visible-on-marker='#marker')
 					div(ng-non-bindable='')
 						h4.hidden-xs {{immobile.immobile_name}}
-						p {{immobile.Address.address_public_place}} {{immobile.Address.address_number}}
-						p {{immobile.Address.District.district_name}}, {{immobile.Address.District.City.city_name}} - {{immobile.Address.District.City.UF.uf_code}}
+						p {{immobile.address.address_public_place}} {{immobile.address.address_number}}
+						p {{immobile.address.district.district_name}}, {{immobile.address.district.city.city_name}} - {{immobile.address.district.city.uf.uf_code}}
 
 card-carousel.offset-top-60(carousel-id='sliding-cards' name='Veja também' interval='5000' cards='imovel.related' ng-if='imovel.related.length')

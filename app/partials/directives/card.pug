@@ -3,7 +3,10 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
 	
-	.picture
+	.picture(ng-if='dummy')
+		.dummy
+		
+	.picture(ng-if='!dummy')
 		div(style='background-image: url(\' {{currentPicture()}} \')')
 			//- img(src='{{currentPicture()}}')
 			.category(ng-if='category')

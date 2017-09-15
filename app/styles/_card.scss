@@ -91,6 +91,12 @@ a.card {
 			transition: background-image 0.5s ease-in-out;
 			position: relative;
 
+			&.dummy {
+				background-color: #d5d5d5;
+				background-size: contain;
+				background-repeat: no-repeat; 
+			}
+
 			img {
 				position: absolute;
 				width: 100%;

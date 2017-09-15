@@ -14,6 +14,7 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 	var self = this;
 
 	this.related = [ ];
+	this.enviando = false;
 
 	self.interest = {
 		immobile_id: null,
@@ -113,14 +114,25 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 	];
 
 	$scope.submitForm = function() {
+		$timeout(function() { this.enviando = true; });
 		$http({
 			url: URLS.root + 'api/mail.php?action=interest',
 			method: 'POST',
 			data: self.interest
 		}).then(function(success) {
-			alert('formulario enviado');
+			$timeout(function() { this.enviando = false; });
+			self.modal = {
+				title: 'Sucesso',
+				message: 'Sua mensagem foi enviada! Entraremos em contato assim que possível.'
+			};
+			jQuery('.modal.fade').modal('show');
 		}, function(error) {
-			alert('formulario nao enviado');
+			$timeout(function() { this.enviando = false; });
+			self.modal = {
+				title: 'Erro',
+				message: 'Infelizmente não foi possível enviar sua mensagem. Tente novamente mais tarde.'
+			};
+			jQuery('.modal.fade').modal('show');
 		});
 	};
 

@@ -1,9 +1,11 @@
 'use script';
 
 angular.module('alabama.controllers')
-	.controller('ContatoCtrl', ['$rootScope', '$scope', 'NgMap', 'ImmobileManager', 'URLS', function($rootScope, $scope, NgMap, ImmobileManager, URLS) {
+	.controller('ContatoCtrl', ['$rootScope', '$scope', '$timeout', 'NgMap', 'ImmobileManager', 'URLS', function($rootScope, $scope, $timeout, NgMap, ImmobileManager, URLS) {
 
 		var self = this;
+
+		self.enviando = false;
 
 		NgMap.getMap().then(function(map) {
 			self.map = map;
@@ -26,9 +28,32 @@ angular.module('alabama.controllers')
 			$rootScope.loading.unload();
 		});
 
+		function successMessage() {
+			self.enviando = false;
+			self.modal = {
+				title: 'Sucesso',
+				message: 'A mensagem foi enviada com sucesso! Agradecemos pelo contato.'
+			};
+			jQuery('.modal.fade').modal('show');
+			$scope.$apply();
+		}
+
+		function errorMessage() {
+			self.enviando = false;
+			self.modal = {
+				title: 'Erro',
+				message: 'Infelizmente não foi possível enviar sua mensagem. Tente novamente mais tarde.'
+			};
+			jQuery('.modal.fade').modal('show');
+			$scope.$apply();
+		}
+
 		jQuery('form').on('submit', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
+			
+			self.enviando = true;
+			// $scope.$apply();
 			$rootScope.loading.load();
 			jQuery.ajax({
 				url: URLS.root + 'api/mail.php?action=contact',
@@ -36,12 +61,12 @@ angular.module('alabama.controllers')
 				dataType: 'json',
 				data: jQuery('form').serialize(),
 				success: function(data) {
-					$rootScope.loading.unload();
-					$scope.$apply();
+					$rootScope.loading.unload();					
+					successMessage();
 				},
 				error: function(data) {
 					$rootScope.loading.unload();
-					$scope.$apply();
+					errorMessage();
 				}
 			});
 		});
