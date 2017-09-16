@@ -49,7 +49,6 @@ angular.module('alabama.services')
 					crossDomain: true,
 					data: {
 						immobile_code: code,
-						json: 1,
 						get_address: true,
 						get_address_district: true,
 						get_address_city: true,

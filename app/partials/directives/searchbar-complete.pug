@@ -34,7 +34,7 @@
 					option(value='' disabled style='display: none') Bairro
 					option(value='0') Todos
 					option(ng-repeat='bairro in searchbar.filters.districts' ng-value='bairro.district_id')
-						| {{bairro.district_name}} ({{bairro.immobiles}})
+						| {{bairro.district_name}} ({{bairro.quantity}})
 			.col-xs-12.col-sm-6.col-md-3
 				select.selectpicker.form-control(title='Tipo' data-container='body' ng-model='searchbar.search.tipo')
 					option(value='' disabled style='display: none') Tipo

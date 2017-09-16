@@ -33,7 +33,6 @@ angular.module('alabama.services')
 				};
 
 				data = {
-					json: 1,
 					get_immobile_address: true,
 					get_address_district: true,
 					get_address_city: true,
@@ -71,7 +70,6 @@ angular.module('alabama.services')
 					url: URLS.root + 'api/immobile.php?action=getListFeatured',
 					crossDomain: true,
 					data: {
-						json: 1,
 						get_immobile_address: true,
 						get_address_district: true,
 						get_address_city: true,
@@ -102,7 +100,6 @@ angular.module('alabama.services')
 					url: URLS.root + 'api/immobile.php?action=getListNews',
 					crossDomain: true,
 					data: {
-						json: 1,
 						get_immobile_address: true,
 						get_address_district: true,
 						get_address_city: true,
@@ -133,7 +130,6 @@ angular.module('alabama.services')
 					url: URLS.root + 'api/immobile.php?action=getMostVisited',
 					crossDomain: true,
 					data: {
-						json: 1,
 						get_immobile_address: true,
 						get_address_district: true,
 						get_address_city: true,

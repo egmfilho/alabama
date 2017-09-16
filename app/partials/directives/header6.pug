@@ -1,9 +1,9 @@
 .header6-mobile.hidden-sm.hidden-md.hidden-lg
-	.close.pull-right(ng-click='header.hideheader6Mobile()')
+	.close.pull-right(ng-click='header.hideheader5Mobile()')
 		i.glyphicon.glyphicon-remove
 	ul
 		li(role='presentation' name='{{btn.name}}' ng-repeat='btn in navButtons track by $index')
-			a(ng-href='{{btn.url}}' ng-click='hideheader6Mobile()') {{btn.nome}}
+			a(ng-href='{{btn.url}}' ng-click='hideheader5Mobile()') {{btn.nome}}
 
 	.contacts(ng-if='!!whatsapp || !!tel || !!email')
 		div(ng-if='!!whatsapp')
@@ -35,9 +35,9 @@
 			.container
 				.row
 					.col-xs-12.col-sm-3
-						a(href='/' ng-click='header.hideheader6Mobile()')
+						a(href='/' ng-click='header.hideheader5Mobile()')
 							.logo
-						button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleheader6Mobile()')
+						button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleheader5Mobile()')
 							i.fa.fa-navicon
 
 					.hidden-xs.col-sm-9

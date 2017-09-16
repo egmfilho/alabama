@@ -96,7 +96,7 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 			angular.forEach(success.data, function(item) {
 				self.cardList.push(item.convertToCardInfo());
 			});
-			self.pagination.totalItems = success.info.summary ? success.info.summary.immobiles : 0;
+			self.pagination.totalItems = success.info.summary ? success.info.summary.quantity : 0;
 			self.resumo = success.info.summary ? success.info.summary.features : { };
 			$rootScope.scrollTop(300, 1);
 			// $rootScope.loading.unload();
