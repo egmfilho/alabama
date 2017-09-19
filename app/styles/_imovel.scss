@@ -79,6 +79,7 @@
 			margin: 0;
 			background-color: #eee;
 			border-radius: 6px;
+			min-height: 210px;
 
 			h3, p {
 				font-family: 'Open Sans', sans-serif;
@@ -159,6 +160,7 @@
 	.slider-for {
 		margin-bottom: 15px;
 		overflow: hidden;
+		border-radius: 6px;
 
 		.slick-prev, .slick-next {
 			width: 15%;
