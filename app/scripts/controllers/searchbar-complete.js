@@ -125,4 +125,8 @@ function SearchBar($rootScope, $scope, $location, $filter, $timeout, Filters) {
 	$scope.$on('updateFilters', function(event, value) {
 		updateFilters(value);
 	});
+
+	$scope.$on('minimizeSearchbar', function() {
+		jQuery('#expand-search').collapse();	
+	});
 }

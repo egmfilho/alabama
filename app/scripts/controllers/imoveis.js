@@ -3,9 +3,9 @@
 angular.module('alabama.controllers')
 	.controller('ImoveisCtrl', ImoveisCtrl);
 
-ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', 'ImmobileManager', 'SearchFilters'];
+ImoveisCtrl.$inject = ['$rootScope', '$scope', '$location', '$timeout', '$window', 'ImmobileManager', 'SearchFilters'];
 
-function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, SearchFilters) {
+function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileManager, SearchFilters) {
 
 	var self = this, filtros = { }, _isLoading;
 
@@ -82,6 +82,11 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 			}
 		}
 	};
+
+	$scope.$on('$viewContentLoaded', function() {
+		if ($window.innerWidth < 768)
+			$timeout(function() { $scope.$broadcast('minimizeSearchbar', null); }, 500);
+	});
 
 	$scope.$on('search', function(event, filters) {
 		angular.extend(filtros, filters);
