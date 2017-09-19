@@ -7,10 +7,6 @@
 		.directive('header6', ['$rootScope', function($rootScope) {
 
 			function controller($scope, $filter) {
-
-				$scope.$on('minimize-searchbar', function() {
-
-				});
 			
 				$scope.currentPath = function() {
 					return $rootScope.currentPath;
@@ -62,7 +58,7 @@
 					scope.navButtons = JSON.parse(scope.navigation);
 				},
 				controller: controller,
-				controllerAs: 'searchbar',
+				controllerAs: 'header',
 			}
 
 		}]);

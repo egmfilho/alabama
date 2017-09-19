@@ -1,21 +1,21 @@
 .header6-mobile.hidden-sm.hidden-md.hidden-lg
-	.close.pull-right(ng-click='searchbar.hideHeader6Mobile()')
+	.close.pull-right(ng-click='header.hideHeader6Mobile()')
 		i.glyphicon.glyphicon-remove
 	ul
 		li(role='presentation' name='home')
-			a(href='/' ng-click='searchbar.hideHeader6Mobile()') Home
+			a(href='/' ng-click='header.hideHeader6Mobile()') Home
 		
 		li(role='presentation' name='sobre')
-			a(href='/sobre' ng-click='searchbar.hideHeader6Mobile()') Sobre
+			a(href='/sobre' ng-click='header.hideHeader6Mobile()') Sobre
 
 		li(role='presentation' name='imoveis')
-			a(href='/imoveis' ng-click='searchbar.hideHeader6Mobile()') Imóveis
+			a(href='/imoveis' ng-click='header.hideHeader6Mobile()') Imóveis
 
 		li(role='presentation' name='equipe')
-			a(href='/equipe' ng-click='searchbar.hideHeader6Mobile()') Equipe
+			a(href='/equipe' ng-click='header.hideHeader6Mobile()') Equipe
 
 		li(role='presentation' name='contato')
-			a(href='/contato' ng-click='searchbar.hideHeader6Mobile()') Contato
+			a(href='/contato' ng-click='header.hideHeader6Mobile()') Contato
 
 	.contacts(ng-if='!!whatsapp || !!tel || !!email')
 		div(ng-if='!!whatsapp')
@@ -48,9 +48,9 @@
 			.container
 				.row
 					.col-xs-12.col-sm-3
-						a(href='/' ng-click='searchbar.hideHeader6Mobile()')
+						a(href='/' ng-click='header.hideHeader6Mobile()')
 							.logo
-						button.btn.btn-default.pull-right.visible-xs-block(ng-click='searchbar.toggleHeader6Mobile()')
+						button.btn.btn-default.pull-right.visible-xs-block(ng-click='header.toggleHeader6Mobile()')
 							i.fa.fa-navicon
 
 					.hidden-xs.col-sm-9
