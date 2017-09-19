@@ -25,10 +25,10 @@ angular.module('alabama.services')
 						min: filtros.minValue,
 						max: filtros.maxValue
 					},
-					immobile_bedroom: filtros.dormitorios || 0,
-					immobile_bathroom: filtros.banheiros || 0,
-					immobile_suite: filtros.suite || 0,
-					immobile_parking_spot: filtros.garagem || 0,
+					immobile_bedroom: filtros.dormitorios || null,
+					immobile_bathroom: filtros.banheiros || null,
+					immobile_suite: filtros.suite || null,
+					immobile_parking_spot: filtros.garagem || null,
 					order: filtros.order
 				};
 
