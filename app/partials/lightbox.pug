@@ -1,15 +1,20 @@
+//- ###############################################################################
+//- # O CAPTION DA IMAGEM ESTA CONFIGURADO NO PROVIDER DENTRO DO CONFIG EM APP.JS #
+//- ###############################################################################
+
 .modal-body(ng-swipe-left='Lightbox.nextImage()' ng-swipe-right='Lightbox.prevImage()')
 	//- navigation
 	.lightbox-nav(style='margin-bottom: 15px')
 		//- close button
-		button.close(aria-hidden='true' ng-click='$dismiss()') x
+		button.close(aria-hidden='true' ng-click='$dismiss()')
+			i.text-white.fa.fa-close
 
-		.btn-group(ng-if='Lightbox.images.length > 1')
-			a.btn.btn-xs.btn-primary(ng-click='Lightbox.prevImage()')
+		.control(ng-if='Lightbox.images.length > 1')
+			a.btn.btn-default.btn-outline(ng-click='Lightbox.prevImage()')
 				i.glyphicon.glyphicon-menu-left
-				|  Anterior
-			a.btn.btn-xs.btn-primary(ng-click='Lightbox.nextImage()')
-				| Próximo  
+				| &nbsp;Anterior
+			a.btn.btn-default.btn-outline(ng-click='Lightbox.nextImage()')
+				| Próximo&nbsp;
 				i.glyphicon.glyphicon-menu-right
 
 	.lightbox-image-container

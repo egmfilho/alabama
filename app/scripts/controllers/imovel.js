@@ -60,7 +60,10 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 
 		var images = [];
 		angular.forEach($scope.immobile.gallery, function(item) {
-			images.push(item.url);
+			images.push({
+				url: item.url,
+				label: item.gallery_image_title + ' ' + item.gallery_image_title
+			});
 		});
 		Lightbox.openModal(images, self.currentSlide || 0);
 	};

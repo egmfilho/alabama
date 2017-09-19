@@ -32,6 +32,14 @@ angular.module('alabama', [
 	.config(['LightboxProvider', function(LightboxProvider) {
 		LightboxProvider.fullScreenMode = true;
 		LightboxProvider.templateUrl = 'partials/lightbox.html';
+		
+		LightboxProvider.getImageUrl = function(image) {
+			return image.url;
+		};
+
+		LightboxProvider.getImageCaption = function(image) {
+			return image.label;
+		};
 	}])
 	.config(['$routeProvider', function($routeProvider) {
 
