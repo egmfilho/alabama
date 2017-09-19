@@ -3,10 +3,10 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}
 	
-	.picture(ng-if='dummy')
+	.picture(ng-if='dummy' disable-rclick)
 		.dummy
 		
-	.picture(ng-if='!dummy')
+	.picture(ng-if='!dummy' disable-rclick)
 		div(style='background-image: url(\' {{currentPicture()}} \')')
 
 			.slide-control(ng-if='!autoSlide && thumbs.length')

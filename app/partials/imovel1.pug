@@ -22,7 +22,7 @@ button.btn.btn-primary(ng-click='openLightbox()') TESTE
 			slick.slider-for(infinite='true' slides-to-show='1' slides-to-scroll='1' arrows='true' as-nav-for='.slider-nav' current-index='imovel.currentSlide')
 				div.picture(ng-repeat='pic in immobile.gallery_image')
 					div
-						img.img-responsive(ng-src='{{pic.url}}')
+						img.img-responsive(ng-src='{{pic.url}}' disable-rclick)
 						.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
 							h4.text-center {{pic.gallery_image_title}}
 							p.text-sm.text-center {{pic.gallery_image_text}}

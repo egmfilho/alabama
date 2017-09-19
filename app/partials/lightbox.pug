@@ -18,7 +18,7 @@
 			span {{Lightbox.imageCaption}}
 
 		//- image
-		img(ng-if='!Lightbox.isVideo(Lightbox.image)' lightbox-src='{{Lightbox.imageUrl}}')
+		img(ng-if='!Lightbox.isVideo(Lightbox.image)' lightbox-src='{{Lightbox.imageUrl}}' disable-rclick)
 
 		//- video
 		.embed-responsive.embed-responsive-16by9(ng-if='Lightbox.isVideo(Lightbox.image)')
