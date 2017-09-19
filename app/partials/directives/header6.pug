@@ -61,14 +61,17 @@
 		.row.remove-margin.container-carousel(ng-if='currentPath() == "/"')
 			.col-xs-12(style='padding: 0')
 				#carousel-showcase.carousel.slide(data-ride='carousel' data-pause='false')
-					.info
-						p.offset-top-30.offset-bottom-15 
-							b {{title}}
-							br 
-							| {{subtitle}}
-						p.offset-top-30
-							| {{message}}
-						a.btn.btn-default.btn-block.btn-lg(href='/imoveis') {{btnLabel}}
+					.container
+						.row
+							.col-xs-12
+								.info
+									p.offset-top-30.offset-bottom-15 
+										b {{title}}
+										br 
+										| {{subtitle}}
+									p.offset-top-30
+										| {{message}}
+									a.btn.btn-default.btn-block.btn-lg(href='/imoveis') {{btnLabel}}
 
 					//- Wrapper for slides
 					.carousel-inner.clearfix(role='listbox')
