@@ -371,7 +371,8 @@ a.card {
 					margin-right: 10px;					
 					padding: 5px 15px;
 					border: 1px solid $main-color;
-					border-radius: 4px;
+					background-color: rgba($main-color, .1);
+					// border-radius: 4px;
 				}
 			}
 
