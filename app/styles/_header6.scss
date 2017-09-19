@@ -196,8 +196,13 @@
 				position: absolute;
 				width: calc(100% - 30px);
 				bottom: 15px;
-				font-size: 32px;
-				font-weight: bold;
+				font-size: 26px;
+				border-radius: 0;
+				background-color: rgba(#fff, .2);
+
+				&:hover {
+					color: white !important;
+				}
 			}
 		}
 
