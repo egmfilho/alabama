@@ -205,7 +205,7 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileM
 				break;
 		}
 
-		search();
+		this.pagination.goTo(0);
 	};
 
 	function search() {
