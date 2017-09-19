@@ -114,7 +114,7 @@ angular.module('alabama.services')
 					pictureLg: this.getMainPictureUrl(),
 					title: this.immobile_name,
 					parsedName: this.immobile_name.replace(/ /g, '-'),
-					subtitle: this.address ? this.address.district.city.city_name : '',
+					subtitle: this.address ? this.address.district.city.city_name + ' - ' + this.address.district.district_name : '',
 					description: this.immobile_description || '',
 					category: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
 					area: parseInt(this.immobile_area_total),

@@ -181,13 +181,11 @@ a.card {
 		}
 
 		.subtitle {
-			font-size: 1em;
+			font-size: .9em;
 			display: block;
 			margin-top: 5px;
 			margin-bottom: 10px;
 			color: $main-color;
-			// font-weight: 200;
-			letter-spacing: 1px;
 
 			i {
 				color: $main-color;
@@ -359,6 +357,7 @@ a.card {
 			}
 
 			.subtitle {
+				font-size: 1em;
 				margin-bottom: 10px;
 			}
 
