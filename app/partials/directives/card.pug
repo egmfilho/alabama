@@ -19,7 +19,7 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 				| {{category}}
 			//- .icons(ng-if='!isHorizontal')
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
-					| {{area}} 
+					| {{area | number}} 
 					span  m&#178; &nbsp;
 
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
@@ -47,7 +47,7 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 
 		.icons(ng-if='isHorizontal')
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m2' ng-if='area && area > 0')
-				| {{area}} 
+				| {{area | number}} 
 				b  m&#178;
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
