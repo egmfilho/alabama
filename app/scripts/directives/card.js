@@ -25,7 +25,7 @@ angular.module('alabama.directives')
 			};
 			
 			$scope.onMouseEnter = function() {
-				if (!$scope.thumbs || !$scope.thumbs.length)
+				if (!$scope.autoSlide || !$scope.thumbs || !$scope.thumbs.length)
 					return;
 
 				timer = $timeout(function() {
@@ -41,6 +41,16 @@ angular.module('alabama.directives')
 				$timeout.cancel(timer);
 				timer = null;
 				index = 0;
+			};
+
+			$scope.prevSlide = function(e) {
+				e.preventDefault();
+				index = (index - 1) % $scope.thumbs.length;
+			};
+
+			$scope.nextSlide = function(e) {
+				e.preventDefault();
+				index = (index + 1) % $scope.thumbs.length;
 			};
 		}
 

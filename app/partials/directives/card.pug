@@ -8,9 +8,15 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 		
 	.picture(ng-if='!dummy')
 		div(style='background-image: url(\' {{currentPicture()}} \')')
-			//- img(src='{{currentPicture()}}')
+
+			.slide-control(ng-if='!autoSlide && thumbs.length')
+				.left(ng-click='prevSlide($event)')
+					i.fa.fa-angle-left
+				.right(ng-click='nextSlide($event)')
+					i.fa.fa-angle-right
+
 			.category(ng-if='category')
-				|  {{category}}
+				| {{category}}
 			//- .icons(ng-if='!isHorizontal')
 				span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m&#178;' ng-if='area && area > 0')
 					| {{area}} 
