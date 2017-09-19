@@ -65,6 +65,9 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileM
 			return Math.max(1, Math.ceil(this.totalItems / this.itemsPerPage));
 		},
 		goTo: function(page) {
+			if (page < 0 || page >= self.pagination.getPageAmount())
+				return;
+				
 			filtros.page = page + 1;
 			search();
 		},
