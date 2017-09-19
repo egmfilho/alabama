@@ -20,8 +20,8 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 		}
 
 		var order = {
-			column: $location.search().order ? $location.search().order.split('-')[0] : 0,
-			order: $location.search().order ? $location.search().order.split('-')[1] : 0
+			column: $location.search().order ? $location.search().order.split('-')[0] : 3,
+			order: $location.search().order ? $location.search().order.split('-')[1] : 1
 		};
 
 		filtros = $location.search();
@@ -205,7 +205,7 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, ImmobileManager, S
 
 	function search() {
 		var temp = angular.extend({}, filtros, {
-			order: filtros.order ? filtros.order.column + '-' + filtros.order.order : '0-0'
+			order: filtros.order ? filtros.order.column + '-' + filtros.order.order : '3-1'
 		});
 
 		SearchFilters.set(filtros);
