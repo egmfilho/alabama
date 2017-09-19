@@ -143,4 +143,14 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 	$scope.carouselNext = function() {
 		jQuery('#immobile-pictures-xs').carousel('next');
 	};
+
+	$scope.$on('search', function(event, filters) {
+		var temp = angular.extend({}, filters, {
+			order: filters.order ? filters.order.column + '-' + filters.order.order : '3-1'
+		});
+
+		SearchFilters.set(filters);
+
+		$location.path('/imoveis').search(temp);
+	});
 }
