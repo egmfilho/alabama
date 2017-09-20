@@ -46,7 +46,9 @@
 		.col-sm-8.col-md-9
 			.row.pane.perfil-imovel
 				.col-xs-12
-					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='{{!imovel.isXS}}' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
+					.no-pic-immobile(ng-if='immobile.gallery.length == 0')
+
+					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='{{!imovel.isXS}}' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide' ng-if='immobile.gallery.length > 0')
 						.picture(ng-repeat='pic in immobile.gallery' disable-rclick ng-click='openLightbox(imovel.currentSlide)')
 							.blurry(style='background-image: url("{{pic.url}}")')
 							.dark-cover

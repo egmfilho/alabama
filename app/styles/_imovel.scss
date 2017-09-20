@@ -119,6 +119,20 @@
 		}
 	}
 
+	.no-pic-immobile {
+		width: 100%;
+		height: 200px;
+		background-image: url('../images/no-pic.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: #d5d5d5;
+
+		@media (min-width: $screen-sm-min) {
+			height: 400px;
+		}
+	}
+
 	.slider-for, .slider-nav {
 
 		.slick-prev, .slick-next {
