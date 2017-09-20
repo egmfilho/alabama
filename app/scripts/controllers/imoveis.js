@@ -98,7 +98,6 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileM
 
 	function getCardList(limit, filters) {
 		self.cardList = [];
-		// $rootScope.loading.load();
 		_isLoading = true;
 		ImmobileManager.loadAllImmobiles(limit, filters).then(function(success) {
 			angular.forEach(success.data, function(item) {
@@ -107,12 +106,10 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileM
 			self.pagination.totalItems = success.info.summary ? success.info.summary.quantity : 0;
 			self.resumo = success.info.summary ? success.info.summary.features : { };
 			$rootScope.scrollTop(300, 1);
-			// $rootScope.loading.unload();
 			setOnCollapseFilters();
 			_isLoading = false;
 		}, function(error) {
 			console.log(error);
-			$rootScope.loading.unload();
 			_isLoading = false;
 		});
 	}
@@ -150,7 +147,6 @@ function ImoveisCtrl($rootScope, $scope, $location, $timeout, $window, ImmobileM
 		if (!containerFilters.elem.length) return;
 
 		var y = $rootScope.scrollY,
-			// pageBottom = jQuery('.footer').position().top - y - jQuery(window).innerHeight(),
 			marginBottom = 20, 
 			pageBottom = jQuery('.footer').position().top - (y + marginBottom) - containerFilters.height, 
 			cardListHeight = parseInt(jQuery('div[name="card-list"]').css('height'));
