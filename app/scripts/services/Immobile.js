@@ -108,8 +108,8 @@ angular.module('alabama.services')
 				return null;
 			},
 			getUrl: function() {
-				var subtitle = this.address ? this.address.district.city.city_name + ' - ' + this.address.district.district_name : '';
-				return '/imovel?codigo=' + this.immobile_code + '&nome=' + (this.immobile_name + '-' + subtitle).replace(/( - | )/g, '-');
+				var subtitle = this.address ? this.address.district.city.city_name + ' ' + this.address.district.district_name : '';
+				return '/imovel?codigo=' + this.immobile_code + '&nome=' + (this.immobile_name + ' ' + subtitle).replace(/( - | +)/g, '-');
 			},
 			convertToCardInfo: function() {
 				return {
