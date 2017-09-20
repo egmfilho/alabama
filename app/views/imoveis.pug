@@ -28,32 +28,32 @@
 								i.fa.fa-angle-down.pull-right
 						.collapse.in
 							.panel-body
-								div(ng-init='bairroAsc={column: 11, order: 1}')
+								div(ng-init='bairroAsc={column: 3, order: 1}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", bairroAsc)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == bairroAsc.column && imoveis.getFiltros().order.order == bairroAsc.order}')
 										i.fa.fa-sort-alpha-asc
 										|  Nome do bairro crescente
 
-								div(ng-init='bairroDesc={column: 11, order: 0}')
+								div(ng-init='bairroDesc={column: 3, order: 0}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", bairroDesc)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == bairroDesc.column  && imoveis.getFiltros().order.order == bairroDesc.order}')
 										i.fa.fa-sort-alpha-desc
 										|  Nome do bairro decrescente
 
-								div(ng-init='menorArea={column: 6, order: 1}')
+								div(ng-init='menorArea={column: 2, order: 1}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", menorArea)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == menorArea.column && imoveis.getFiltros().order.order == menorArea.order}')
 										i.fa.fa-sort-amount-asc
 										|  Menor área
 
-								div(ng-init='maiorArea={column: 6, order: 0}')
+								div(ng-init='maiorArea={column: 2, order: 0}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", maiorArea)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == maiorArea.column  && imoveis.getFiltros().order.order == maiorArea.order}')
 										i.fa.fa-sort-amount-desc
 										|  Maior área
 
-								div(ng-init='menorValor={column: 3, order: 1}')
+								div(ng-init='menorValor={column: 1, order: 1}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", menorValor)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == menorValor.column && imoveis.getFiltros().order.order == menorValor.order}')
 										i.fa.fa-sort-numeric-asc
 										|  Menor valor
 
-								div(ng-init='maiorValor={column: 3, order: 0}')
+								div(ng-init='maiorValor={column: 1, order: 0}')
 									a(href='' style='display: block' ng-click='imoveis.setFiltro("order", maiorValor)' ng-class='{"text-bold text-uppercase": imoveis.getFiltros().order.column == maiorValor.column && imoveis.getFiltros().order.order == maiorValor.order}')
 										i.fa.fa-sort-numeric-desc
 										|  Maior valor
