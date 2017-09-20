@@ -59,8 +59,6 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 	$scope.openLightbox = function(index) {
 		self.currentSlide = index || 0;
 
-		if ($window.innerWidth < 768) return;
-
 		var images = [];
 		angular.forEach($scope.immobile.gallery, function(item) {
 			images.push({

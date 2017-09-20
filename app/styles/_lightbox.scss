@@ -1,11 +1,21 @@
 .lightbox-modal {
-	
+	margin-top: 90px;
+	overflow-y: auto;
+
+	@media (min-width: $screen-sm-min) {
+		margin-top: 0;
+	}
+
 	.modal-dialog {
 		min-width: 100% !important;
 		min-height: 100% !important;
 		width: 100% !important;
-		height: 100% !important;
+		height: auto !important;
 		margin: 0 !important;
+
+		@media (min-width: $screen-sm-min) {
+			height: 100% !important;
+		}
 
 		.modal-content {
 			min-width: 100% !important;
@@ -66,8 +76,8 @@
 						height: auto;
 
 						.watermark {
-							width: 200px;
-							height: 120px;
+							width: 100px;
+							height: 60px;
 							background-image: url('../images/PN/logo2.png');
 							background-position: center;
 							background-size: contain;
@@ -76,6 +86,11 @@
 							position: absolute;
 							right: 10px;
 							bottom: 10px;
+
+							@media (min-width: $screen-sm-min) {
+								width: 200px;
+								height: 120px;
+							}
 						}
 					}
 				}

@@ -161,6 +161,19 @@
 		margin-bottom: 15px;
 		overflow: hidden;
 		border-radius: 6px;
+		height: 200px;
+
+		@media (min-width: $screen-sm-min) {
+			height: 400px;
+		}
+
+		.slick-list {
+			height: 100%;
+
+			.slick-track {
+				height: 100%;
+			}
+		}
 
 		.slick-prev, .slick-next {
 			width: 15%;
@@ -208,16 +221,17 @@
 		}
 
 		.picture {
-			height: 400px;
+			height: 100%;
 			width: auto;
 			max-width: 100%;
 			text-align: center;	
 			position: relative;
+			background-color: #666;
 
 			div {
 				width: 100%; 
 				max-width: 100%;
-				height: 400px;
+				height: 100%;
 
 				&.blurry {
 					background-size: cover; 
@@ -383,47 +397,6 @@
 			> td {
 				border: 1px solid #ddd;
 				color: $gray-light;
-			}
-		}
-	}
-}
-
-#immobile-pictures-xs {
-	margin: 0;
-
-	.carousel-inner {
-		width: 100%;
-		height: 200px;
-
-		.item {
-			width: 100%;
-			height: 100%;
-
-			.picture {
-				width: 100%;
-				height: 100%;
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-position: center;
-			}
-		}
-	}
-
-	.carousel-indicators {
-		position: initial;
-		padding: 0;
-		width: 100%;
-		margin: 0;
-
-		li {
-			width: 5px;
-			height: 5px;
-			border-color: $main-color;
-
-			&.active {
-				background-color: $main-color;
-				width: 7px;
-				height: 7px;
 			}
 		}
 	}

@@ -32,12 +32,12 @@
 				| {{immobile.immobile_name}} em {{immobile.address.district.city.city_name}} - {{immobile.address.district.city.uf.uf_code}}
 
 	.row
-		.col-sm-6.hidden-xs
-			a.btn.btn-primary(href='/imoveis')
+		.col-xs-6
+			a.btn.btn-primary.btn-outline(href='/imoveis')
 				i.fa.fa-chevron-left &nbsp;
 				| Imóveis
 
-		.col-xs-12.col-sm-6
+		.col-xs-6
 			h5.text-gray.text-sans.text-right
 				i.fa.fa-calendar
 				| &nbsp;{{immobile.immobile_date | date:'dd/MM/yyyy'}}
@@ -45,12 +45,11 @@
 	.row
 		.col-sm-8.col-md-9
 			.row.pane.perfil-imovel
-				.col-xs-12.hidden-xs
-					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='false' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
+				.col-xs-12
+					slick.slider-for(slides-to-show='1' slides-to-scroll='1' arrows='{{!imovel.isXS}}' as-nav-for='slick.slider-nav' draggable='{{imovel.isXS}}' fade='{{imovel.isXS}}' speed='150' current-index='imovel.currentSlide')
 						.picture(ng-repeat='pic in immobile.gallery' disable-rclick ng-click='openLightbox(imovel.currentSlide)')
 							.blurry(style='background-image: url("{{pic.url}}")')
 							.dark-cover
-							//- .clean(style='background-image: url("{{pic.url}}")')
 							.clean
 								img.img-responsive(ng-src='{{pic.url}}')
 								.watermark
@@ -58,19 +57,9 @@
 								h4.text-center {{pic.gallery_image_title}}
 								p.text-sm.text-center {{pic.gallery_image_text}}
 
-					slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' swipe-to-slide='true' responsive='imovel.responsive2')
+					slick.hidden-xs.slider-nav(slides-to-show='5' slides-to-scroll='1' as-nav-for='slick.slider-for' center-mode='true' focus-on-select='true' swipe-to-slide='true' responsive='imovel.responsive2' ng-if='immobile.gallery.length > 5')
 						.thumb(ng-style='{}' ng-repeat='pic in immobile.gallery')
 							.picture(ng-style='{"background-image": "url({{pic.thumb}})"}')
-
-				.col-xs-12.visible-xs-block
-					#immobile-pictures-xs.carousel.slide.row(data-ride='carousel' data-pause='false' ng-swipe-left='carouselNext()' ng-swipe-right='carouselPrev()')
-						.carousel-inner(role='listbox')
-							.item(ng-class='{"active": $index == 0}' ng-repeat='pic in immobile.gallery track by $index')
-
-								.picture(ng-style='{"background-image": "url(" + pic.url + ")"}' ng-click='openLightbox($index)')
-
-						ol.carousel-indicators
-							li(data-target='#immobile-pictures-xs' data-slide-to='$index' ng-class='{"active": $index == 0}' ng-repeat='n in getNumber(immobile.gallery.length) track by $index')
 
 			.row.pane.pane-gray
 				.col-xs-12.description
