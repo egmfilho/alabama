@@ -198,10 +198,10 @@
 				bottom: 15px;
 				font-size: 26px;
 				border-radius: 0;
-				background-color: rgba(#fff, .2);
+				opacity: .8;
 
 				&:hover {
-					color: white !important;
+					opacity: 1;
 				}
 			}
 		}
