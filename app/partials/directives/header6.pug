@@ -19,13 +19,13 @@
 
 	.contacts(ng-if='!!whatsapp || !!tel || !!email')
 		div(ng-if='!!whatsapp')
-			i.fa.fa-whatsapp
-			span  {{whatsapp}}
+			i.fa.fa-whatsapp &nbsp;
+			span {{whatsapp}}
 		div(ng-if='!!tel')
-			i.fa.fa-phone
-			span  {{tel}}
+			i.fa.fa-phone &nbsp;
+			span {{tel}}
 		div(ng-if='!!email')
-			i.fa.fa-envelope-o
+			i.fa.fa-envelope-o &nbsp;
 			span {{email}}
 
 
