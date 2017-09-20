@@ -9,8 +9,6 @@ angular.module('alabama.directives')
 
 		function link(scope, element, attrs) {
 			jQuery('[data-toggle="tooltip"]').tooltip();
-
-			scope.customUrl = '/imovel?codigo=' + scope.code + '&nome=' + (scope.title + '-' + scope.subtitle).replace(/( - | )/g, '-');
 		}
 
 		function controller($scope, $timeout) {

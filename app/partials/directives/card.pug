@@ -1,4 +1,4 @@
-a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isHorizontal}' ng-mouseenter='onMouseEnter()' ng-mouseleave='onMouseLeave()')
+a.card(ng-href='{{!dummy ? url : \'\'}}' ng-class='{"card-horizontal": isHorizontal}' ng-mouseenter='onMouseEnter()' ng-mouseleave='onMouseLeave()')
 	
 	.custom-label(ng-if='labelText' ng-style='{"background-color": labelColor}')
 		| {{labelText}}

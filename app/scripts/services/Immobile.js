@@ -107,6 +107,10 @@ angular.module('alabama.services')
 
 				return null;
 			},
+			getUrl: function() {
+				var subtitle = this.address ? this.address.district.city.city_name + ' - ' + this.address.district.district_name : '';
+				return '/imovel?codigo=' + this.immobile_code + '&nome=' + (this.immobile_name + '-' + subtitle).replace(/( - | )/g, '-');
+			},
 			convertToCardInfo: function() {
 				return {
 					code: this.immobile_code,
@@ -119,7 +123,7 @@ angular.module('alabama.services')
 					category: this.immobile_type == 1 ? 'Venda' : 'Aluguel',
 					area: parseInt(this.immobile_area_total),
 					price: parseInt(this.immobile_value),
-					url: this.url,
+					url: this.getUrl(),
 					bed: this.immobile_bedroom,
 					suite: this.immobile_suite,
 					bath: this.immobile_bathroom,
