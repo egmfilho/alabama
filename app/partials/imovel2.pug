@@ -29,7 +29,10 @@
 
 		.col-xs-12
 			h1.title
-				| {{immobile.immobile_name}} em {{immobile.address.district.city.city_name}} - {{immobile.address.district.city.uf.uf_code}}
+				| {{immobile.immobile_name}}
+				span
+					i.fa.fa-map-marker &nbsp;
+					| {{immobile.address.district.city.city_name}} - {{immobile.address.district.district_name}}
 
 	.row
 		.col-xs-6
