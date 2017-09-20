@@ -78,7 +78,7 @@
 		&.pane-gray {
 			margin: 0;
 			background-color: #eee;
-			border-radius: 6px;
+			// border-radius: 6px;
 			min-height: 210px;
 
 			h3, p {
@@ -94,7 +94,7 @@
 	.interesse2 {
 		color: white;
 		background-color: $main-color-light;
-		border-radius: 6px;
+		// border-radius: 6px;
 		padding: 15px;
 
 		@media(min-width: $screen-sm-min) {
@@ -160,7 +160,7 @@
 	.slider-for {
 		margin-bottom: 15px;
 		overflow: hidden;
-		border-radius: 6px;
+		// border-radius: 6px;
 		height: 200px;
 
 		@media (min-width: $screen-sm-min) {
