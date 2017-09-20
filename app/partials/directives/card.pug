@@ -47,23 +47,23 @@ a.card(ng-href='{{!dummy ? customUrl : \'\'}}' ng-class='{"card-horizontal": isH
 
 		.icons(ng-if='isHorizontal')
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{area}} m2' ng-if='area && area > 0')
-				| {{area | number}} 
-				b  m&#178;
+				| {{area | number}}&nbsp;
+				b m&#178;
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bed}} dormitórios' ng-if='bed && bed > 0')
-				| {{bed}}  
+				| {{bed}}&nbsp;
 				i.fa.fa-bed
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{suite}} suítes' ng-if='suite && suite > 0')
-				| {{suite}}  
+				| {{suite}}&nbsp;
 				i.fa.fa-bathtub
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{bath}} banheiros' ng-if='bath && bath > 0')
-				| {{bath}}  
+				| {{bath}}&nbsp;
 				i.fa.fa-shower
 
 			span(name='icon' data-toggle='tooltip' data-placement='top' title='{{parking}} vagas' ng-if='parking && parking > 0')
-				| {{parking}}
+				| {{parking}}&nbsp;
 				i.fa.fa-car
 		
 		span.description.text-gray
