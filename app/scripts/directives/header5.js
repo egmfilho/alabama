@@ -6,7 +6,17 @@
 	angular.module('alabama.directives')
 		.directive('header5', ['$rootScope', function($rootScope) {
 
-			function controller($scope, $filter) {
+			function controller($scope, $filter, $location, SearchFilters) {
+
+				$scope.$on('search', function(event, filters) {
+					var temp = angular.extend({}, filters, {
+						order: filters.order ? filters.order.column + '-' + filters.order.order : '3-1'
+					});
+			
+					SearchFilters.set(filters);
+			
+					$location.path('/imoveis').search(temp);
+				});
 
 				jQuery('.header5 #carousel-showcase').carousel({
 					pause: null,
@@ -38,7 +48,7 @@
 				};
 			}
 
-			controller.$inject = [ '$scope', '$filter' ];
+			controller.$inject = [ '$scope', '$filter', '$location', 'SearchFilters' ];
 
 			return {
 				restrict: 'E',
