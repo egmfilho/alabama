@@ -31,6 +31,9 @@ function ImovelCtrl($rootScope, $scope, $location, $window, $http, $timeout, Imm
 			$scope.$broadcast('updateFilters', SearchFilters.get());
 		}, 200);
 
+		if ($window.innerWidth < 768)
+			$timeout(function() { $scope.$broadcast('minimizeSearchbar', null); }, 500);
+
 		self.currentSlide = 0;
 
 		self.isXS = $window.innerWidth < 768;
