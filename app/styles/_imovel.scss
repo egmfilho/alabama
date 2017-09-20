@@ -241,13 +241,27 @@
 				}
 		
 				&.clean {
-					background-size: contain; 
-					background-position: center; 
-					background-repeat: no-repeat;
-					position: absolute;
-					left: 0;
-					top: 0;
+					width: auto;
+					position: relative;
+					display: inline-block;
 					z-index: 3;
+
+					img {
+						height: 100%;	
+					}
+
+					.watermark {
+						width: 120px;
+						height: 60px;
+						background-image: url('../images/PN/logo2.png');
+						background-position: center;
+						background-size: contain;
+						background-repeat: no-repeat;
+						opacity: .5;
+						position: absolute;
+						right: 10px;
+						bottom: 10px;
+					}
 				}
 			}
 

@@ -50,7 +50,10 @@
 						.picture(ng-repeat='pic in immobile.gallery' disable-rclick ng-click='openLightbox(imovel.currentSlide)')
 							.blurry(style='background-image: url("{{pic.url}}")')
 							.dark-cover
-							.clean(style='background-image: url("{{pic.url}}")')
+							//- .clean(style='background-image: url("{{pic.url}}")')
+							.clean
+								img.img-responsive(ng-src='{{pic.url}}')
+								.watermark
 							.text(ng-if='pic.gallery_image_title || pic.gallery_image_text')
 								h4.text-center {{pic.gallery_image_title}}
 								p.text-sm.text-center {{pic.gallery_image_text}}
