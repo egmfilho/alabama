@@ -21,9 +21,11 @@ html
 
 	body(ng-app='alabama')
 
-		//- <?php include "../partials/header5.html" ?>
+		//- <?php include "../partials/header4.html" ?>
 
-		header6(
+		//- div(ng-include='\'../partials/header3.html\'')
+
+		header3(
 			navigation=`[
 				{
 					"nome": "Home",
@@ -59,22 +61,13 @@ html
 			whatsapp='(21) 97169-0349'
 			tel='(21) 2642-3468'
 			email='sac@pnimobiliaria.com.br'
-			title='Grupo Paiva' 
-			subtitle='Corretora e Imobiliária' 
-			message='Trabalhando e pensando na realização do seu sonho.' 
+			title='Gaia' 
+			subtitle='Administradora' 
+			message='Trabalhando e pensando na realização do seu sonho.'
 			btn-label='Ver imóveis')
 
 		.scroll-top.hidden-xs(ng-class='{"visible": scrollY >= 100}' ng-click='scrollTop()')
 			i.fa.fa-chevron-up
-
-		//- #loading(ng-show='loading.isLoading()')
-			.logo
-				.spinner(style='transform: scale(2)')
-					.rect1
-					.rect2
-					.rect3
-					.rect4
-					.rect5
 
 		block page
 
