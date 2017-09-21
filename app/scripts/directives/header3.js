@@ -6,7 +6,19 @@
 	angular.module('alabama.directives')
 		.directive('header3', ['$rootScope', function($rootScope) {
 
-			function controller($scope, $filter) {
+			function controller($scope, $filter, $location, $timeout, ImmobileManager, SearchFilters) {
+
+				var self = this;
+
+				$scope.$on('search', function(event, filters) {
+					var temp = angular.extend({}, filters, {
+						order: filters.order ? filters.order.column + '-' + filters.order.order : '3-1'
+					});
+			
+					SearchFilters.set(filters);
+			
+					$location.path('/imoveis').search(temp);
+				});
 
 				jQuery('.header3 #carousel-showcase').carousel({
 					pause: null,
@@ -36,9 +48,28 @@
 				this.getCurrentPath = function() {
 					return $rootScope.currentPath;
 				};
+
+				(function getDestaques() {
+					self.featuredList = [ ];
+					ImmobileManager.loadAllFeatured().then(function(success) {
+						angular.forEach(success, function(item) {
+							self.featuredList.push(item.convertToCardInfo());
+						});
+						console.log(self.featuredList);
+						$timeout(function() {
+							self.currentPic = self.featuredList[0].pictureLg;
+							jQuery('#carousel-showcase').on('slid.bs.carousel', function(e) {
+								var immobile = self.featuredList[jQuery(this).find('.active').index()];
+								$timeout(function() { self.currentPic = immobile.pictureLg; });
+							});
+						}, 1000);
+					}, function(error) {
+						console.warn(error);
+					});
+				}());
 			}
 
-			controller.$inject = [ '$scope', '$filter' ];
+			controller.$inject = [ '$scope', '$filter', '$location', '$timeout', 'ImmobileManager', 'SearchFilters' ];
 
 			return {
 				restrict: 'E',
