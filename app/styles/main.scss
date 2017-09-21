@@ -1,7 +1,13 @@
 $sky-blue: #19b2e5;
 $smooth-brown: #bda895;
 $slime-green: #5cb667;
+
 $paiva: #06648F;
+$paiva2: #FFF;
+
+
+$gaia: lighten(#0F1342, 13.5%);
+$gaia2: #FFCC29;// #F4BF30;
 
 $background-color: #eeeeee;
 
@@ -11,7 +17,15 @@ $main-color-dark: darken($main-color, 13.5%);
 $main-color-light: lighten($main-color, 13.5%);
 $main-color-lighter: lighten($main-color, 20%);
 
+$secondary-color: $paiva2;
+
 $brand-primary: $main-color;
+$btn-primary-color: white;
+
+// $body-bg: $main-color-dark;
+// $text-color: $secondary-color;
+
+$dropdown-link-hover-bg: #ddd;
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Archivo+Black|Work+Sans');
 
@@ -185,7 +199,7 @@ input, select, textarea, .bootstrap-select {
 	right: 70px;
 	width: 60px;
 	height: 60px;
-	background-color: $main-color-lighter;
+	background-color: $main-color;
 	border-radius: 50%;
 	opacity: 0;
 	transition: opacity .5s;	
@@ -198,7 +212,7 @@ input, select, textarea, .bootstrap-select {
 	}
 
 	i {
-		color: white;
+		color: $secondary-color;
 		display: block;
 		font-size: 30px;
 		text-align: center;
@@ -256,7 +270,7 @@ input, select, textarea, .bootstrap-select {
 
 		i.fa {
 			background-color: $main-color;
-			color: white;
+			color: $secondary-color;
 			border-radius: 50%;
 			padding: 40px;
 			width: 200px;

@@ -66,6 +66,10 @@
 			background-color: $main-color;
 			outline: none;
 
+			&::after {
+				background-color: $secondary-color;
+			}
+
 			&.rz-active:after {
 				background-color: $main-color-dark;
 			}
