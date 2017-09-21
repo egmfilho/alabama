@@ -34,6 +34,10 @@ $dropdown-link-hover-bg: #ddd;
 
 @import "utils";
 
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .browsehappy {
 	margin: 0.2em 0;
 	background: #ccc;
@@ -48,10 +52,6 @@ textarea {
 body {
 	padding: 0;
 	// background-color: $background-color;
-}
-
-.text-sans {
-	font-family: 'Open Sans', sans-serif;
 }
 
 .up-shadow {
@@ -110,10 +110,6 @@ body {
 			color: $main-color-dark;
 		}
 	}
-}
-
-.open-sans {
-	font-family: 'Open Sans', sans-serif;
 }
 
 .condensar-rows {
@@ -263,7 +259,6 @@ input, select, textarea, .bootstrap-select {
 
 #link-icons {
 	a {
-		font-family: 'Open Sans', sans-serif;
 		display: block;
 		padding: 15px;
 		border-radius: 6px;
