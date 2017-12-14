@@ -154,7 +154,7 @@
 
 		.info {
 			width: 100%;
-			height: 100%;
+			height: $height-xs;
 			background-color: rgba($main-color-dark, .7);
 
 			@media (min-width: $screen-sm-min) {
