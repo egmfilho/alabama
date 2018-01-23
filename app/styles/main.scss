@@ -141,6 +141,10 @@ input, select, textarea, .bootstrap-select {
 	}
 }
 
+.bootstrap-select.btn-group.bs-container .dropdown-menu {
+	z-index: 2001;
+}
+
 .bootstrap-select  {
 	&.btn-group.open .dropdown-toggle {
 		border-color: $main-color !important;
